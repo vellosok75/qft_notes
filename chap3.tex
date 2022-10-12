@@ -1,0 +1,498 @@
+\chapter{Elements of Classical Field Theory}
+In this chapter we introduce the classical theory of fields by examining scalar fields. We start with the continuum limit of the linear chain of oscillators to get a first glimpse of a field theory. Lagrangian and Hamiltonian Field theory are covered, as well as a brief discussion on functional derivatives. We conclude with a discussion on Noether's Theorem and conserved currents for spacetime symmetries.
+
+
+\section{Lagrangian Field Theory}
+\subsection{An example: The Continuum Limit of the Linear Chain}
+We reexamine the Lagrangian for the linear chain of oscillators of mass $m$, separated by $a$, with spring constant $\kappa$:
+\begin{equation}
+    L=\sum_{n=1}^N\frac{1}{2}m\dot{q}^2_n(t)- \sum_{n=1}^N\frac{1}{2}\kappa(q_{n+1}(t)-q_n(t))^2
+    \label{lag_chain}
+\end{equation}
+The continuum limit corresponds to let $a\to0$ and $N\to\infty$ while the density $\mu=m/a$ and the tension $\tau =\kappa a$ remain constants. The masses become so close that we replace the discrete index $n$ for the position $x$ along the chain, which is now a string. The displacements $q_n(t)$ are indistinguishable from an amplitude $\phi(x,t)$, a field assigning the displacement at  position $x$ of the string at time $t$. Since the spacing between oscillators of the chain is $\Delta x = a$, we can multiply the Lagrangian (\ref{lag_chain}) by the unit factor $\Delta x/a$ and take the limit $a\to0$ to obtain the Lagrangian for the string
+\begin{equation}
+    L=\lim_{a\to0}\qty[\sum_{n=1}^N\frac{1}{2}m\dot{q}^2_n(t)\frac{\Delta x}{a}- \sum_{n=1}^N\frac{1}{2}\kappa(q_{n+1}(t)-q_n(t))^2\frac{\Delta x}{a}]
+\end{equation}
+Noting that when $a\to0$ the difference approaches a derivative
+\begin{equation}
+    \frac{q_{n+1}-q_n}{a}\to\pdv{\phi(x,t)}{x}
+\end{equation}
+then the Lagrangian goes to
+\begin{equation}
+    L=\int_0^\ell\qty[\frac{1}{2}\mu \qty(\pdv{\phi}{t})^2-\frac{1}{2}\tau\qty(\pdv{\phi}{x})^2]\dd x
+    \label{lag_string}
+\end{equation}
+ 
+The Lagrangian (\ref{lag_chain}) is for a particle theory and involved a sum over all the degrees of freedom. For (\ref{lag_string}), the Lagrangian for a field theory, the sum becomes an integral over the infinite degrees of freedom.
+
+In particle theories, we are used to see the action $S[q(t),\dot{q}(t)]$ as the archetypal functional. It is worth noting that in eq. (\ref{lag_string}) the Lagrangian itself is a functional. This is a common feature of \textit{local field theories}, for which the Lagrangian is written in terms of a \textit{Lagrangian Density} $\mathcal{L}$, a function of the field and its derivatives
+\begin{equation}
+    L=\int \mathcal{L}(\phi(x,t),\dot{\phi}(x,t),\phi^\prime(x,t))\,\dd x
+\end{equation}
+For (\ref{lag_string}), the variation of the action reads
+\begin{equation}
+    \delta S = \delta \int_{t_1}^{t_2}\dd t\int_{0}^{\ell}\dd x\, \mathcal{L}=0
+\end{equation}
+As usual in the calculus of variations, variations vanish in time extremities: $\delta \phi (x,t_1)=\delta \phi(x,t_2)=0$. We consider a clamped string so the variations vanish in space as well: $\delta \phi (x_1=0,t)=\delta \phi(x_2=\ell,t)=0$. Carrying out the calculation
+\begin{equation}
+    \delta S=\int_{t_1}^{t_2}\int_{x_1}^{x_2}\dd t\,\dd x\qty[\pdv{\mathcal{L}}{\phi}\delta\phi+\pdv{\mathcal{L}}{\dot{\phi}}\delta\dot{\phi}+\pdv{\mathcal{L}}{\phi^\prime}\delta\phi^\prime]
+\end{equation}
+Commuting differentiation and variations
+\begin{equation}
+    \delta S=\int_{t_1}^{t_2}\int_{x_1}^{x_2}\dd t\,\dd x\qty[\pdv{\mathcal{L}}{\phi}\delta\phi+\pdv{\mathcal{L}}{\dot{\phi}}\pdv{t}\delta{\phi}+\pdv{\mathcal{L}}{\phi^\prime}\pdv{x}\delta\phi]
+\end{equation}
+and since the boundary terms vanish, integration by parts in $x$ and $t$ yields
+\begin{equation}
+    \delta S=\int_{t_1}^{t_2}\int_{x_1}^{x_2}\dd t\,\dd x \qty[\pdv{\mathcal{L}}{ \phi}-\pdv{t}\pdv{\mathcal{L}}{\dot{\phi}}-\pdv{x}\pdv{\mathcal{L}}{\phi^\prime}]\delta\phi
+    \label{vari_action}
+\end{equation}
+According to the \textit{fundamental Lemma of the Calculus of Variations} \cite{lemos2018analytical} this action is stationary if the integrand of (\ref{vari_action}) vanishes, i.e. if the Euler-Lagrange Equation for the field is satisfied
+\begin{equation}
+    \pdv{\mathcal{L}}{ \phi}-\pdv{t}\pdv{\mathcal{L}}{\dot{\phi}}-\pdv{x}\pdv{\mathcal{L}}{\phi^\prime}=0
+\end{equation}
+Substituting  the expression for the Lagrangian (\ref{lag_string}) we get the wave equation
+\begin{equation}
+    \pdv[2]{\phi}{x}-\frac{\mu}{\tau}\pdv[2]{\phi}{t}=0
+\end{equation}
+So we have successfully obtained a continuum theory from a discrete particle theory.
+\subsection{Field Lagrangians and the Euler-Lagrange Equation}
+This previous example gave us an insight of what lagrangian field theory looks like. The field $\phi(x,t)$ assigned an amplitude for each point of the string at a given moment of time, being ``concrete", in the sense that it was obtained as the continuum limit of a mechanical system. Most field theories lack such parallel with mechanical systems and are way more abstract.\\
+
+For particle theories, the dynamical variables were the generalized positions $q_i(t)$ and velocities $\dot{q}_i(t)$, and the Lagrangian $L=L(q,t)$ was a function of those. For field theories the Lagrangian $L=L[\phi(x,t),\dot{\phi}(x,t)]$ is a functional of the fields, which are the dynamical variables.\\
+
+The dynamics of such field theories will come from the Euler-Lagrange Equation, which we find varying the action. Thus, we will be interested in the variation of a functional, say, $F[\phi]$. We define such variation in terms of a \textit{functional derivative} $\fdv*{F}{\phi}$
+\begin{equation}
+    \delta F[\phi]=F[\phi+\delta\phi]-F[\phi]=\int\dd^3x\,\fdv{F}{\phi}\delta\phi
+\end{equation}
+We go in more details about functional derivatives, their definition and applications in the next section.
+The variation of the Lagrangian $L[\phi(x,t),\dot{\phi}(x,t)]$ is
+\begin{equation}
+    \delta L[\phi,\dot{\phi}]=\int\dd^3x\qty[\fdv{L}{\phi}\delta\phi+\fdv{L}{\dot{\phi}}\delta\dot{\phi}]
+    \label{var_lagrangian}
+\end{equation}
+and the variation of the action is
+\begin{equation}
+    \delta S=\delta\int_{t_1}^{t_2}L[\phi,\dot{\phi}]\dd t=\int_{t_1}^{t_2}\delta L[\phi,\dot{\phi}]\dd t
+\end{equation}
+The variation of the action is then the integral over time of (\ref{var_lagrangian}), so we commute variations with time differentiation, assume vanishing boundaries and integrate by parts in time to obtain the sufficient condition for stationarity of the action, the Euler-Lagrange equation
+\begin{equation}
+    \fdv{L}{\phi}-\dv{t}\fdv{L}{\dot{\phi}}=0
+    \label{functionl_euler_lagrange}
+\end{equation}
+Notice that now this is a functional differential equation.
+\subsection{Local Field Theories and the Lagrangian Density}
+We focus now on local field theories: those for which the Lagrangian is written in terms of a Lagrangian density, a function of the field. 
+%A basic assumption for these theories is that spatial and temporal dependencies of the lagrangian density comes implicitly from the fields.
+``Local" in the sense that $\mathcal{L}$ can depend on the field at a point $x$ and, at most, on the field at a neighbouring point $\vb{x}+\dd \vb{x}$ and $t+\dd t$. The general form of the lagangian density will be $\mathcal{L}=\mathcal{L}(\phi(t,\vb{x}),\grad\phi(t,\vb{x}),\dot{\phi}(t,\vb{x}))$, since $\phi(t,\vb{x}+\dd \vb{x})\approx\phi(t,\vb{x})+\grad\phi(t,\vb{x})\vdot\dd\vb{x}$, and $\phi(t+\dd t,\vb{x})\approx\phi(t,\vb{x})+\dot{\phi}(t,\vb{x})\dd t$. The Lagrangian will be the integral of the Lagrangian density over a region $\Omega$
+\begin{equation}
+   L=\int_\Omega\dd^3 x\,\mathcal{L}(\phi(t,\vb{x}),\grad\phi(t,\vb{x}),\dot{\phi}(t,\vb{x}))
+   \label{lagrangian_local}
+\end{equation}
+We will denote the set of independent coordinates $(t,\vb{x})$ simply by $x$.
+The general action for a local field theory is 
+\begin{equation}
+    S=\int_{t_1}^{t2}\dd t\int_{\Omega}\dd^3 x\,\mathcal{L}(\phi(x),\grad{\phi}(x),\dot{\phi}(x))
+\end{equation}
+Let's see how the Euler-Lagrange equation (\ref{functionl_euler_lagrange}) can be written in terms of $\mathcal{L}$ for local theories. The variation of the action is simply the time integral of the variation of the lagrangian (\ref{lagrangian_local}) which reads
+\begin{equation}
+    \begin{aligned}
+\delta L=\int_{\Omega}\dd^3x\,\delta\mathcal{L}=\int_{\Omega}\dd^3x\,\qty[\pdv{\mathcal{L}}{\phi}\delta\phi+\pdv{\mathcal{L}}{(\partial_i\phi)}\delta(\partial_i\phi)+\pdv{\mathcal{L}}{\dot{\phi}}\delta\dot{\phi}]
+    \end{aligned}
+    \label{varL}
+\end{equation}
+%\sum_{i=1}^3
+Introducing a vector with the $i$-th entry defined by
+\begin{equation}
+    \qty(\pdv{\mathcal{L}}{(\grad\phi)})_i=\pdv{\mathcal{L}}{(\partial_i\phi)}
+    \label{del_grad}
+\end{equation}
+then we can write the term under the implicit summation as a dot product with the variation of the gradient
+\begin{equation}
+    \pdv{\mathcal{L}}{(\partial_i\phi)}\delta(\partial_i\phi)=\qty(\pdv{\mathcal{L}}{(\grad\phi)})\vdot\delta\grad\phi
+\end{equation}
+Noting that $\delta\grad\phi=\grad\delta\phi$, using the vector identity 
+\begin{equation}
+    \grad f \vdot \vb{A}=\div(f\vb{A})-f\div\vb{A}
+    \label{vec_id}
+\end{equation}
+for a scalar $f$ and a vector $\vb{A}$, then (\ref{varL}) reads
+\begin{equation}
+   \delta L =  \int_{\Omega}\dd^3x\,\qty[\pdv{\mathcal{L}}{\phi}\delta\phi+\div\qty(\pdv{\mathcal{L}}{(\grad\phi)}\delta\phi)-\div{\qty(\pdv{\mathcal{L}}{(\grad\phi)})}\delta\phi+\pdv{\mathcal{L}}{\dot{\phi}}\delta\dot{\phi}]
+   \label{varL2}
+\end{equation}
+where we took $f=\delta\phi$ and $\vb{A}=\pdv*{\mathcal{L} }{(\grad\phi)}$. Using the divergence theorem, we turn the first divergence in the integrand of (\ref{varL2}) to a flux integral over the boundary $\partial\Omega$ of $\Omega$, where the variations are assumed to vanish. Thus, the variation of the lagrangian is
+\begin{equation}
+   \delta L =  \int_{\Omega}\dd^3x\,\qty{\qty[\pdv{\mathcal{L}}{\phi}-\div{\qty(\pdv{\mathcal{L}}{(\grad\phi)})}]\delta\phi+\pdv{\mathcal{L}}{\dot{\phi}}\delta\dot{\phi}}
+\end{equation}
+Comparing with (\ref{var_lagrangian}), we recognize
+\begin{equation}
+\begin{aligned}
+    \fdv{L}{\phi}&= \pdv{\mathcal{L}}{\phi}-\div{\qty(\pdv{\mathcal{L}}{(\grad\phi)})}\\
+    \fdv{L}{\dot\phi}&= \pdv{\mathcal{L}}{\dot\phi}
+\end{aligned}
+\label{functional_to_function_eom_terms}
+\end{equation}
+so the Euler-Lagrange Equation in terms of the Lagrangian density reads
+\begin{equation}
+    \pdv{\mathcal{L}}{\phi}-\div{\qty(\pdv{\mathcal{L}}{(\grad\phi)})}-\pdv{t}\pdv{\mathcal{L}}{\dot\phi}=0
+    \label{euler_lagrange_density}
+\end{equation}
+Notice (\ref{euler_lagrange_density}) treats space and time symmetrically as parameters. Furthermore, as long as the lagrangian is a Lorentz scalar, so it will be the Euler-Lagrange equation, so (\ref{euler_lagrange_density}) is manifestly Lorentz covariant.
+%We introduce the set of coordinates of Minkowski's Spacetime $x^\mu=(x^0,x^1,x^2,x^3)$, with $x^0=ct$ and the $x^i=x,y,z$ for $i=1,2,3$. We adopt a system of units in which $c=1$ and also  Einstein's summation convention. 
+Using the 4-gradient $\partial_\mu=(\pdv{x^0},\pdv{x^1},\pdv{x^2},\pdv{x^3})$, the manifestly covariant Euler-Lagrange equation reads
+\begin{equation}
+    \pdv{\mathcal{L}}{\phi}-\pdv{x^\mu}\pdv{\mathcal{L}}{(\partial_\mu\phi)}=0
+\end{equation}
+\section{Functional Derivatives}
+We have seen how functionals arise naturally in Field Theory. The Lagrangian and the action are functionals, and, as we shall see, the Hamiltonian and the Poisson Brackets will also be written in terms of functionals. So, Functional Derivatives will be a reccuring operation and this section focuses on a few examples of functionals and their functional derivatives. First we define a functional: Given a set $M$ of scalar functions $f:\mathbb{R}^N\to\mathbb{R},\mathbb{C}$, a functional $F[f]$ is a map from $M$ to scalars
+\begin{equation}
+\begin{aligned}
+    F:&{M}\to\mathbb{R},\mathbb{C}\\
+    f&\mapsto F[f]
+\end{aligned}
+\end{equation}
+The problem of evaluating the change in $F$ given a slight change in the function $f$ is at the heart of functional differentiation. The functional derivative can be implicitly defined in terms of a ordinary derivative:
+\begin{equation}
+    \dv{\epsilon}F[f(x)+\epsilon\sigma(x)]\eval_{\epsilon=0}=\int_{\mathbb{R}^N}\dd^Nx\,\fdv{F[f]}{f(x)}\sigma(x)
+    \label{func_dev_def}
+\end{equation}
+Where $\sigma:\mathbb{R}^N\to\mathbb{R}$ is an infinitely differentiable function vanishing at the boundaries, also known as a ``deformation". This implicit definition gives functional derivatives properties similar to those of ordinary and partial derivatives, such as linearity
+\begin{equation}
+    \fdv{f(x)}(c_1F_1[f]+c_2F_2[f])=c_1\fdv{F_1[f]}{f(x)}+c_2\fdv{F_2[f]}{f(x)}
+\end{equation}
+the Leibniz rule
+\begin{equation}
+    \fdv{f(x)}(F_1[f]F_2[f])=\fdv{F_1[f]}{f(x)}F_2+F_1\fdv{F_2[f]}{f(x)}
+\end{equation}
+and chain rule: for a function of a functional $\Phi=\Phi(F)$, definition (\ref{func_dev_def}) gives us
+\begin{equation}
+    \fdv{\Phi(F)}{f(x)}=\dv{\Phi}{F}\fdv{F[f]}{f(x)}
+\end{equation}
+If $\Phi$ is a multi-functional function, for instance $\Phi=\Phi(F,G)$, then
+\begin{equation}
+    \fdv{\Phi(F,G)}{f(x)}=\pdv{\Phi}{F}\fdv{F[f]}{f(x)}+\pdv{\Phi}{G}\fdv{G[f]}{f(x)}
+\end{equation}
+%A recurring functional we will be dealing with is
+%\begin{equation}
+%    F[f]=\int_{\mathbb{R}^N}\dd^{N}x\, f(x)
+%\end{equation}
+%$f(x)$ being a well behaved function. We Taylor expand $f$ when applying the definition (\ref{func_dev_def})
+%\begin{equation}
+%    \dv{\epsilon}F[f+\epsilon\sigma]=\dv{\epsilon}\int_{\mathbb{R}^N}\dd^{N}x\,( f(\phi)+\epsilon f^\prime(\phi)\sigma+\order{\epsilon^2})=\int_{\mathbb{R}^N}\dd^{N}x\,(f^\prime(\phi)\sigma+\order{\epsilon^2})
+%\end{equation}
+%The prime meaning derivative with respect to its argument. When $\epsilon=0$, we find
+%\begin{equation}
+ %   \fdv{F[\phi]}{\phi(x)}=\fdv{\phi(x)}\int_{\mathbb{R}^N}\dd^{N}x\, f(\phi)=f^\prime(\phi)
+%    \label{ex1_func_der}
+%\end{equation}
+%An immediate example of functional of this type could be the lagrangian for a lagrangian density depending only on $\dot{\phi}(x)$: $L=\int\dd t \mathcal{L}(\dot{\phi}(x)$) and as (\ref{ex1_func_der}) prescribes, $\fdv*{L}{\dot{\phi}}=\pdv*{\mathcal{L}}{\dot{\phi}}$, as anticipated by (\ref{functional_to_function_eom_terms}).\\
+
+Next we examine how a function may be viewed as a functional, which will be a helpful tool in field theory. To do so, we make use of the Delta distribution, or Dirac Delta ``function". The functional $F_x[f]$ takes the function $f$ and assigns a scalar which is nothing but the value  of $f$ at $x$, that is $F_x[f]=f(x)$, or
+\begin{equation}
+    F_x[f]=f(x)=\int\delta(x-x^\prime)f(x^\prime)\,\dd x^\prime
+    \label{delta_functional}
+\end{equation}
+Definition (\ref{func_dev_def}) gives 
+\begin{equation}
+    \dv{\epsilon}F_x[f+\epsilon\sigma]=\dv{\epsilon}\int\delta(x-x^\prime)(f(x^\prime)+\epsilon\sigma(x^\prime))\,\dd x^\prime=\int\delta(x-x^\prime)\sigma(x^\prime)\,\dd x^\prime
+\end{equation}
+At $\epsilon\to0$ we see
+\begin{equation}
+    \fdv{F_x[f]}{f(x)}=\fdv{f(x)}{f(x^\prime)}=\delta(x-x^\prime)
+    \label{ex2_func_der}
+\end{equation}
+We can also express the derivative of a function in terms of a functional
+\begin{equation}
+    f^\prime(x)=\int_{-\infty}^{+\infty}\delta(x-x^\prime)f^\prime(x^\prime)\,\dd x^\prime
+\end{equation}
+Using integration by parts
+\begin{equation}
+    f^\prime(x)=-\int_{-\infty}^{+\infty}\qty[\dv{x^\prime}\delta(x-x^\prime)]f(x^\prime)\,\dd x^\prime
+\end{equation}
+This actually \textit{defines} the derivative of the Delta Function. Plugging in the definition (\ref{func_dev_def})
+\begin{equation}
+    -\dv{\epsilon}\int_{-\infty}^{+\infty}\qty[\dv{x^\prime}\delta(x-x^\prime)]\qty(f(x^\prime)+\epsilon\sigma(x^\prime))\,\dd x^\prime=-\int_{-\infty}^{+\infty}\qty[\dv{x^\prime}\delta(x-x^\prime)]\sigma(x^\prime)\,\dd x^\prime
+\end{equation}
+Since $\dv{x^\prime}\delta(x-x^\prime)=-\dv{x}\delta(x-x^\prime)$ then (\ref{func_dev_def}) gives 
+\begin{equation}
+    \fdv{f^\prime(x)}{f(x^\prime)}=\delta^\prime(x-x^\prime)
+\end{equation}
+
+Now consider the functional depending on a parameter $x$, defined by the transform over a given Kernel $K(x,x^\prime)$
+\begin{equation}
+    F_x[f]=\int\dd x^\prime\,K(x,x^\prime)f(x^\prime)
+\end{equation}
+by (\ref{func_dev_def}), we see that
+\begin{equation}
+    \fdv{F_x[f]}{f(x^\prime)}=K(x,x^\prime)
+\end{equation}
+We can repeat this calculation but now allowing the functional derivative to act under the integral sign
+\begin{equation}
+    \fdv{f(y)}\int\dd x^\prime\,K(x,x^\prime)f(x^\prime)=\int\dd x^\prime\,K(x,x^\prime)\fdv{f(x^\prime)}{f(y)}=\int\dd x^\prime\,K(x,x^\prime)\delta(x^\prime-y)=K(x,y)
+\end{equation}
+which sows the same result, assuming the Kernel has no functional dependency with $f(y)$. So, from now on, we shall take functional derivatives under the integral sign, just like we compute variations under the integral sign. \\
+
+These examples have been specially selected because they appear often in Field Theory. The action functional, for instance, is
+\begin{equation}
+    S[\phi]=\int\dd^4x\,\mathcal{L}(\phi(x),\partial_\mu\phi(x))
+\end{equation}
+Differentiating under the integral sign, recognizing the lagrangian density as a function of the functionals $\phi(x)$ and $\partial_\mu\phi(x)$ (interpreting these functions as functionals) we have
+\begin{equation}
+\begin{aligned}
+    \fdv{S[\phi]}{\phi(x)}&=\int\dd^4x^\prime\,\qty[\pdv{\mathcal{L}}{\phi(x^\prime)}\fdv{\phi(x^\prime)}{\phi(x)}+\pdv{\mathcal{L}}{(\partial_\mu\phi(x^\prime))}\fdv{\partial_\mu\phi(x^\prime)}{\phi(x)}]\\
+    &=\int\dd^4x^\prime\,\qty[\pdv{\mathcal{L}}{\phi(x^\prime)}\delta(x^\prime-x)+\pdv{\mathcal{L}}{(\partial_\mu\phi(x^\prime))}\partial_\mu\delta(x^\prime-x)]\\
+    &=\pdv{\mathcal{L}}{\phi(x)}-\pdv{x^\mu}\pdv{\mathcal{L}}{(\partial_\mu\phi(x))}
+\end{aligned}
+\end{equation}
+where we used integration by parts in time and the vector identity (\ref{vec_id}) for the space coordinates. The Euler-Lagrange equation thus is simply stated as $\fdv*{S}{\phi}=0$.
+%Again using the definition
+%\begin{equation}
+%\begin{aligned}
+ %   \int\dd^4x\,\fdv{S[\phi]}{\phi(x)}\sigma(x)&= \dv{\epsilon}\qty[\int\dd^4x\,\mathcal{L}(\phi(x)+\epsilon\sigma(x),\partial_\mu\phi(x)+\epsilon\partial_\mu\sigma(x))]_{\epsilon=0}\\
+ %   &=\dv{\epsilon}\qty[\int\dd^4x\,\qty(\mathcal{L}(\phi,\partial_\mu\phi)+\pdv{\mathcal{L}}{\phi}\epsilon\sigma+\pdv{\mathcal{L}}{(\partial_\mu\phi)}\epsilon\partial_\mu\sigma)]_{\epsilon=0}\\
+  %  &=\int\dd^4x\,\qty()
+%\end{aligned}
+%\end{equation}--------------------------
+
+\section{Hamiltonian Field Theory}
+\subsection{The Hamiltonian for Local Field Theories}
+In classical mechanics of particles, the Hamiltonian is the Legendre Transform of the Lagrangian. It depends on position and conjugate momenta, defined by
+\begin{equation}
+    p_i(t)=\pdv{L}{\dot{q}^i}
+\end{equation}
+so the Hamiltonian is 
+\begin{equation}
+    H= p_i\dot{q}^i-L
+\end{equation}
+The generalization to field theory is similar, the conjugate momentum $\pi(x)$ is defined by the functional derivative
+\begin{equation}
+    \pi(x)=\fdv{L}{\dot{\phi}(t,\vb{x})}
+\end{equation}
+For a Lagrangian as (\ref{lagrangian_local}), the conjugate momentum reads
+\begin{equation}
+    \pi(x)=\pdv{\mathcal{L}}{\dot{\phi}}
+    \label{conj_mom}
+\end{equation}
+as anticipated by (\ref{functional_to_function_eom_terms}). We call \textit{Hamiltonian density} the Legendre Transform of the Lagrangian density 
+\begin{equation}
+    \mathcal{H}(x)=\pi(x)\dot{\phi}(x)-\mathcal{L}(x)
+    \label{hamiltonian_density}
+\end{equation}
+And then the Hamiltonian is 
+\begin{equation}
+    H=\int\dd^3x\,\mathcal{H}(x)=\int\dd^3x\,\pi(x)\dot{\phi}(x)-L
+    \label{hamitlonian_total}
+\end{equation}
+The Hamiltonian is a functional of $\pi(x)$ and $\phi(x)$, so its variation reads
+\begin{equation}
+    \delta H[\pi,\phi]=\int\dd^3x\,\qty(\fdv{H}{\pi}\delta\pi+\fdv{H}{\phi}\delta\phi)
+    \label{var_H1}
+\end{equation}
+On the other hand, using (\ref{hamitlonian_total})
+\begin{equation}
+    \delta H=\int\dd^3x\,\qty(\dot{\phi}\delta\pi+\pi\delta\dot{\phi})-\delta L
+    \label{var_H2}
+\end{equation}
+Variation (\ref{var_lagrangian}) of the Lagrangian, using the conjugate momentum (\ref{conj_mom}) and the Euler-Lagrange Equation (\ref{functionl_euler_lagrange}), is
+\begin{equation}
+    \delta L =\int\dd^3x \qty(\fdv{L}{\phi}\delta\phi+\fdv{L}{\dot{\phi}}\delta\dot{\phi})=\int\dd^3x\qty(\dot{\pi}\delta\phi+\pi\delta\dot{\phi})
+\end{equation}
+this way, (\ref{var_H2}) reads
+\begin{equation}
+    \delta H=\int\dd^3x\qty(\dot{\phi}\delta\pi-\dot{\pi}\delta\phi)
+    \label{var_H3}
+\end{equation}
+Comparison  between (\ref{var_H3}) and (\ref{var_H1}) leads to Hamilton's equations of motion
+\begin{equation}\begin{aligned}
+    \fdv{H}{\pi(x)}&=\dot{\phi}(x) \\ \fdv{H}{\phi(x)}&=-\dot{\pi}(x)
+\end{aligned}
+    \label{hamiltons_eqs}
+\end{equation}
+
+In principle, the Hamiltonian density could be a function of the field, its space derivatives, the conjugate momentum, and the conjugate momentum's space derivatives, for the sake of locality. But for most theories of physical interest $\mathcal{H}$ does not depend on the gradients of $\pi(x)$ \cite{lemos2018analytical}, so we consider hamiltonian densities of the form
+\begin{equation}
+    \mathcal{H}=\mathcal{H}(\phi(x),\grad\phi(x),\pi(x))
+    \label{density_form}
+\end{equation}
+To write Hamilton's Equations in terms of the Hamiltonian density we calculate the functional derivatives (\ref{hamiltons_eqs}) from the Hamiltonian (\ref{hamitlonian_total}) using (\ref{density_form}). This gives
+\begin{equation}
+    \begin{aligned}
+        \fdv{H}{\phi}&=\pdv{\mathcal{H}}{\phi}-\div\pdv{\mathcal{H}}{\grad\phi}\\
+        \fdv{H}{\pi}&=\pdv{\mathcal{H}}{\pi}
+    \end{aligned}
+\end{equation}
+ %Where we have differentiated under the integral sign, treated $\mathcal{H}$ as a function of functionals ($\phi(x)$, $\grad\phi(x)$, $\pi(x)$ and $\grad\pi(x)$).\\
+ \subsection{The Poisson Bracket}
+  In particle theories, for dynamical variables $F(p,q)$ and $G(p,q)$, we had
+ \begin{equation}
+     \poissonbracket{F}{G}_{\text{PB}}=\qty(\pdv{F}{q_i}\pdv{G}{p_i}-\pdv{F}{p_i}\pdv{G}{q_i})
+     \label{poisson_bracket}
+ \end{equation}
+With the sum over $i$ implicit. In field theory, for the functionals $F[\phi,\pi]$ and $G[\phi,\pi]$, we define
+ \begin{equation}
+      \poissonbracket{F}{G}_{\text{PB}}=\int\dd^3x\qty(\fdv{F}{\phi}\fdv{G}{\pi}-\fdv{F}{\pi}\fdv{G}{\phi})
+ \end{equation}
+This  definition and the canonical equations (\ref{hamiltons_eqs}) allows us to write time dependence as follows
+\begin{equation}
+\begin{aligned}
+         \dot{F}[\phi,\pi]&=\int\dd^3x\qty(\fdv{F}{\phi}\dot{\phi}+\fdv{F}{\pi}\dot{\pi})=\int\dd^3x\qty(\fdv{F}{\phi}\fdv{H}{\pi}-\fdv{F}{\pi}\fdv{H}{\phi})\\
+         &=\poissonbracket{F}{H}_{\text{PB}}
+\end{aligned}
+    \label{equation_of_motion_hamiltonian_variable}
+\end{equation}
+We can use (\ref{equation_of_motion_hamiltonian_variable}) to write the time dependency of $\phi(x)$ and $\pi(x)$. This way, Hamilton's equations can be recast using the Poisson bracket:
+\begin{equation}
+\begin{aligned}
+    \dot{\phi}(x)&=\poissonbracket{\phi(x)}{H}_{\text{PB}}=\fdv{H}{\pi(x)}\\
+    \dot{\pi}(x)&=\poissonbracket{\pi(x)}{H}_{\text{PB}}=-\fdv{H}{\phi(x)}
+\end{aligned}
+\end{equation}
+ To check this, we calculate $\poissonbracket{\phi(x)}{H}_{\text{PB}}$ and $\poissonbracket{\pi(x)}{H}_{\text{PB}}$ interpreting $\phi(x)$ and $\pi(x)$ as functionals using the Delta Function, just as in (\ref{delta_functional}), we also use rule (\ref{ex2_func_der}).\\
+ 
+Again treating both the field $\phi(x)$ and the conjugate momentum $\pi(x)$ as functionals, we highlight the results
+ \begin{equation}
+     \fdv{\phi(t,\vb{x})}{\phi(t,\vb{x}^\prime)}=\delta(\vb{x}-\vb{x}^\prime)
+ \end{equation}
+  \begin{equation}
+     \fdv{\pi(t,\vb{x})}{\pi(t,\vb{x}^\prime)}=\delta(\vb{x}-\vb{x}^\prime)
+ \end{equation}
+ and
+ \begin{equation}
+     \fdv{\phi(t,\vb{x})}{\pi(t,\vb{x}^\prime)}= \fdv{\pi(t,\vb{x})}{\phi(t,\vb{x}^\prime)}=0
+ \end{equation}
+ So we can calculate the following
+ \begin{equation}
+\begin{aligned}
+    \poissonbracket{\phi(t,\vb{x})}{\pi(t,\vb{x}^\prime)}_{\text{PB}}&=\int\dd^3y\,\underbrace{\fdv{\phi(t,\vb{x})}{\phi(t,\vb{y})}}_{\delta(\vb{x}-\vb{y})}\underbrace{\fdv{\pi(t,\vb{x}^\prime)}{\pi(t,\vb{y})}}_{\delta(\vb{x}^\prime-\vb{y})}=\delta(\vb{x}-\vb{x}^\prime)
+    \label{pb2}
+\end{aligned}
+\end{equation}
+\begin{equation}
+\left\{\phi(t, \mathbf{x}), \phi\left(t, \mathbf{x}^{\prime}\right)\right\}_{\mathrm{PB}}=\left\{\pi(t, \mathbf{x}), \pi\left(t, \mathbf{x}^{\prime}\right)\right\}_{\mathrm{PB}}=0
+\label{pb1}
+\end{equation}
+ 
+ All the formalism covered so far will be directly applied to the Klein-Gordon Field in the next chapter. Equations (\ref{pb2}) and (\ref{pb1}), for instance, will be an important ingredient for canonical quantization. Next, we focus on how the relation between symmetries and conserved quantities gerneralizes to fields.
+\section{Symmetries and Conserved Currents}
+\subsection{Noether's Theorem for Continuous Global Transformations}
+We examine the effects of transformations over the action. We consider global (coordinate independent) infinitesimal transformation to the coordinates
+ \begin{equation}
+    {x^\mu}^\prime=x^\mu+\delta x^\mu
+    \label{transf}
+\end{equation}
+which produces the first order change on the field
+\begin{equation}
+    \phi^\prime(x^\prime)=\phi(x)+{\delta x^\mu\partial_\mu\phi(x)}
+\end{equation}
+The $\delta x^\mu$ will be determined according to each transformation.
+For instance, for translations ${x^\mu}^\prime = x^\mu+ \lambda a^\mu$ then $\delta x^\mu= a^\mu\delta \lambda$, where $a^\mu$ is a translation vector and $\lambda$ a parameter. For rotations and boosts ${x^\mu}^\prime=x^\mu+\lambda\omega^{\mu\nu}x_\nu$, then $\delta x^\mu= \omega^{\mu\nu}x_\nu\delta\lambda$. We define 
+\begin{equation}
+    D\phi=\pdv{\phi(x^\prime)}{\lambda}\eval_{\lambda=0}
+\end{equation}
+so that terms like $\delta x^\mu\partial_\mu\phi(x)$ can be written generally as $D\phi \delta\lambda$. We call it $\delta\phi$.\\
+
+Let's examine changes in the action. Since global infinitesimal transformations leave the volume element unchanged, then
+\begin{equation}
+    \delta S=\int\dd^4x\, \delta\mathcal{L}
+\end{equation}
+Changes in the action up to a constant give the same dynamics, since constants give null variations. Thus the Lagrangian should change only up to a 4-divergence 
+\begin{equation}
+    \delta \mathcal{L}=\partial_\mu W^\mu\delta\lambda
+    \label{lag_4div}
+\end{equation}
+We calculate the change in the Lagrangian coming from the changes in the field and compare to this 4-divergence
+\begin{equation}
+\begin{aligned}
+    \delta \mathcal{L}&=\pdv{\mathcal{L}}{\phi}\delta\phi+\pdv{\mathcal{L}}{(\partial_\mu\phi)}\overbrace{\delta(\partial_\mu\phi)}^{\partial_\mu(\delta\phi)}\\
+    &=\qty[\pdv{\mathcal{L}}{\phi}\delta\phi-\partial_\mu\pdv{\mathcal{L}}{(\partial_\mu\phi)}]\delta\phi+\partial_\mu\qty[\pdv{\mathcal{L}}{(\partial_\mu\phi)}\delta\phi]
+\end{aligned}
+\end{equation}
+If the field satisfies the equations of motion  the first term vanishes. Since $\delta\phi=D\phi\delta \lambda$, then, equating to the 4-divergence
+\begin{equation}
+    \partial_\mu\qty[\pdv{\mathcal{L}}{(\partial_\mu\phi)}D\phi-W^\mu]=0
+\end{equation}
+which indicates the current 
+\begin{equation}
+    j^\mu=\pdv{\mathcal{L}}{(\partial_\mu\phi)}D\phi-W^\mu
+    \label{noether_current}
+\end{equation}
+is locally conserved. We can define the 4-vector
+\begin{equation}
+    \Pi^\mu=\pdv{\mathcal{L}}{(\partial_\mu\phi)}
+\end{equation}
+for which $\Pi^0=\pi$. We name it the conjugate 4-momentum density. In terms of it, the current reads
+\begin{equation}
+    j^\mu=\Pi^\mu D\phi-W^\mu
+    \label{noether_current_pi}
+\end{equation}
+We thus arrived to a simplified statement of \textit{Noether's Theorem}: ``If a continuous symmetry transformation $\phi\to\phi+D\phi\delta \lambda$ changes $\mathcal{L}$ only by the addition of a 4-divergence $\partial_\mu W^\mu$, for arbitrary $\phi$, then this implies the existence of current (\ref{noether_current_pi}). If $\phi$ obeys the equation of motion, then this current is conserved." \cite{lancaster2014quantum}
+\subsection{Conserved Charges}
+The conservation of current $j^\mu$ is guaranteed by the continuity equation it satisfies
+\begin{equation}
+    \partial_0j^0=-\partial_ij^i
+\end{equation}
+Integrating over space and using the divergence theorem gives
+\begin{equation}
+    \dv{t}\int\dd^3x\,j^0=-\oint{\vb{j}}\vdot\vu{n}\,\dd S
+\end{equation}
+Over a volume large enough the flux will vanish, giving us the conserved charge 
+\begin{equation}
+    Q=\int\dd^3x\,j^0
+\end{equation}
+So $\dv*{Q}{t}=0$. Let's calulate these currents and charges for basic spacetime symmetries.
+\subsection{Spacetime Symmetries}
+For translations, we have $\delta x^\mu=a^\mu\delta\lambda$ and $D\phi=a^\mu\partial_\mu\phi$. To find $W^\mu$ we note that $\delta \mathcal{L}=D\mathcal{L}\delta\lambda$. Comparing with (\ref{lag_4div}), then $\partial_\mu W^\mu=D\mathcal{L}$. But since the Lagrangian is a scalar, it changes just as the field $\phi$: $D\mathcal{L}=a^\mu\partial_\mu\mathcal{L}=\partial_\mu(a^\mu\mathcal{L})$ then $W^\mu=a^\mu \mathcal{L}$. The current reads
+\begin{equation}
+    j^\mu=\Pi^\mu a^\nu\partial_\nu\phi-a^\mu\mathcal{L}=a^\nu(\Pi^\mu\partial_\nu\phi-\delta_\nu^\mu\mathcal{L})=-a_\nu T^{\mu\nu}
+\end{equation}
+Where 
+\begin{equation}
+    T^{\mu\nu}=-\Pi^\mu\partial^\nu\phi+g^{\mu\nu}\mathcal{L}
+\end{equation}
+is the \textit{energy-momentum tensor}. Since $\partial_\mu T^{\mu\nu}=0$, the conserved charges are
+\begin{equation}
+    p^{\nu}=\int\dd^3x\,T^{0\nu}
+\end{equation}
+from which we see 
+\begin{equation}
+    p^0=\int\dd^3x\,T^{00}=\int\dd^3x\,(\pi\dot{\phi}-\mathcal{L})=\int\dd^3x\,\mathcal{H}
+\end{equation}
+So $p^\mu$ should be the 4-momentum. The other components gives the physical momentum space components:
+\begin{equation}
+    p^i=\int\dd^3x\,T^{0i}=-\int\dd^3x\,\pi\partial^i\phi
+\end{equation}
+
+We remark that $T^{\mu\nu}$ is not unique. Addition of the divergence of an antisymmetric tensor also leads to a divergenceless current. This is particularly useful to symmetrize $T^{\mu\nu}$, which, in the way we defined it, is not symmetric. To examine symmetries of Lorentz transformations next, we assume the Tensor has been symmetrized.\\
+
+For an infinitesimal Lorentz transformation we have $\delta x^\mu=\omega^{\mu\nu}x_\nu\delta\lambda$. Where, to preserve the interval $\dd s^2$, $\omega^{\mu\nu}$ must be antisymmetric. The field responds to such transformation as $\delta\phi=D\phi\delta\lambda=\omega^{\mu\nu}x_\nu\partial_\mu\phi\delta\lambda=\omega_{\mu\nu}x^\nu\partial^\mu\phi\delta\lambda$. The Lagrangian changes in the same way: $D\mathcal{L}=\omega_{\rho\sigma}x^\sigma\partial^\rho\mathcal{L}$. Now, since $D\mathcal{L}=\partial_\mu W^\mu$, then
+\begin{equation}
+    D\mathcal{L}=\omega_{\rho\sigma}x^\sigma\partial^\rho\mathcal{L}=\partial^\rho(\omega_{\rho\sigma}x^\sigma\mathcal{L})=\partial_\mu(g^{\mu\rho}\omega_{\rho\sigma}x^\sigma\mathcal{L})=\partial_\mu W^\mu
+\end{equation}
+The second equality follows from $\omega_{\sigma\rho}$'s antisymmetry. We can conclude then that $W^\mu=g^{\mu\rho}\omega_{\rho\sigma}x^\sigma\mathcal{L}$. The conserved current reads
+\begin{equation}
+\begin{aligned}
+       j^\mu&=\Pi^\mu\omega_{\rho\sigma}x^\sigma\partial^\rho\phi-g^{\mu\rho}\omega_{\rho\sigma}x^\sigma\mathcal{L}\\
+       &=\omega_{\rho\sigma}x^\sigma(\Pi^\mu\partial^\rho\phi-g^{\mu\rho}\mathcal{L})\\
+       &=-\omega_{\rho\sigma}x^\sigma T^{\mu\rho}=-\omega_{\rho\sigma}x^\sigma T^{\rho\mu}
+\end{aligned}
+ \end{equation}
+ Due to $\omega_{\rho\sigma}$ antissymetry, we write
+ \begin{equation}
+\begin{aligned}
+       j^\mu&=-\frac{1}{2}(\omega_{\rho\sigma}-\omega_{\sigma\rho})x^\sigma T^{\rho\mu}\\
+       &=-\frac{1}{2}(\omega_{\rho\sigma}x^\sigma T^{\rho\mu}-\underbrace{\omega_{\sigma\rho}x^\sigma T^{\rho\mu}}_{\sigma\leftrightarrow\rho})\\
+       &=-\frac{1}{2}\omega_{\rho\sigma}(x^{\sigma}T^{\rho\mu}-x^\rho T^{\sigma\mu})
+\end{aligned}
+ \end{equation}
+ There are six $\omega_{\rho\sigma}$, so the current $j^\mu$ is made up of six products of $\omega_{\rho\sigma}$   with the tensor $\left(J^{\mu}\right)^{\sigma\rho}= x^{\sigma}T^{\rho\mu}-x^\rho T^{\sigma\mu}$.
+The conserved charges are 
+ \begin{equation}
+     Q^{ij}=\int \dd^3x \left(J^{0}\right)^{ij}=\int\dd^3x\,( x^{i}T^{j0}-x^jT^{i0})
+ \end{equation}
+which is the angular momentum tensor, associated with rotations. And
+ \begin{equation}
+     Q^{0i}=\int \dd^3x \left(J^{0}\right)^{0i}=\int\dd^3x\,( x^{0}T^{i0}-x^iT^{00})
+ \end{equation}
+ associated with boosts.\\
+ 
+ In the last chapter we saw how the scalar field appeared naturally when describing a relativistic boson.  This chapter introduced the general formalism of field theory that will be directly applied to the scalar field, the subject of our next chapter. Fields with more components and with different symmetries require a little more labor to be analyzed. Specially when it comes to conserved currents, or the treatment of local transformations and internal symmetries. We leave those details for when we will deal with spinor and vector fields, in the next report.

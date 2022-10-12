@@ -1,0 +1,67 @@
+\chapter{Dirac and the Electron}
+The early attempt at relativistic quantum mechanics was wave mechanics based on the Klein-Gordon equation \cite{weinberg1995quantum}. One major problem of the theory was the prediction of conserved ``probability density" and current \cite{weinberg1995quantum,alvarez2011invitation,lancaster2014quantum} 
+\begin{equation}
+    \begin{aligned}
+    \rho&={i}\qty(\phi^*\pdv{\phi}{t}-\phi\pdv{\phi^*}{t}),\\
+    \vb{j}&=-i(\phi^*\grad\phi-\phi\grad\phi^*).
+    \end{aligned}
+\end{equation}
+Such that $\rho$ is not necessarily positive, ruining a probabilistic interpretation. The theory, though, had partial success when applied to the Hydrogen atom. It missed fine details of the energy spectrum, but, if a spin-orbit coupling is imposed \textit{ad hoc}, it yielded reasonable results \cite{weinberg1995quantum}. This coupling was another indicator that the electron had an internal structure -- spin, which was already known from the work of Uhlenbeck \& Goudsmith, and Pauli.\\
+
+In 1928, Dirac published a work in which he tried to understand why nature chose this particular structure for the electron, instead of being content with a point-like model \cite{dirac28}. In other words, he wanted to know why does the electron have spin and why isn't a scalar description (supposedly Klein-Gordon wave mechanics) sufficient. In this work, Dirac recognized that the difficulty to find a positive probability density for the Klein-Gordon wave function lies in the fact that the Klein-Gordon equation is of second order in time. He then presents a wave equation
+involving solely first order time derivatives. As a consequence, his theory predicted a four-component wave function consistent with a probabilistic interpretation. Furthermore, when coupled to an electromagnetic field, it automatically accounted for a spin-orbit coupling. We sketch the main line of reasoning in Dirac's work below.\\
+
+The Klein-Gordon equation is the Schrödinger Equation $i\partial_t\ket{\psi}=H\ket{\psi}$ with a relativistic Hamiltonian $H=\sqrt{\vb{P}^2+m^2}$ (for a free particle). In the position representation, the momentum operator $\vb{P}$ has its representation as a differential operator, so taking its square root is problematic, since it demands a non-local series expansion \cite{srednicki2007quantum}. An alternative is to reiterate the Schrödinger equation $-\partial^2_t\ket{\psi}=H^2\ket{\psi}$, introducing the second-order derivative with respect to time.\\
+
+Dirac's approach was to find the square root $\sqrt{\vb{P}^2+m^2}$ by other means. He searched for a Hamiltonian operator that, when reiterated, yielded $H^2=\vb{P}^2+m^2$. To this end, he considered 
+\begin{equation}
+    H=P_j\alpha^j+m\beta.
+\end{equation}
+Squaring the Hamiltonian gives
+\begin{equation}
+    H^2=P_jP_k\alpha^j\alpha^k+mP_j(\alpha^j\beta+\beta\alpha^j)+m^2\beta^2.
+\end{equation}
+Since $P_j$ and $P_k$ commute, $\alpha^j\alpha^k$ can be symmetrized: $\frac{1}{2}\pb{\alpha^j}{\alpha^k}$. To recover the Klein-Gordon Hamiltonian, Dirac recognized that $\alpha^j$ and $\beta$ must be matrices so that they can satisfy
+\begin{equation}
+    \begin{aligned}
+    \pb{\alpha^j}{\alpha^k}&=2\delta^{jk},\\
+    \pb{\alpha^j}{\beta}&=0,\\
+    \beta^2&=I.
+    \label{dirac_alphas_betas}
+    \end{aligned}
+\end{equation}
+He also noted that these matrices must be at least $4\times4$ \cite{dirac28, srednicki2007quantum}. In the position basis, the Schrödinger equation with Dirac's Hamiltonian reads
+\begin{equation}    
+    i\pdv{\psi}{t}=(-i\boldsymbol{\alpha} \cdot \grad + \beta m)\psi,
+\end{equation}
+where $\boldsymbol{\alpha}=(\alpha^1,\alpha^2,\alpha^3)$. Since $\beta^2=I$, multiplying this equation by $\beta$ gives
+\begin{equation}
+    \qty(-i\gamma^\mu\partial_\mu+m)\psi(x)=0
+\end{equation}
+where $\gamma^\mu=(\beta,\beta\boldsymbol{\alpha})$, satisfying
+\begin{equation}
+    \pb{\gamma^\mu}{\gamma^\nu}=-2g^{\mu\nu}
+\end{equation}
+according to (\ref{dirac_alphas_betas}). A choice of matrices satisfying these relations are
+\begin{equation}
+\gamma^{0}=\left(\begin{array}{cc}
+0 & I \\
+I & 0
+\end{array}\right), \quad \gamma^{i}=\left(\begin{array}{cc}
+0 & \sigma^{i} \\
+-\sigma^{i} & 0
+\end{array}\right)
+\end{equation}
+where $I$ is the $2\times2$ identity and $\sigma^i$ are the Pauli matrices. The direct consequence of this method to ``take the square root" is that the wave function $\psi$ is now a four-component object.\\
+
+Dirac's theory successfully accounted for the correct energy spectrum of the Hydrogen atom with no further \textit{ad hoc} assumptions. The theory was also friendly to a probabilistic interpretation, since it displayed the positive-definite probability density $\rho=\psi^\dagger\psi$ \cite{weinberg1995quantum}. Its shortcoming, though, was that, out of the four components of the wave function, two of them seemed to have negative energy. Since free particles would have $\psi\propto e^{-i(Et+\vb{p}\vdot\vb{x})}$ with $E=\pm\sqrt{\vb{p}^2+m^2}$, the two components with positive energy are recognized as the electron with spin $\pm\hbar/2$ respectively, but the other two negative energy components had no immediate interpretation \cite{weinberg1995quantum}.\\
+
+In classical physics, we usually would neglect the negative solutions to $E=\pm\sqrt{\vb{p}^2+m^2}$ due to their lack of physical significance. Even if we admitted these negative states as legitimate, the energy spectrum would posses a gap in between $-m$ and $m$ and no classical continuous process could take a particle from a positive energy state to a negative one. Quantum mechanically, though, Dirac showed in 1928 that electrons could interact with photons and decay into a negative energy state \cite{dirac28}. This fact raised doubts about the stability of matter, after all, why don't all electrons decay into negative energies?\\
+
+Dirac gives this puzzle an answer in 1930 \cite{dirac22}, when he presents his ``sea hypothesis". According to him, the stability of matter is rescued if we assume all the negative energy states are already filled and recall that electrons are subject to Pauli's exclusion principle. So electrons would be prohibited to decay into the lower states. The few empty states in this sea would behave as particles of positive charge and energy: they are ``holes". Dirac went further and guessed these holes were protons, but he abandoned this idea not much later. In some sense, though, his sea and holes hypothesis can be regarded as an early prediction of the positron, discovered in 1932 by Carl Anderson \cite{weinberg1995quantum}.\\
+
+Notwithstanding its success, Dirac's theory could not be the final word for relativistic quantum mechanics. \textit{Klein's paradox} -- discussed in the previous report for the Klein-Gordon wave function -- is also observed for the Dirac wave function. In fact, it was originally discovered for solutions to the Dirac equation \cite{alvarez2011invitation}.  The paradox boils down to the prediction of a significant probability for transmission when a particle scatters off a step barrier, even when the particle has no sufficient energy to overcome the potential. The key insight there -- for both Klein-Gordon and Dirac wave functions -- is that the sudden discontinuity of the potential leads to abrupt localization of the wave packet within a spatial threshold sufficient for energy fluctuations to produce particle-antiparticle pairs \cite{padmanabhan2016quantum,alvarez2011invitation}. This is why there can be transmission. This is why the transmitted particle seems to have negative energy.\\
+
+The correct treatment of this situation comes only through the lens of quantum field theory, and presents no paradoxical predictions \cite{alvarez2011invitation}. Within wave mechanics, we do not know how to interpret creation and annihilation of particles \cite{padmanabhan2016quantum}, and we do not know how to accommodate and describe anti-particles without an apparent negative energy \cite{lancaster2014quantum,alvarez2011invitation}. This is why there is a paradox if one sticks to wave mechanics.\\
+
+Just as the Klein-Gordon equation, it turns out that the Dirac equation should not be viewed as the equation of motion for a relativistic wave function. It should be interpreted, instead, as the equation of motion of a field operator. In what follows next, we will find the Dirac equation as the equation of motion for Dirac and Majorana fields. These will be four-component fields made of left- and right-handed Weyl spinors, the simplest objects that can be Lorentz transformed\footnote{After scalars, which have the trivial identity as representation for transformations.}.

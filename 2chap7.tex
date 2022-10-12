@@ -1,0 +1,318 @@
+\chapter{Spinor Fields}
+Of the representations of the Lorentz Group, we are already familiarized with the scalars, from our treatment of scalar fields. Now we deal with Weyl spinor fields: fields living in the vector spaces of the $(2,1)$ and $(1,2)$ representations.
+\section{Left-handed spinors}
+The $({2},1)$ representation of the Lorentz Group consists of $2\times2$ Lorentz transformation matrices acting on a 2-dimensional vector space of fields $\psi_a(x)$, where the spinor index $a$ can take two values.
+Lorentz transformations for these spinors read
+\begin{equation}
+    U^{-1}(\Lambda)\psi_a(x)U(\Lambda)=\tend{L}{a}{b}\psi_b(\Lambda^{-1}x)
+\end{equation}
+with $\tend{L}{a}{b}(\Lambda)$ being a representation for finite Lorentz transformations, closed under association. Infinitesimal Lorentz transformations are implemented by generators $\tend{(S^{\mu\nu}_L)}{a}{b}$ via
+\begin{equation}
+    \tend{L}{a}{b}(1+\delta\omega)=\tend{\delta}{a}{b}+\frac{i}{2}\delta\omega_{\mu\nu}\tend{(S^{\mu\nu}_L)}{a}{b}
+\end{equation}
+where $\tend{(S^{ij}_L)}{a}{b}=\frac{1}{2}\epsilon^{ijk}\sigma_k$ and $\tend{(S^{k0}_L)}{a}{b}=\frac{i}{2}\sigma_k$, $\sigma_k$ being the Pauli Matrices.
+\begin{equation}
+\sigma_{1}=\left(\begin{array}{ll}
+0 & 1 \\
+1 & 0
+\end{array}\right), \quad \sigma_{2}=\left(\begin{array}{cc}
+0 & -i \\
+i & 0
+\end{array}\right), \quad \sigma_{3}=\left(\begin{array}{cc}
+1 & 0 \\
+0 & -1
+\end{array}\right).
+\end{equation}
+
+To justify these claims, we note that (\ref{commuta_generator}) for the spinor generators at the origin (thus neglecting orbital angular momentum) reads
+\begin{equation}
+    \comm{\psi_A(0)}{M^{\mu\nu}}=\tend{(S^{\mu\nu}_L)}{a}{b}\psi_b(0).
+    \label{defining_spinors}
+\end{equation}
+Recalling that $M^{ij}=\epsilon^{ijk}J_k$, that $(2,1)$ representation has the highest $j$ given by $j=\frac{1}{2}+0=\frac{1}{2}$, and that, in this case, the representation for $J_k$ is $J_k=\frac{1}{2}\sigma_k$, then $\tend{(S^{ij}_L)}{a}{b}=\frac{1}{2}\epsilon^{ijk}\sigma_k$  follows. Noting that in the $(2,1)$ representation $n^\prime=0$, so $N_k^\dagger$ has the trivial scalar representation $N_k^\dagger=0$, then, from (\ref{Ni}) and (\ref{Nidagger}), $K_k=i(N_k-N_k^\dagger)=iN_k=iJ_k$, thus justifying that $\tend{(S^{k0}_L)}{a}{b}=\frac{i}{2}\sigma_k$.
+\section{Right-handed spinors}
+Hermitian conjugation of a left-handed spinor $(\psi_a)^\dagger$ takes us from the $(2,1)$ representation to the $(1,2)$ representation: that of the right-handed spinors $\psi^\dagger_{\dot{a}}$, signaled by the ``dagger" and the use of dotted indices.
+Lorentz transformations for these spinors read
+\begin{equation}
+    U^{-1}(\Lambda)\psi^\dagger_{\dot{a}}(x)U(\Lambda)=\tend{R}{\dot{a}}{\dot{b}}\psi^\dagger_{\dot{b}}(\Lambda^{-1}x)
+\end{equation}
+with $\tend{R}{\dot{a}}{\dot{b}}(\Lambda)$ being a representation for finite Lorentz transformations in the $(1,2)$ representation, closed under association.
+Infinitesimal Lorentz transformations are implemented by generators $\tend{(S^{\mu\nu}_R)}{\dot{a}}{\dot{b}}$ via
+\begin{equation}
+    \tend{R}{\dot{a}}{\dot{b}}(1+\delta\omega)=\tend{\delta}{\dot{a}}{\dot{b}}+\frac{i}{2}\delta\omega_{\mu\nu}\tend{(S^{\mu\nu}_R)}{\dot{a}}{\dot{b}}
+\end{equation}
+where the generator $\tend{(S^{\mu\nu}_R)}{\dot{a}}{\dot{b}}$ is related to $\tend{(S^{\mu\nu}_L)}{a}{b}$ by
+\begin{equation}
+    \tend{(S^{\mu\nu}_R)}{\dot{a}}{\dot{b}}=-\qty[\tend{(S^{\mu\nu}_L)}{{a}}{{b}}]^*
+\end{equation}
+as can be seen from hermitian conjugation of (\ref{defining_spinors}).
+\section{Two-spinor indices fields}
+We now consider fields living in the vector space of the $(2,1)\otimes(2,1)$ representation. From our knowledge of angular momentum addition, we know that $(2,1)\otimes(2,1)=(1,1)\oplus(3,1)$ where the $(1,1)$ is the antisymmetric scalar (singlet) representation and $(3,1)$ is the symmetric triplet representation. This allows the decomposition
+\begin{equation}
+    C_{ab}(x)=\epsilon_{ab}D(x)+G_{ab}(x)
+    \label{decompo}
+\end{equation}
+where $D(x)$ is a scalar, $\epsilon_{ab}=-\epsilon_{ba}$ is the two-dimensional antisymmetric Levi-Civita symbol, and $G_{ab}$ is a symmetric field.
+The fact that $D(x)$ is a scalar implies that $\epsilon_{ab}$ is a Lorentz invariant symbol, since transformation of (\ref{decompo}) will lead to $\tend{L}{a}{c}(\Lambda)\tend{L}{b}{d}(\Lambda)\epsilon_{cd}=\epsilon_{ab}$. \\
+%Expansion of the latter expression in infinitesimal transformations reveal the antisymmetry of the generators ${(S_L^{\mu\nu})}_{ab}$ and ${(S_R^{\mu\nu})}_{\dot{a}\dot{b}}$ \cite{srednicki2007quantum}.\\
+
+Similarly, if we consider the representation $(1,2)\otimes(1,2)=(1,1)\oplus(1,3)$, we can have the decomposition of fields
+\begin{equation}
+    C_{\dot{a}\dot{b}}(x)=\epsilon_{\dot{a}\dot{b}}D(x)+G_{\dot{a}\dot{b}}(x)
+\end{equation}
+where, again $G_{\dot{a}\dot{b}}(x)$ is symmetric, $D(x)$ is a scalar and $\epsilon_{\dot{a}\dot{b}}=-\epsilon_{\dot{b}\dot{a}}$ is the invariant antisymmetric Levi-Civita symbol, with dotted indices this time. The invariant Levi-Civita symbol is analogous to the metric tensor. The metric allows the connection between vectors and their duals, that is, allows the lowering or raising of indices. Similarly, the Levi-Civita symbol allows to write
+\begin{equation}
+    \begin{aligned}
+    \psi_a&=\epsilon_{ab}\psi^b\\
+    \psi^a&=\epsilon^{ab}\psi_b
+    \end{aligned}
+\end{equation}
+and
+\begin{equation}
+    \begin{aligned}
+    \psi_{\dot{a}}&=\epsilon_{\dot{a}\dot{b}}\psi^{\dot{b}}\\
+    \psi^{\dot{a}}&=\epsilon^{\dot{a}\dot{b}}\psi_{\dot{b}}.
+    \end{aligned}
+\end{equation}
+The difference from the usual contraction, though, is that with spinors we can contract on the second index only. For consistency, we must have
+\begin{equation}
+    \begin{aligned}
+    \epsilon^{{1}{2}}&=\epsilon_{{2}{1}}=1\\
+    \epsilon^{{2}{1}}&=\epsilon_{{1}{2}}=-1
+    \end{aligned}
+\end{equation}
+\begin{equation}
+    \begin{aligned}
+    \epsilon^{\dot{1}\dot{2}}&=\epsilon_{\dot{2}\dot{1}}=1\\
+    \epsilon^{\dot{2}\dot{1}}&=\epsilon_{\dot{1}\dot{2}}=-1
+    \end{aligned}
+\end{equation}
+and also
+\begin{equation}
+\begin{aligned}
+\epsilon_{ab}\epsilon^{bc}&=\delta_a^c\\
+\epsilon^{ab}\epsilon_{bc}&=\delta^a_c
+\end{aligned}
+\end{equation}
+valid also for dotted indices.\\
+
+We now turn to fields with two spinor indices, one of them undotted and the other dotted. These are the fields living in the vector space of the $(2,1)\otimes(1,2)\otimes(2,2)$ representation. This is the vector representation and the decomposition of vectors into irreducible spinor representations induces the existence of an invariant symbol connecting two-spinor indices  fields and the four-vectors 
+\begin{equation}
+    A_{a\dot{a}}=\sigma^\mu_{a\dot{a}}A_\mu.
+\end{equation}
+This invariant symbol, with our conventions, is
+\begin{equation}
+    \sigma^\mu_{a\dot{a}}=(I,\va{\sigma})
+    \label{sigma1}
+\end{equation}
+being $I$ the $2\times2$ identity matrix and $\va{\sigma}=(\sigma_1,\sigma_2,\sigma_3)$, where $\sigma_k$ are the Pauli matrices \cite{srednicki2007quantum}.
+Important relations satisfied by this invariant symbol are
+\begin{equation}
+    \sigma^\mu_{a\dot{a}}\sigma_{\mu b\dot{b}}=-2\epsilon_{ab}\epsilon_{\dot{a}\dot{b}}
+\end{equation}
+\begin{equation}
+    \epsilon^{ab}\epsilon^{\dot{a}\dot{b}}\sigma^\mu_{a\dot{a}}\sigma^\nu_{b\dot{b}}=-2g^{\mu\nu}
+\end{equation}
+which can be verified by inspection.
+Raising spinor indices of the invariant symbol gives
+\begin{equation}
+    \bar{\sigma}^{\mu\dot{a}a}\equiv\epsilon^{ab}\epsilon^{\dot{a}\dot{b}}\sigma^\mu_{b\dot{b}}=(I,-\va{\sigma}).
+    \label{sigma2}
+\end{equation}
+Lorentz invariance of $\sigma^\mu_{a\dot{a}}$ means that
+\begin{equation}
+    \sigma^\mu_{a\dot{a}}=\ten{\Lambda}{\mu}{\nu}\tend{L}{a}{b}(\Lambda)\tend{R}{\dot{a}}{\dot{b}}(\Lambda)\sigma^\nu_{b\dot{b}}
+\end{equation}
+with each index undergoing a transformation matrix according to its representation. Expansion of this expression in terms of infinitesimal transformations leads to \cite{srednicki2007quantum}
+\begin{equation}
+    \tend{(S^{\mu\nu}_L)}{a}{b}=\frac{i}{4}\tend{(\sigma^\mu\bar{\sigma}^\nu-\sigma^\nu\bar{\sigma}^\mu)}{a}{b}.
+    \label{SL}
+\end{equation}
+and
+\begin{equation}
+    \ten{(S^{\mu\nu}_R)}{\dot{a}}{\dot{b}}=-\frac{i}{4}\ten{(\bar{\sigma}^\mu{\sigma}^\nu-\bar{\sigma}^\nu{\sigma}^\mu)}{\dot{a}}{\dot{b}}.
+    \label{SR}
+\end{equation}
+where pairs of contracted spinor indices are omitted, a convention we adopt from now on. The missing pairs of contracted undotted indices must be interpreted as $\ten{\phantom{A}}{c}{c}$, while as $\tend{\phantom{A}}{\dot{c}}{\dot{c}}$  for the dotted indices, that is: $\xi\psi=\xi^a\psi_a$ and $\xi^\dagger\psi^\dagger=\xi^\dagger_{\dot{a}}\psi^{\dagger\dot{a}}$
+
+\section{Lagrangians and equations of motion for spinor fields}
+When looking for Lagrangians for spinor fields, we would like them to be Hermitian, Lorentz invariant and quadratic so their equations of motion are linear, thus accommodating plane-wave solutions needed to describe free particles. A candidate is
+\begin{equation}
+    \mathcal{L}=i\psi^\dagger\bar{\sigma}^\mu\partial_\mu\psi-\frac{1}{2}m\psi\psi-\frac{1}{2}m\psi^\dagger\psi^\dagger.
+\end{equation}
+where the first term is not strictly hermitian, but its hermitian conjugate differs from the term itself only by a 4-divergence, which can be made to vanish with appropriate boundary conditions. With an action $S=\int\dd^4x\,\mathcal{L}$, the equations of motion follow from the variational principle
+\begin{equation}
+    -\fdv{S}{\psi^\dagger}=-i\bar{\sigma}^\mu\partial_\mu\psi+m\psi^\dagger=0
+\end{equation}
+\begin{equation}
+    -\fdv{S}{\psi}=-i{\sigma}^\mu\partial_\mu\psi^\dagger+m\psi=0
+\end{equation}
+which can be condensed by
+\begin{equation}
+\left(\begin{array}{cc}
+m \delta_{a}^{\phantom{a}c} & -i \sigma_{a \dot{c}}^{\mu} \partial_{\mu} \\
+-i \bar{\sigma}^{\mu \dot{a} c} \partial_{\mu} & m \delta^{\dot{a}}_{\phantom{a}\dot{c}}
+\end{array}\right)\left(\begin{array}{c}
+\psi_{c} \\
+\psi^{\dagger \dot{c}}
+\end{array}\right)=0.
+\label{dirac_equation_matrix}
+\end{equation}
+Introducing the \textit{gamma matrices}
+\begin{equation}
+\gamma^{\mu} \equiv\left(\begin{array}{cc}
+0 & \sigma_{a \dot{c}}^{\mu} \\
+\bar{\sigma}^{\mu \dot{a} c} & 0
+\end{array}\right)
+\end{equation}
+and the \textit{Majorana Field}
+\begin{equation}
+\Psi \equiv\left(\begin{array}{c}
+\psi_{c} \\
+\psi^{\dagger \dot{c}}
+\end{array}\right)
+\end{equation}
+equation (\ref{dirac_equation_matrix}) is recognized as the \textit{Dirac Equation}
+\begin{equation}
+    (-i\gamma^\mu\partial_\mu+m)\Psi=0.
+\end{equation}
+From the relations among the $\sigma$ matrices
+\begin{equation}
+\begin{array}{l}
+\left(\sigma^{\mu} \bar{\sigma}^{\nu}+\sigma^{\nu} \bar{\sigma}^{\mu}\right)_{a}^{\phantom{a}c}=-2 g^{\mu \nu} \delta_{a}^{\phantom{a}c} \\
+\left(\bar{\sigma}^{\mu} \sigma^{\nu}+\bar{\sigma}^{\nu} \sigma^{\mu}\right)^{\dot{a}}_{\phantom{a}\dot{c}}=-2 g^{\mu \nu} \delta^{\dot{a}}_{\phantom{a}\dot{c}}
+\end{array}
+\end{equation}
+which can be verified using (\ref{sigma1}) and (\ref{sigma2}), follows that the $\gamma$ matrices satisfy
+\begin{equation}
+    \pb{\gamma^\mu}{\gamma^\nu}=-2g^{\mu\nu}I
+\end{equation}
+where $\pb{\gamma^\mu}{\gamma^\nu}=\gamma^\mu\gamma^\nu+\gamma^\nu\gamma^\mu$ is the anti-commutator and $I$ is the $4\times4$ identity matrix.\\
+
+If we now consider the Lagrangian for two spinor fields $\psi_1$ and $\psi_2$
+\begin{equation}
+    \mathcal{L}=i\psi^\dagger_i\bar{\sigma}^\mu\partial_\mu\psi_i-\frac{1}{2}m\psi_i\psi_i-\frac{1}{2}m\psi_i^\dagger\psi_i^\dagger
+\end{equation}
+we can see that this Lagrangian is SO(2) invariant, that is, upon the transformation
+\begin{equation}
+\left(\begin{array}{l}
+\psi_{1} \\
+\psi_{2}
+\end{array}\right) \rightarrow\left(\begin{array}{rr}
+\cos \alpha & \sin \alpha \\
+-\sin \alpha & \cos \alpha
+\end{array}\right)\left(\begin{array}{l}
+\psi_{1} \\
+\psi_{2}
+\end{array}\right) .
+\end{equation}
+we see that $\mathcal{L}\to\mathcal{L}$. This rotation invariance can be also highlighted by defining 
+\begin{equation}
+    \begin{aligned}
+    \chi&=\frac{1}{\sqrt{2}}(\psi_1+i\psi_2)\\
+    \xi&=\frac{1}{\sqrt{2}}(\psi_1-i\psi_2)
+    \end{aligned}
+\end{equation}
+and expressing the Lagrangian as
+\begin{equation}
+    \mathcal{L}=i\chi^\dagger\bar{\sigma}^\mu\partial_\mu\chi+i\xi^\dagger\bar{\sigma}^\mu\partial_\mu\xi-m\chi\xi-m\chi^\dagger\xi^\dagger
+    \label{dirac_lagrangian_weyl}
+\end{equation}
+with a manifestly U(1) invariance
+\begin{equation}
+    \begin{aligned}
+    \chi&\to e^{-i\alpha}\chi\\
+    \xi&\to e^{i\alpha}\xi\\
+    \mathcal{L}&\to\mathcal{L}.
+    \end{aligned}
+\end{equation}
+The equations of motion for fields $\chi$ and $\xi$ are
+\begin{equation}
+\left(\begin{array}{cc}
+m \delta_{a}^{\phantom{a}c} & -i \sigma_{a \dot{c}}^{\mu} \partial_{\mu} \\
+-i \bar{\sigma}^{\mu \dot{a} c} \partial_{\mu} & m \delta^{\dot{a}}_{\phantom{a}\dot{c}}
+\end{array}\right)\left(\begin{array}{c}
+\chi_{c} \\
+\xi^{\dagger \dot{c}}
+\end{array}\right)=0.
+\end{equation}
+Defining the \textit{Dirac Field}
+\begin{equation}
+\Psi \equiv\left(\begin{array}{c}
+\chi_{c} \\
+\xi^{\dagger \dot{c}}
+\end{array}\right)
+\end{equation}
+again we have the Dirac equation as the equation of motion
+\begin{equation}
+    (-i\gamma^\mu\partial_\mu+m)\Psi(x)=0.
+\end{equation}
+
+The Lagrangian for the Dirac Field can be cast in terms of the Dirac Field itself, rather than in terms of its Weyl right-handed and left-handed spinor components. It reads
+\begin{equation}
+    \mathcal{L}=i\bar{\Psi}\gamma^\mu\partial_\mu\Psi-m\bar{\Psi}\Psi
+    \label{dirac_lagrangian}
+\end{equation}
+where we introduced
+\begin{equation}
+    \bar{\Psi}=\Psi^\dagger\beta
+\end{equation}
+being $\Psi^\dagger=(\chi^\dagger_{\dot{a}}\,,\,\xi^a)$ and $\beta$ the matrix
+\begin{equation}
+\beta \equiv\left(\begin{array}{cc}
+0 & \delta^{\dot{a}}{ }_{\dot{c}} \\
+\delta_{a}^{\phantom{a}c} & 0
+\end{array}\right)
+\end{equation}
+which is numerically equal to $\gamma^0$, but different in spinor indices placement. This means
+\begin{equation}
+\bar{\Psi}=(\xi^a,\chi^\dagger_{\dot{a}}).    
+\end{equation}
+Strictly speaking, (\ref{dirac_lagrangian}) differs from (\ref{dirac_lagrangian_weyl}) by a 4-divergence, which can be made to vanish for appropriate boundary conditions. Lagrangian (\ref{dirac_lagrangian}) also manifests U(1) invariance, that is
+\begin{equation}
+    \begin{aligned}
+    \Psi&\to e^{-i\alpha}\Psi\\
+    \bar{\Psi}&\to e^{i\alpha}\bar{\Psi}
+    \end{aligned}
+\end{equation}
+leaves the Lagrangian invariant. This means there is a conserved Noether current
+\begin{equation}
+    j^\mu=\bar{\Psi}\gamma^\mu\Psi=\chi^\dagger\bar{\sigma}^\mu\chi-\xi^\dagger\bar{\sigma}^\mu\xi.
+\end{equation}
+
+%We can recover the Weyl spinor components from the Dirac or %majorana fields by defining the matrix
+%\begin{equation}
+%\gamma_5\equiv\left(\begin{array}{cc}
+% -\delta_{a}^{\phantom{a}c} & 0\\
+%0 &  \delta^{\dot{a}}_{\phantom{a}\dot{c}}
+%\end{array}\right)
+%\end{equation}
+%and the projection operators
+%\begin{equation}
+%P_L=\frac{1}{2}(I-\gamma_5)=\left(\begin{array}{cc}
+% \delta_{a}^{\phantom{a}c} & 0\\
+%0 &  0
+%\end{array}\right)
+%\end{equation}
+%\begin{equation}
+%P_R=\frac{1}{2}(I+\gamma_5)=\left(\begin{array}{cc}
+% 0 & 0\\
+%0 &  \delta^{\dot{a}}_{\phantom{a}\dot{c}}
+%\end{array}\right)
+%\end{equation}
+
+Since the Dirac and Majorana fields are made of Weyl Fields, according to (\ref{SL}) and (\ref{SR}) we can write the Lorentz transformation generator for $\Psi$ as
+\begin{equation}
+ S^{\mu \nu}\equiv\frac{i}{4}\left[\gamma^{\mu}, \gamma^{\nu}\right]=\left(\begin{array}{cc}
++\left(S_{{L}}^{\mu \nu}\right)_{a}^{\phantom{a}c}& 0 \\
+0 & -\left(S_{{R}}^{\mu \nu}\right)^{\dot{a}}_{\phantom{a}\dot{c}}
+\end{array}\right) 
+\end{equation}
+then infinitesimal transformations read
+\begin{equation}
+D(1+\delta \omega)=1+\frac{i}{2} \delta \omega_{\mu \nu} S^{\mu \nu}
+\end{equation}
+and finite ones given by
+\begin{equation}
+U^{-1}(\Lambda) \Psi(x) U(\Lambda)=D(\Lambda) \Psi\left(\Lambda^{-1} x\right).
+\end{equation}

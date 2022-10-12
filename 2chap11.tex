@@ -1,0 +1,269 @@
+\chapter{Introduction to Quantum Electrodynamics}
+\section{LSZ formula for photons}
+%Using creation operator () we create initial and final photon states. We will be interested in the amplitude for transition among states with different polarizarions
+%\begin{equation}
+%    \braket{f}{i}=\vev{a_\lambda(\vb{k})_{\text%{out}}a_\lambda^\dagger(\vb{k)_{\text{in}}}}
+%\end{equation}
+%where the ``in" and ``out" sates and the effect of time-ordering are obtained in the LSZ with the replacements 
+When dealing with processes involving photons, the LSZ formula can be found with the direct replacements
+\begin{equation}
+    a^\dagger_\lambda(\vb{k})_{\text{in}}\to i\epsilon^{\mu*}_{\lambda}(\vb{k})\int\dd^4x\, e^{ikx}(-\partial^2)A_\mu(x)
+\end{equation}
+\begin{equation}
+    a_\lambda(\vb{k})_{\text{out}}\to i\epsilon^{\mu}_{\lambda}(\vb{k})\int\dd^4x\, e^{-ikx}(-\partial^2)A_\mu(x)
+\end{equation}
+into the amplitude $\braket{f}{i}$, involving also the replacements for the other fields. Here, we consider $\epsilon^0_\lambda(\vb{k})=0$ to recover (\ref{adagger_photon}) and (\ref{a_photon}). As usual, the LSZ will be valid in the interacting theory as long as the field behaves similarly to the free field
+\begin{equation}
+    \vev{A^i(x)}=0,
+\end{equation}
+\begin{equation}
+    \bra{k,\lambda}A^i(x)\ket{0}=\epsilon_\lambda^i(\vb{k})e^{-ikx}
+\end{equation}
+where $\ket{k,\lambda}=a^\dagger_\lambda(\vb{k})\ket{0}$ is the single photon state, with normalization
+\begin{equation}
+    \braket{k^\prime,\lambda^\prime}{k,\lambda}=(2\pi)^32\omega\delta^3(\vb{k}^\prime-\vb{k})\delta_{\lambda\lambda^\prime}.
+\end{equation}
+To satisfy these conditions, the field can be rescaled and shifted.
+\section{Propagator for free photons}
+The electromagnetic field is very similar to the scalar field, so its free propagator comes almost free as
+\begin{equation}
+    \Delta^{ij}(x-y)=i\vev{\text{T}A^i(x)A^j(y)}
+\end{equation}
+where
+\begin{equation}
+    \Delta^{ij}(x-y)=\sum_{\lambda=\pm}\int\frac{\dd^4 k}{(2\pi)^4}\frac{e^{ik(x-y)}}{k^2-i\varepsilon}\epsilon^{i*}_\lambda(\vb{k})\epsilon^{j}_\lambda(\vb{k})
+\end{equation}
+As for the correlation functions: odd correlations vanish and even correlations are pair-wise summed according to \textit{Wick's Theorem}.
+\section{The path integral for the electromagnetic field}
+We consider $Z_0(J)=\braket{0}$
+\begin{equation}
+    Z_0(J)=\int\mathcal{D}A\exp[i\int\dd^4x\,\qty(-\frac{1}{4}F^{\mu\nu}F_{\mu\nu}+J^\mu A_\mu)]
+\end{equation}
+To evaluate the functional integral, we work with Fourier transformed field components and current in the action integral
+\begin{equation}
+    A_\mu(x)=\int\frac{\dd^4 k}{(2\pi)^4}e^{ikx}\widetilde{A}_\mu(k),
+\end{equation}
+\begin{equation}
+    J_\mu(x)=\int\frac{\dd^4 k}{(2\pi)^4}e^{ikx}\widetilde{J}_\mu(k),
+\end{equation}
+\begin{equation}
+    F^{\mu\nu}(x)=\partial^\mu A^\nu-\partial^\nu A^\mu=\int\frac{\dd^4 k}{(2\pi)^4}e^{ikx}\qty(k^\mu\widetilde{A}^\nu(k)-k^\nu\widetilde{A}^\mu(k)).
+\end{equation}
+Substitution into the action $S_0=\int\dd^4x\, (-\frac{1}{4}F^{\mu\nu}F_{\mu\nu}+J^\mu A_\mu) $ leads to
+\begin{equation}
+    S_0=\frac{1}{2}\int\frac{\dd^4 k}{(2\pi)^4}\qty[-\widetilde{A}_\mu(k)k^2P^{\mu\nu}(k)\widetilde{A}_\nu(-k)+\widetilde{J}^\mu(k)\widetilde{A}_\mu(-k)+\widetilde{J}^\mu(-k)\widetilde{A}_\mu(k)]
+\end{equation}
+where 
+\begin{equation}
+    P^{\mu\nu}=g^{\mu\nu}-\frac{k^\mu k^\nu}{{k}^2}
+\end{equation} is a \textit{projection operator}. It is idempotent, $P^{\mu\nu}P_{\nu}^{\phantom{a}\sigma}=P^{\mu\sigma}$, so it has $0$ or $1$ as eigenvalues. Since $g_{\mu\nu}P^{\mu\nu}(k)=3$, it has a diagonal representation $\text{diag}(0,1,1,1)$. It is, therefore, non-invertible, which brings difficulty in our traditional procedure of ``completing the square" to evaluate the path integral. But there is one way out of this. We decompose $\widetilde{A}_\mu(k)$ in a set of independent vectors, one of which belongs to the kernel of $P^{\mu\nu}$, say $k^\nu$. Since the quadratic term in the action involves $k^2P^{\mu\nu}$ and $P^{\mu\nu}k_\nu=0$, the components  $\widetilde{A}_\mu(k)$ of the field parallel to the kernel vector do not contribute. Also, the linear terms in the action involve $ \widetilde{J}_\mu \widetilde{A}^\mu$ and the component parallel to the kernel vector does not contribute since $k^\mu \widetilde{J}_\mu$ vanish due to conservation of the current $\partial^\mu J_\mu=0$. This component of the field, therefore, does not contribute to the action at all and we will ignore it. Since $P^{\mu\nu}$ is a projection operator into a 3-dimensional subspace and we are ignoring the dimension mapped into its kernel, in its 3-dimensional range subspace it corresponds to the identity, where we can safely invert $k^2P^{\mu\nu}$ with $\frac{1}{k^2}P^{\mu\nu}$. Therefore, we perform the change of variables
+\begin{equation}
+    \widetilde{\mathcal{A}}_\mu(k)=\widetilde{A}_\mu(k)-\frac{P_{\mu\nu}}{k^2}\widetilde{J}^\nu(k)
+\end{equation}
+for which we get the action
+\begin{equation}
+    S_0=\frac{1}{2}\int\frac{\dd^4 k}{(2\pi)^4}\qty[-\widetilde{\mathcal{A}}_\mu(k)k^2P^{\mu\nu}(k)\widetilde{\mathcal{A}}_\nu(-k)+\widetilde{J}_\mu(k)\frac{P^{\mu\nu}}{k^2}\widetilde{J}_\nu(-k)].
+\end{equation}
+ With $\mathcal{DA}=\mathcal{D}A$, the functional integral reads
+\begin{equation}
+\begin{aligned}
+    Z_0(J)&=\exp[\frac{i}{2}\int\frac{\dd^4 k}{(2\pi)^4}\widetilde{J}_\mu(k)\frac{P^{\mu\nu}}{k^2-i\varepsilon}\widetilde{J}_\nu(-k)]\\
+    &\qquad\times\int\mathcal{DA}\exp[-\frac{i}{2}\int\frac{\dd^4 k}{(2\pi)^4}\widetilde{\mathcal{A}}_\mu(k)k^2P^{\mu\nu}(k)\widetilde{\mathcal{A}}_\nu(-k)]
+\end{aligned}
+\end{equation}
+when $J=0$, $Z_0=1$, so the second term, the path integral over $\mathcal{A}$, equals to one, and $Z_0$ equals the first term solely. In spacetime domain, we have
+\begin{equation}
+    Z_0(J)=\exp[\frac{i}{2}\int\dd^4x \,\dd^4 y\, J_\mu(x)\Delta^{\mu\nu}(x-y)J_\nu(y)]
+    \label{Z_0_photon}
+\end{equation}
+where 
+\begin{equation}
+    \Delta^{\mu\nu}(x-y)=\int\frac{\dd^4k}{(2\pi)^4}\frac{e^{ik(x-y)}P^{\mu\nu}}{k^2-i\varepsilon}.
+\end{equation}
+Since the currents are conserved, the $k^\mu k^\nu$ terms of the $P^{\mu\nu}$ projector do not contribute, so we can consider solely
+\begin{equation}
+    \Delta^{\mu\nu}(x-y)=\int\frac{\dd^4k}{(2\pi)^4}\frac{e^{ik(x-y)}g^{\mu\nu}}{k^2-i\varepsilon}.
+\end{equation}
+\section{Feynman rules for spinor electrodynamics}
+We now consider the interaction between electromagnetic fields and spinor fields. To this end, the Lagrangian must contain dynamics of both fields and their coupling. The current coupling to the electromagnetic potential will be the Dirac field U(1) current, scaled by the fermion charge $e$
+\begin{equation}
+    j^\mu(x)=e\Bar{\Psi}(x)\gamma^\mu\Psi(x),
+\end{equation}
+and the Lagrangian we will consider is
+\begin{equation}
+    \mathcal{L}=-\frac{1}{4}F^{\mu\nu}F_{\mu\nu}-\Bar{\Psi}(-i\slashed{\partial}+m)\Psi+e\Bar{\Psi}\gamma^\mu\Psi A_\mu.
+\end{equation}
+We introduce the \textit{gauge covariant derivative} $D_\mu\equiv\partial_\mu-ieA_\mu$ so that the Lagrangian reads
+\begin{equation}
+    \mathcal{L}=-\frac{1}{4}F^{\mu\nu}F_{\mu\nu}+i\Bar{\Psi}\slashed{D}\Psi-m\Bar{\Psi}\Psi.
+\end{equation}
+This Lagrangian is \textit{gauge invariant}, as long as we accept an extended definition of gauge transformations, so it encompasses the changes to the Dirac field too
+\begin{equation}
+    \begin{aligned}
+        A^\mu(x)&\to A^\mu-\partial^\mu\Gamma(x),\\
+        \Psi(x)&\to e^{-ie\Gamma(x)}\Psi(x),\\
+        \bar{\Psi}(x)&\to e^{ie\Gamma(x)}\bar{\Psi}(x).
+    \end{aligned}
+\end{equation}
+%these are necessary to ensure the vector potential transforms as Lorentz vector
+%because in our previous considerations, specifically when deriving the photon path propagator, we have taken the conservation of the current for granted, whereas the Noether current due to U(1) symmetry is conserved only on-shell. With such transformations, we promoted the \textit{global} U(1) symmetry to a \textit{local} U(1) symmetry. The theory is said to be gauged.\\
+
+%In the previous section, we argued that integration over the component parallel to the kernel of the projection operator could be ignored since it did not contribute to the terms in the action. Now, we argue that this integration is \textit{redundant}, since the fermionic path integral encompasses all the fields configurations, thus all .\\
+
+The path integral for spinor electrodynamics reads
+\begin{equation}
+    Z(\bar{\eta},\eta,J)\propto \exp[ie\int\dd^4 x \qty(\frac{1}{i}\fdv{J^\mu(x)})\qty(i\fdv{{\eta}_\alpha(x)})(\gamma^\mu)_{\alpha\beta}\qty(\frac{1}{i}\fdv{\bar{\eta}_\beta(x)})]Z_0(\bar{\eta},\eta,J)
+\end{equation}
+where, according to (\ref{Z_0_dirac}) and (\ref{Z_0_photon}), 
+\begin{equation}
+\begin{aligned}
+    Z_0(\bar{\eta},\eta,J)&=\exp[i\int\dd^4x\,\dd^4 y\, \bar{\eta}(x)S(x-y)\eta(y)]\\&\quad\times\exp[\frac{i}{2}\int\dd^4x\,\dd^4y J^\mu(x)\Delta_{\mu\nu}(x-y)J^\nu(y)],
+\end{aligned}
+\end{equation}
+with the fermion and photon propagators
+\begin{equation}
+    S(x-y)=\int\frac{\dd^4 p}{(2\pi)^4}\frac{-\slashed{p}+m}{p^2+m^2-i\epsilon}e^{ip(x-y)},
+\end{equation}
+\begin{equation}
+    \Delta_{\mu\nu}(x-y)=\int\frac{\dd^4 k}{(2\pi)^4}\frac{g_{\mu\nu}}{k^2-i\epsilon}e^{ik(x-y)}.
+\end{equation}
+The normalization condition is $Z(0,0,0)=1$; the path integral equals the exponential of the sum of connected diagrams with sources $Z(\bar{\eta},\eta,J)=\exp iW(\bar{\eta},\eta,J)$. In momentum space, the diagrams give us scattering amplitudes if we follow the Feynman Rules below:
+\begin{itemize}
+    \item Just as in Yukawa Theory, incoming electrons and outgoing positrons are represented by solid lines with arrows pointing toward the vertex. Electrons are labeled with momentum $p$ and positrons $-p^\prime$
+    \item Just as in Yukawa Theory, outgoing electrons and incoming positrons are represented by solid lines with arrows pointing away from the vertex. Electrons are labeled with momentum $p^\prime$ and positrons $-p$
+    \item Incoming photons are represented by wavy lines with arrows pointing toward the vertex and are labeled with momentum $k$
+    \item Outgoing photons have arrows pointing away from the vertex and are labeled with momentum $k^\prime$
+    \item The allowed vertex must have two solid fermion lines and one wavy photon line. At least one fermion line should point toward the vertex and while the other points away from it. Photons can point whichever direction. 
+    \item We assign each internal line its four-momentum and think of it as a fluid flowing along the lines, being conserved at the vertices.
+    \item Incoming photons translate to $\epsilon^{\mu*}_{\lambda_i}(\vb{k}_i)$
+    \item Outgoing photons translate to $\epsilon^{\mu}_{\lambda_{i}^\prime}(\vb{k}_i^\prime)$
+    \item Incoming electrons translate to $u_{s_i}(\vb{p}_i)$
+    \item Outgoing electrons translate to $\bar{u}_{s_{i}^\prime}(\vb{p}_i^\prime)$
+    \item Incoming positrons translate to $\bar{v}_{s_{i}}(\vb{p}_i)$
+    \item Outgoing positrons translate to ${v}_{s_{i}^\prime}(\vb{p}_i^\prime)$
+    \item The vertex factor is $ie\gamma^\mu$
+    \item Internal Photons with momentum $k$ translate to $\frac{-ig^{\mu\nu}}{k^2-i\varepsilon}$
+    \item Internal Fermions with momentum $p$ translate to
+    $\frac{-i(-\slashed{p}+m)}{p^2+m^2-i\varepsilon}$
+    \item The rule for contraction of spinor indices: locate an external fermion line corresponding either to $\bar{u}$ or $\bar{v}$; go back along that line following the arrows backwards; write the vertices and/or propagators from left-to-right as you encounter them; the last factor should be either $u$ or $v$.
+    \item The rule for the sign of a tree-diagram: when drawing tree-diagrams, draw all fermion lines horizontally with a fixed configuration of labels at the endpoints. Next, build the different combinations by switching labels. This will give a permutation of the right endpoints of fermion lines: even permutations give a positive overall sign to the diagram while odd permutations give it a minus sign.
+    \item Vector index on each vertex should be contracted with the vector index on the photon propagator or with polarization vectors.
+    \item We draw all the topologically inequivalent diagrams, translate them according to the previous rules, and add them to find the matrix element $i\mathcal{T}$.
+ \end{itemize}
+ \section{Scattering amplitudes in spinor QED}
+ Next, we build the relevant tree diagrams for some processes and find the corresponding scattering amplitude. First we consider the electron-positron annihilation $e^+e^-\to\gamma\gamma$:
+ \begin{equation}
+ \begin{aligned}
+      i\mathcal{T}_{e^+e^-\to\gamma\gamma}=&
+      \begin{gathered}
+      \feynmandiagram[layered layout,horizontal=a to b] { 
+      i1 [particle=\(p_1\)]
+      -- [fermion] a
+      -- [photon, momentum=\(k^\prime_1\)] b,
+      i2 [particle=\(-p_2\)]
+      -- [anti fermion] c
+      -- [photon, momentum=\(k^\prime_2\)] d ,
+      { [  same layer] a -- [fermion,edge label=\(p_1-k^\prime_1\)] c },
+      };
+      \end{gathered}+
+      \begin{gathered}
+      \feynmandiagram[layered layout,horizontal=a to b] { 
+      i1 [particle=\(p_1\)]
+      -- [fermion] a
+      -- [photon, momentum=\(k^\prime_2\)] b,
+      i2 [particle=\(-p_2\)]
+      -- [anti fermion] c
+      -- [photon, momentum=\(k^\prime_1\)] d ,
+      { [  same layer] a -- [fermion,edge label=\(p_1-k^\prime_2\)] c },
+      };
+      \end{gathered}\\
+  &=ie^2\epsilon_{1^\prime}^\mu\epsilon_{2^\prime}^\nu \bar{v}_2\qty[\gamma_\nu\qty(\frac{-\slashed{p}_1+\slashed{k}_1^\prime+m}{-t+m^2})\gamma_\mu+\gamma_\mu\qty(\frac{-\slashed{p}_1+\slashed{k}_2^\prime+m}{-u+m^2})\gamma_\nu]u_1
+ \end{aligned}
+ \end{equation}
+ where $\epsilon_{i^\prime}^\mu=\epsilon^\mu_{\lambda^\prime_i}(\vb{k}_i^\prime)$, $\bar{v}_2=\bar{v}_{s_2}(\vb{p}_2)$ and $u_1=u_{s_1}(\vb{p}_1)$. The Mandelstam variables are $t=-(p_1-k_1^\prime)^2=-(p_2-k_2^\prime)^2$, $u=-(p_1-k_2^\prime)^2=-(p_2-k_1^\prime)^2$. \\
+ 
+ Next we consider Compton Scattering $e^-\gamma\to e^-\gamma$:
+ \begin{equation}
+ \begin{aligned}
+      i\mathcal{T}_{e^-\gamma \to e^-\gamma}=&
+      \begin{gathered}
+      \feynmandiagram[horizontal=a to b]{
+      i1 -- [photon, momentum=\(k_2\)]
+      a -- [anti fermion] i2 [particle=\(p_1\)],
+      a -- [fermion, edge label=\(p_1+k_2\)] b,
+      f1 [particle=\(p_1^\prime\)] -- [anti fermion] b -- [photon, momentum=\(k_2^\prime\)] f2
+      };
+      \end{gathered}+
+      \begin{gathered}
+      \feynmandiagram[horizontal=a to b]{
+      i1 -- [photon, reversed momentum=\(k_2^\prime\)]
+      a -- [anti fermion] i2 [particle=\(p_1\)],
+      a -- [fermion, edge label=\(p_1-k_2^\prime\)] b,
+      f1 [particle=\(p_1^\prime\)] -- [anti fermion] b -- [photon, reversed momentum=\(k_2\)] f2
+      };
+      \end{gathered}\\
+      &=ie^2\epsilon^{\mu*}_2\epsilon^\nu_{2^\prime}\bar{u}_1^\prime\qty[\gamma_\nu\qty(\frac{-\slashed{p}_1-\slashed{k}_2+m}{-s+m^2})\gamma_\mu+\gamma_\mu\qty(\frac{-\slashed{p}_1+\slashed{k}_2^\prime+m}{-u+m^2})\gamma_\nu]u_1
+ \end{aligned}
+ \end{equation}
+ where we again used the shorthand notation for polarization vectors and spinors, so that $\bar{u}_1^\prime=\bar{u}_{s_1^\prime}(\vb{p}_1^\prime)$. Also, $s=-(p_1+k_2)^2$ and $u=-(p_2-k_1^\prime)^2$. \\
+ 
+ For Bhabha scattering $e^+e^-\to e^+e^-$, we have
+ \begin{equation}
+     \begin{aligned}
+      i\mathcal{T}_{e^+e^-\to e^+e^-}=&
+      \begin{gathered}
+      \feynmandiagram[layered layout,horizontal=a to b] { 
+      i1 [particle=\(p_1\)]
+      -- [fermion] a
+      -- [fermion] b [particle=\(p^\prime_1\)],
+      i2 [particle=\(-p_2\)]
+      -- [anti fermion] c
+      -- [anti fermion] d [particle=\(-p^\prime_2\)] ,
+      { [  same layer] a -- [photon,momentum=\(p_1-p^\prime_1\)] c },
+      };
+      \end{gathered}-
+      \begin{gathered}
+      \feynmandiagram[layered layout,horizontal=a to b] { 
+      i1 [particle=\(p_1\)]
+      -- [fermion] a
+      -- [fermion] b [particle=\(-p_2\)],
+      i2 [particle=\(-p_2^\prime\)]
+      -- [fermion] c
+      -- [fermion] d [particle=\(p^\prime_1\)] ,
+      { [  same layer] a -- [photon,momentum=\(p_1+p_2\)] c },
+      };
+      \end{gathered}\\
+      &=ie^2\qty[\frac{(\bar{u}_1^\prime\gamma^\mu u_1)(\bar{v}_2\gamma_\mu v^\prime_2)}{-t}-\frac{(\bar{v}_2\gamma^\mu u_1)(\bar{u}_1^\prime\gamma_\mu v_2^\prime)}{-s}]
+     \end{aligned}
+ \end{equation}
+ where $t=-(p_1-p_1^\prime)^2$ and $s=-(p_1+p_2)^2$.\\
+ 
+ As a last example, Moller Scattering $e^- e^-\to e^-e^-$:
+ \begin{equation}
+     \begin{aligned}
+      i\mathcal{T}_{e^-e^-\to e^-e^-}&=
+      \begin{gathered}
+      \feynmandiagram[layered layout,horizontal=a to b] { 
+      i1 [particle=\(p_1\)]
+      -- [fermion] a
+      -- [fermion] b [particle=\(p^\prime_1\)],
+      i2 [particle=\(p_2\)]
+      -- [fermion] c
+      -- [fermion] d [particle=\(p^\prime_2\)] ,
+      { [  same layer] a -- [photon,momentum=\(p_1-p^\prime_1\)] c },
+      };
+      \end{gathered}-
+      \begin{gathered}
+      \feynmandiagram[layered layout,horizontal=a to b] { 
+      i1 [particle=\(p_1\)]
+      -- [fermion] a
+      -- [fermion] b [particle=\(p_2^\prime\)],
+      i2 [particle=\(p_2\)]
+      -- [fermion] c
+      -- [fermion] d [particle=\(p^\prime_1\)] ,
+      { [same layer] a -- [photon,momentum=\(p_1-p^\prime_2\)]c},};
+      \end{gathered}\\
+      &=ie^2\qty[\frac{(\bar{u}_1^\prime\gamma^\mu u_1)(\bar{u}_2^\prime\gamma_\mu u_2)}{-t}-\frac{(\bar{u}^\prime_2\gamma^\mu u_1)(\bar{u}_1^\prime\gamma_\mu u_2)}{-u}]
+     \end{aligned}
+ \end{equation}
+ where $t=-(p_1-p_1^\prime)^2$ $u=-(p_1-p_2^\prime)^2.$

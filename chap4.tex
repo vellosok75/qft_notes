@@ -1,0 +1,806 @@
+\chapter{The Scalar Field}
+    The lesson we learned from chapter 2 is that we should interpret solutions of the Klein-Gordon Equation as classical fields (scalar fields) to be quantized. This conclusion was drawn by building the quantum mechanics of a relativistic boson from scratch and arriving to the concept of a quantum field. Now we do the other way around: we start from a classical field, whose dynamics is dictated by its equation of motion, obtained from the Lagrangian; and then we calculate the field momentum and Hamiltonian, turn all observables into operators and impose commutation relations. This will prove to lead to the same theory. Also, it is a general procedure and will apply not only to the Klein-Gordon field, which gives us the quantum mechanics of a relativistic scalar boson, but also to the solutions of the Dirac Equation, which describes spinor fermions, and to solutions of the Proca equation, which describes vector bosons.\\
+
+ In this chapter we study the classical field theory of the scalar field and introduce the program of canonical quantization. We discuss how the scalar field \textit{has} to describe bosons and \textit{cannot} describe fermions, highlighting the relation between spin and statistics. We derive the LSZ reduction formula, which will give us scattering amplitudes and then introduce path integrals, showing how they will simplify the calculation of the correlation functions needed to compute these amplitudes.\\
+ 
+ Quantum mechanical operators in Chapter 1 and 2 were always accompanied by a ``$\hat{\quad}$", such as  in $\hat{p}$ or $\hat{H}$. In this Chapter, however, we avoid cluttering the notation and drop this convention, favoring capitalization (e.g. $P^\mu$ for momentum operator and $p^\mu$ for its eigenvalues) or context to distinguish between operators and its eigenvalues or its classical counterparts. 
+\section{The Classical Scalar Field}
+We start with the Lagrangian density whose Euler-Lagrange Equation is the Klein-Gordon Equation
+%The Klein-Gordon Equation is a covariant equation. From the theory of classical fields, we suspect that there should be an invaariant lagrangian to which the Klein-Gordon equation is the equation of motion.
+%We are interested in Lorentz Invariant theories so it's natural to look for a \textit{scalar field}. A scalar field is a Lorentz Invariant and therefore would have a covariant equation of motion. Indeed, the Klein-Gordon Equation is a covariant equation. From the theory of classical fields, we suspect that there should be an invaariant lagrangian to which the Klein-Gordon equation is the equation of motion. This is indeed true, the lorentz invariant lagrangian for a scalar field is
+\begin{equation}
+    \mathcal{L}(\phi(x),\partial_\mu\phi(x))=-\frac{1}{2}\partial^\mu\phi\partial_\mu\phi-\frac{1}{2}m^2\phi^2+\Omega_0
+    \label{scalar_field_lagrangian}
+\end{equation}
+It is easy to check $\mathcal{L}$ is Lorentz invariant and that the covariant equation of motion is the Klein-Gordon Equation
+\begin{equation}
+    \pdv{\mathcal{L}}{\phi}-\partial_\mu\pdv{\mathcal{L}}{(\partial_\mu\phi)}=\partial^\mu\partial_\mu\phi-m^2\phi=0
+    \label{kg_euler}
+\end{equation}
+\subsection{Mode Expansion}
+We have seen in chapter 2 that the solutions to (\ref{kg_euler}) are plane waves, and that a general solution is the Lorentz invariant linear combination referred to as the ``mode expansion"
+\begin{equation}
+    \phi(x)=\int \frac{\dd^3k}{(2\pi)^3}\frac{1}{2\omega}\qty[a(\vb{k})e^{i\vb{k}\vdot\vb{x}-i\omega t}+b(\vb{k})e^{-i\vb{k}\vdot\vb{x}+i\omega t}]
+\end{equation}
+This is more general than (\ref{general_mode_expansion}) and accommodates a complex scalar field.
+In natural units, the 4-wave-vector $k$ equals the 4-momentum $p$, so $\vb{k}=\vb{p}$ and $\omega_{\vb{k}}=E_{\vb{p}}$, and we shall use $k$ and $p$ interchangeably. We will drop the subscript $\vb{k}$ from $\omega$ for brevity, but keep in mind that the mass-shell condition gives $\omega$ its $\vb{k}$ dependence. 
+%For $k^\mu=(\omega,\vb{k})$, we will use $kx$ to refer to the scalar product $k^\mu x_\mu=\vb{k}\vdot\vb{x}-\omega t$.
+We will work with the real field, for which $\phi^*(x)=\phi(x)$, and thus $b(\vb{k})=a^*(\vb{k})$. Renaming the Lorentz invariant measure to $\widetilde{\dd k}$, the mode expansion for the real field reads
+\begin{equation}
+    \phi(x)=\int \widetilde{\dd k}\qty[a(\vb{k})e^{ikx}+a^*(\vb{k})e^{-ikx}]
+    \label{mode_expansion}
+\end{equation}
+and is just (\ref{general_mode_expansion}), so we can expect it to give us the physics of a boson. We can invert for the coefficient functions using the othonogonality of $e^{\pm ikx}$. We verify that
+\begin{equation}
+    \int\dd^3x\,e^{-ikx}\phi(x)=\frac{1}{2\omega}a(\vb{k})+\frac{1}{2\omega}e^{2i\omega t}a^*(-\vb{k})
+\end{equation}
+\begin{equation}
+    \int\dd^3x\,e^{-ikx}\partial_0\phi(x)=-\frac{i}{2}a(\vb{k})+\frac{i}{2}e^{2i\omega t}a^*(-\vb{k})
+\end{equation}
+and then solve for $a(\vb{k})$
+\begin{equation}
+\begin{aligned}
+        a(\vb{k})=&\int\dd^3x\,e^{-ikx}\qty(i\partial_0\phi(x)+\omega\phi(x))=i\int\dd^3x\,e^{-ikx}\overleftrightarrow{\partial_0}\phi(x)
+\end{aligned}
+\end{equation}
+where $f\overleftrightarrow{\partial_\mu}g=f(\partial_\mu g)-    (\partial_\mu f)g$.
+\subsection{The Scalar Field Hamiltonian}
+We calculate the conjugate momentum density from lagrangian (\ref{scalar_field_lagrangian})
+\begin{equation}
+\pi(x)=\pdv{\mathcal{L}}{\dot{\phi}}=\dot{\phi}(x)=\int \widetilde{\dd k}\,(-i\omega)\qty[a(\vb{k})e^{ikx}-a^*(\vb{k})e^{-ikx}]
+\label{conjugate_momentum0}
+\end{equation}
+Next we Legendre Transform to obtain the hamiltonian dentisity $\mathcal{H}=\pi\dot{\phi}-\mathcal{L}$. Equations (\ref{scalar_field_lagrangian}) and (\ref{conjugate_momentum0}) gives
+\begin{equation}
+    \mathcal{H}=\frac{1}{2}\pi^2+\frac{1}{2}(\grad\phi)^2+\frac{1}{2}m^2\phi^2-\Omega_0
+\end{equation}
+Using the mode expansion (\ref{mode_expansion}), we calculate the hamiltonian $H=\int\dd^3x\,\mathcal{H}$
+\begin{equation}
+    \begin{aligned}
+H &=\frac{1}{2} \int \widetilde{\dd k} \widetilde{\dd k}^{\prime} \dd^{3} x\Big{[}\\&\qquad\Big{(}-i \omega a(\mathbf{k}) e^{i k x}+i \omega a^{*}(\mathbf{k}) e^{-i k x}\Big{)}\qty(-i \omega^{\prime} a\left(\mathbf{k}^{\prime}\right) e^{i k^{\prime} x}+i \omega^{\prime} a^{*}\left(\mathbf{k}^{\prime}\right) e^{-i k^{\prime} x}) \\
+&\quad+\Big{(}+i \mathbf{k} a(\mathbf{k}) e^{i k x}-i \mathbf{k} a^{*}(\mathbf{k}) e^{-i k x}\Big{)} \left(+i \mathbf{k}^{\prime} a\left(\mathbf{k}^{\prime}\right) e^{i k^{\prime} x}-i \mathbf{k}^{\prime} a^{*}\left(\mathbf{k}^{\prime}\right) e^{-i k^{\prime} x}\right) \\
+&\quad+m^{2}\Big{(}a(\mathbf{k}) e^{i k x}+a^{*}(\mathbf{k}) e^{-i k x}\Big{)}\left(a\left(\mathbf{k}^{\prime}\right) e^{i k^{\prime} x}+a^{*}\left(\mathbf{k}^{\prime}\right) e^{-i k^{\prime} x}\right)\Big{]}-\Omega_{0} V
+\end{aligned}
+\end{equation}
+Where $V$ is the volume in space. We arrange terms by their common dependence on the exponentials of $\vb{k}-\vb{k}^\prime$ and $\vb{k}+\vb{k}^\prime$ and use the definition for a Delta ``function" $(2\pi)^3\delta(\vb{q})=\int\dd^3x\,e^{i\vb{q}\vdot\vb{x}}$
+\begin{equation}
+    \begin{aligned}
+H &=\frac{1}{2}(2 \pi)^{3} \int \widetilde{\dd k} \widetilde{\dd k}^{\prime}\Big{[}
+\delta\left(\mathbf{k}-\mathbf{k}^{\prime}\right)\left(+\omega \omega^{\prime}+\mathbf{k} \cdot \mathbf{k}^{\prime}+m^{2}\right) \\
+&\qquad\qquad\qquad\qquad\times\left(a^{*}(\mathbf{k}) a\left(\mathbf{k}^{\prime}\right) e^{+i\left(\omega-\omega^{\prime}\right) t}+a(\mathbf{k}) a^{*}\left(\mathbf{k}^{\prime}\right) e^{-i\left(\omega-\omega^{\prime}\right) t}\right) \\
+&\qquad\qquad\qquad\qquad+\delta    \left(\mathbf{k}+\mathbf{k}^{\prime}\right)\left(-\omega \omega^{\prime}-\mathbf{k} \cdot \mathbf{k}^{\prime}+m^{2}\right) \\
+&\qquad\qquad\qquad\qquad\left.\times\left(a(\mathbf{k}) a\left(\mathbf{k}^{\prime}\right) e^{-i\left(\omega+\omega^{\prime}\right) t}+a^{*}(\mathbf{k}) a^{*}\left(\mathbf{k}^{\prime}\right) e^{+i\left(\omega+\omega^{\prime}\right) t}\right)\right]-\Omega_{0} V
+\end{aligned}
+\end{equation}
+Next we integrate over $k^\prime$
+\begin{equation}
+\begin{aligned}
+H &=-\Omega_{0} V+\frac{1}{2} \int \widetilde{\dd k}\, \frac{1}{2 \omega}\Big{[}
+\left(+\omega^{2}+\mathbf{k}^{2}+m^{2}\right)\left(a^{*}(\mathbf{k}) a(\mathbf{k})+a(\mathbf{k}) a^{*}(\mathbf{k})\right) \\
+&\qquad\qquad\qquad\qquad+\left(-\omega^{2}+\mathbf{k}^{2}+m^{2}\right)\left(a(\mathbf{k}) a(-\mathbf{k}) e^{-2 i \omega t}+a^{*}(\mathbf{k}) a^{*}(-\mathbf{k}) e^{+2 i \omega t}\right)\Big{]}\\
+&=-\Omega_{0} V+\frac{1}{2} \int \widetilde{\dd k}\, \omega\left(a^{*}(\mathbf{k}) a(\mathbf{k})+a(\mathbf{k}) a^{*}(\mathbf{k})\right) 
+\end{aligned}
+\label{hamilt_n_quant}
+\end{equation}
+In the last line we used the mass-shell relation $\omega^2=\vb{k}^2+m^2$. The order of $a(\vb{k})$ and $a^*(\vb{k})$ has been respected in all steps because we antecipate their promotion to operators once we quantize this theory.\\
+
+ We recall tha the Poisson Brackets for the classical field theory are equations (\ref{pb2}) and (\ref{pb1}):
+\begin{equation}
+\left\{\phi(t, \mathbf{x}), \phi\left(t, \mathbf{x}^{\prime}\right)\right\}_{\mathrm{PB}}=\left\{\pi(t, \mathbf{x}), \pi\left(t, \mathbf{x}^{\prime}\right)\right\}_{\mathrm{PB}}=0
+\label{pb11}
+\end{equation}
+\begin{equation}
+\begin{aligned}
+    \poissonbracket{\phi(t,\vb{x})}{\pi(t,\vb{x}^\prime)}_{\text{PB}}&=\int\dd^3y\,\underbrace{\fdv{\phi(t,\vb{x})}{\phi(t,\vb{y})}}_{\delta(\vb{x}-\vb{y})}\underbrace{\fdv{\pi(t,\vb{x}^\prime)}{\pi(t,\vb{y})}}_{\delta(\vb{x}^\prime-\vb{y})}=\delta(\vb{x}-\vb{x}^\prime)
+    \label{pb22}
+\end{aligned}
+\end{equation}
+So we have all the ingredients for Canonical Quantization.
+\section{Canonical Quantization}
+We go from classical to quantum mechanics via Canonical Quantization: we promote position, momentum and other dynamical variables to operators and find their commutation relations using the replacements $i\poissonbracket{A}{B}_{\text{PB}}\to\comm{A}{B}$. For field theories we do the same: equations (\ref{pb11}) and (\ref{pb22}) give us the commutation relations for the field and the momentum at equal times
+\begin{equation}
+\begin{array}{l}
+{\left[\phi(t,\mathbf{x}), \phi\left(t,\mathbf{x}^{\prime}\right)\right]=0} \\
+{\left[\pi(t,\mathbf{x}), \pi\left(t,\mathbf{x}^{\prime}\right)\right]=0} \\
+{\left[\phi(t,\mathbf{x}), \pi\left(t,\mathbf{x}^{\prime}\right)\right]=i \delta(\mathbf{x}-\mathbf{x}^{\prime})}
+\end{array}
+\label{comu_fields}
+\end{equation}
+These are (\ref{commu_fields1}), that we antecipated in Chapter 2. Using the mode expansion, we see that (\ref{comu_fields}) are valid if
+\begin{equation}
+\begin{aligned}
+\left[a(\mathbf{k}), a\left(\mathbf{k}^{\prime}\right)\right] &=0 \\
+\left[a^{\dagger}(\mathbf{k}), a^{\dagger}\left(\mathbf{k}^{\prime}\right)\right] &=0 \\
+\left[a(\mathbf{k}), a^{\dagger}\left(\mathbf{k}^{\prime}\right)\right] &=(2 \pi)^{3} 2 \omega \delta(\mathbf{k}-\mathbf{k}^{\prime})
+\label{commu_creators}
+\end{aligned}
+\end{equation}
+Notice the complex conjugation sign is replaced by hermitian conjugation sign, since $a(\vb{k})$ is now an operator. Using these commutation relations for $a(\vb{k})$ we can write the Hamiltonian (\ref{hamilt_n_quant}) as
+\begin{equation}
+    H=\int\widetilde{\dd k}\, \omega\,  a^{\dagger}(\vb{k})a(\vb{k}) +\int\widetilde{\dd k}\,(2\pi)^3\omega^2\,\delta(\vb{0}) -\Omega_0V
+\end{equation}
+ We interpret $(2\pi)^3\delta(\vb{0})$ as the volume $V$ of space, as expressed in $k$-space, and define a zero point energy per volume as
+\begin{equation}
+    \mathcal{E}_0=\frac{1}{2(2\pi)^3}\int\dd^3 k\,\omega
+    \label{zeropoint}
+\end{equation}
+which is infinite if we integrate over the whole range of $k$. But, if the theory is only valid up to some energy scale way larger than $m$, we integrate to a cutoff value $\Lambda$
+\begin{equation}\begin{aligned}
+    \mathcal{E}_0&=\frac{1}{2(2\pi)^3}\int\dd^3 k\,\sqrt{\vb{k}^2+m^2}\\
+    &\underbrace{=}_{m\to0}\frac{1}{4\pi^2}\int_0^\Lambda \dd \abs{\vb{k}}\abs{\vb{k}}^3=\frac{\Lambda^4}{16\pi^2}
+    \end{aligned}
+\end{equation}
+so the hamiltonian reads
+\begin{equation}
+    H=\int\widetilde{\dd k}\, \omega\,  a^{\dagger}(\vb{k})a(\vb{k})+(\mathcal{E}_0-\Omega_0)V
+\end{equation}
+Since $\mathcal{E}_0$ is a constant when (\ref{zeropoint}) is  integrated up to the \textit{ultraviolet cutoff} $\Lambda$, we may set $\Omega_0$, which is arbitrary, equal to $\mathcal{E}_0$. As it should be, our Hamiltonian is equal to (\ref{2nd_hamiltonian_continuum}) with the normalization (\ref{covariant_creators}) for the creation and annihilation operators. So we are in the position to interpret $a^\dagger(\vb{k})$ as particle creation operator in $\vb{k}$-space, $\phi^\dagger(x)=\phi(x)$ as field operator that creates ``localized" particles in spacetime and $m$ (actually $\hbar m/c$) as the particle's mass. Canonical quantization of the scalar field gave us the theory for bosons in a ``top-down" approach.
+\section{The relation between spin and statistics}
+What if we wanted our theory to describe fermions? It might seem a simple matter of replacing commutators (\ref{comu_fields}) and (\ref{commu_creators}) by anti-commutators. But doing so, means that the second term on the last line of (\ref{hamilt_n_quant}) vanishes. Anti-commutators give us a trivial  Hamiltonian $H=-\Omega_0V$. This is a hint that the scalar hermitian field cannot account for the description of fermions.
+This becomes clear next, where we will see that if we want to desribe local and Lorentz invariant interactions then the scalar hermitian field \textit{has} to describe bosons and \textit{cannot} describe fermions. \\
+
+We assume, for the sake of argument, that our theory could accommodate fermions. We start from our free theory, described by the Hamiltonian
+\begin{equation}
+    H_0=\int\widetilde{{\dd k}}\, \omega\,a^\dagger(\vb{k})a(\vb{k})
+\end{equation}
+In principle, this could describe bosons or fermions, depending on the choice of commutation relations for $a(\vb{k})$ and $a^\dagger(\vb{k})$. For bosons they would be commutators, and for fermions anticommutators.
+\begin{equation}
+\begin{aligned}
+\left[a(\mathbf{k}), a\left(\mathbf{k}^{\prime}\right)\right]_{\mp} &=0 \\
+\left[a^{\dagger}(\mathbf{k}), a^{\dagger}\left(\mathbf{k}^{\prime}\right)\right]_{\mp} &=0 \\
+\left[a(\mathbf{k}), a^{\dagger}\left(\mathbf{k}^{\prime}\right)\right]_{\mp} &=(2 \pi)^{3} 2 \omega \delta\left(\mathbf{k}-\mathbf{k}^{\prime}\right)
+\end{aligned}
+\end{equation}
+To consider interactions we suppose the Hamiltonian of our theory is $H=H_0+H_1$, with $H_1$ accounting for the interactions. In the interaction picture, the transition amplitude from the initial state $\ket{i}$ at $t=-\infty$ to the final state $\ket{f}$ at $t=+\infty$ is given by $\mathcal{T}_{i\to f}=\bra{f}S\ket{i}$ where $S$ is the operator
+\begin{equation}
+S=\sum_{N=1}^{\infty}(-i)^{N} \int_{-\infty}^{\infty} \int_{-\infty}^{t_{1}} \int_{-\infty}^{t_{2}} \dots \int_{-\infty}^{t_{N-1}} \dd t_{1} \cdots \dd t_{N} H_1\left(t_{1}\right) \cdots H_1\left(t_{N}\right) 
+\end{equation}
+Using the time order symbol
+\begin{equation}
+\begin{aligned}
+S&=\text{T}\sum_{N=1}^{\infty} \frac{(-i)^{N}}{N !} \int_{-\infty}^{\infty} \dots \int_{-\infty}^{\infty} \dd t_{1} \dots \dd t_{N} H_1\left(t_{1}\right) \dots H_1\left(t_{N}\right)\\
+&=\text{T}\sum_{N=1}^{\infty} \frac{(-i)^{N}}{N !} \qty[\int_{-\infty}^{\infty}  \dd t\, H_1\left(t\right)]^N
+\end{aligned}
+\end{equation}
+so, the transition amplitude reads:
+\begin{equation}
+\mathcal{T}_{i\to f}= \bra{f}\text{T}\exp[-i\int_{-\infty}^{+\infty}\dd t \,H_1(t)]\ket{i}
+\label{amplitude_interactions}
+\end{equation}
+The interaction Hamiltonian depends on time as 
+\begin{equation}
+    H_1(t)=e^{iH_0t}H_1e^{-iH_0t}
+\end{equation}
+We assume the time independent $H_1$ is written in terms of a Hamiltonian density
+\begin{equation}
+    H_1=\int\dd^3x\,\mathcal{H}_1(0,\vb{x})
+    \label{hamilt_density_intera}
+\end{equation}
+To account for Lorentz invariant interactions, we assume $\mathcal{H}_1(0,\vb{x})$ is a hermitian function of Lorentz invariant functions. We take the mode expansion components of the scalar field at $t=0$ and assume $\mathcal{H}_1(0,\vb{x})$ is a hermitian function of them
+%Interactions will involve the products of the field with itself or of the field with sources, as, for example, the $\phi^4$ theory.
+%It is convenient to separate the scalar field into the following non-hermitian fields that will provide us with local, Lorentz invariant interactions once added to the hamiltonian
+\begin{equation}
+    \phi^+(0,\vb{x})=\int\widetilde{\dd k}\,e^{i\vb{k}\vdot\vb{x}}a(\vb{k})
+    \end{equation}
+\begin{equation}
+    \phi^-(0,\vb{x})=\int\widetilde{\dd k}\,e^{-i\vb{k}\vdot\vb{x}}a^\dagger(\vb{k})
+    \end{equation}
+This is useful because, since
+\begin{equation}
+\begin{aligned}
+      \phi^+(x)&=e^{iH_0t}\phi^+(0,\vb{x})e^{-iH_0t}\\
+      \phi^-(x)&=e^{iH_0t}\phi^-(0,\vb{x})e^{-iH_0t}
+\end{aligned}
+\end{equation}
+then $H_1(t)$ from (\ref{hamilt_density_intera}) is simply
+\begin{equation}
+    H_1(t)=\int\dd^3 x\,\mathcal{H}_1(x)
+\end{equation}
+indicating that the hermitian function giving $\mathcal{H}_1(0,\vb{x})$ in terms of $\phi^+(0,\vb{x})$ and $\phi^-(0,\vb{x})$ preserves its form under time-evolution.\\
+
+We have Lorentz invariant interactions if the transition amplitude (\ref{amplitude_interactions}) is Lorentz invariant. Time ordering is absolute for time-like separated events, but is relative for space-like ones: it is always possible, for instance, to define a space-like surface on which such events are simultaneous. If, for space-like separations, $\mathcal{H}_1(x)$ and $\mathcal{H}_1(x^\prime)$ commute or anti-commute, then the time-ordering of (\ref{amplitude_interactions}) is frame independent. Therefore, we must require
+\begin{equation}
+    \comm{\mathcal{H}_1(x)}{\mathcal{H}_1(x^\prime)}_{\mp}= 0 \quad \text{whenever}\quad (x-x^\prime)^2>0
+    \label{comuta0}
+\end{equation}
+but since $\mathcal{H}_1(x)$ is a hermitian function of $\phi^+$ and $\phi^-$, we need to check their commutation/anticommutation relations
+\begin{equation}
+    \begin{aligned}
+        \comm{\phi^+(x)}{\phi^+(x^\prime)}_{\mp} &=0\\
+        \comm{\phi^-(x)}{\phi^-(x^\prime)}_{\mp} &=0\\
+        \comm{\phi^+(x)}{\phi^-(x^\prime)}_{\mp} &=\int\widetilde{\dd k}\widetilde{\dd k^\prime}\,e^{i(kx-k^\prime x^\prime)}{\overbrace{\comm{a(\vb{k})}{a^\dagger(\vb{k}^\prime)}}^{(2\pi)^32\omega\,\delta(\vb{k}-\vb{k}^\prime)}}_{\mp}\\
+        &=\int\widetilde{\dd k}\,e^{ik(x-x^\prime)}=C(r)
+    \end{aligned}
+\end{equation}
+Where $r^2=(x-x^\prime)^2>0$. The function $C(r)$ is not zero for any $r>0$ and we are not able to satisfy (\ref{comuta0}) using $\phi^+$ and $\phi^-$. We look for specific linear combinations of $\phi^+$ and $\phi^-$
+\begin{equation}
+\begin{array}{l}
+\phi_{\lambda}(x) = \phi^{+}(x)+\lambda \phi^{-}(x) \\
+\phi_{\lambda}^{\dagger}(x) = \phi^{-}(x)+\lambda^{*} \phi^{+}(x)
+\end{array}
+\end{equation}
+$\lambda$ being a complex number. Now we check the commutation/anticommutation relations
+
+\begin{equation}
+\begin{aligned}
+\left[\phi_{\lambda}(x), \phi_{\lambda}^{\dagger}\left(x^{\prime}\right)\right]_{\mp} &=\left[\phi^{+}(x), \phi^{-}\left(x^{\prime}\right)\right]_{\mp}+|\lambda|^{2}\left[\phi^{-}(x), \phi^{+}\left(x^{\prime}\right)\right]_{\mp} \\
+&=\left(1 \mp|\lambda|^{2}\right) C(r)
+\end{aligned}
+\end{equation}
+\begin{equation}
+\begin{aligned}
+\Big{[}\phi_{\lambda}(x), \phi_{\lambda}\left(x^{\prime}\right)\Big{]}_{\mp} &=\lambda\left[\phi^{+}(x), \phi^{-}\left(x^{\prime}\right)\right]_{\mp}+\lambda\left[\phi^{-}(x), \phi^{+}\left(x^{\prime}\right)\right]_{\mp} \\
+&=\lambda(1 \mp 1) C(r)
+\end{aligned}
+\end{equation}
+Therefore, $\phi_\lambda(x)$ can be used to build our $\mathcal{H}_1(x)$ as long as we take $\abs{\lambda}=1$ and use commutators, which brings us back to the scalar field in its mode expansion and with commutation relations (\ref{comu_fields})\\
+
+ We started from the creation/annihilation operators and assumed they might describe fermions if we adopted anticommutation relations. We tried to build Lorentz invariant interactions and this led us to discard the possibility of using anti-commutators. The only option we had was to use commutators. This is one instance of the \textit{Spin-statistics Theorem}. It states that fields of integer spin require commutation relations and fields of half-integer spin require anti-commutation relations. So the scalar field describes bosons and cannot account for fermions. Fields for fermions are \textit{spinors}, as we shall see further on the course of this project.
+%$\phi_\lambda(x^\prime)$ and $\phi^\dagger_\lambda(x^\prime)$ when $(x-x^\prime)^2>0$.%For a Lorentz trasnformation $\Lambda$,
+%\begin{equation}
+%    U^{-1}(\Lambda)\phi(x)U(\Lambda)=\phi(\Lambda^{-1}x)
+%\end{equation}
+%Since $\phi(x)=\phi^+(x) + \phi^-(x)0$ the same is true for the non-hermitian fields
+%\begin{equation}
+%    U^{-1}(\Lambda)\phi^+(x)U(\Lambda)=\phi^+(\Lambda^{-1}x)
+%\end{equation}
+%\begin{equation}
+%    U^{-1}(\Lambda)\phi^-(x)U(\Lambda)=\phi^-(\Lambda^{-1}x)
+%\end{equation}
+%This impplies
+%\begin{equation}
+%    U^{-1}(\Lambda)a(\vb{p})U(\Lambda)=a(\Lambda^{-1}\vb{p})
+%\end{equation}
+%\begin{equation}
+%    U^{-1}(\Lambda)a^\dagger(\vb{p})U(\Lambda)=a^\dagger(\Lambda^{-1}\vb{p})
+%\end{equation}
+%Ok, but why present this here?\\
+
+%To include Lorentz invariant interactions, we consider the Hamiltonian
+
+\section{Interactions: the LSZ formula}
+Now we focus on how to describe interactions. A one-particle state in our free theory can be written
+\begin{equation}
+\begin{aligned}
+    \ket{p}&=a^{\dagger}(\vb{p})\ket{0}\\
+    &=-i\int\dd^3x\,e^{ipx}\overleftrightarrow{\partial_0}\phi(x)\ket{0}
+\end{aligned}
+\end{equation}
+where $\ket{0}$ is the normalized ground state, assumed to vanish upon the action of any annihilation operator $a(\vb{p})\ket{0}=0$. The one-particle states have normalization 
+\begin{equation}
+    \braket{p}=(2\pi)^32E\,\delta(\vb{p}-\vb{p}^\prime)
+\end{equation}
+where, as usual, $E=\sqrt{\vb{p}^2+m^2}$. We will now define an operator that creates particles localized in momentum using a gaussian function $f_1(\vb{p})$, centered about $\vb{p}_1$. Such operator is
+\begin{equation}
+    a_1^\dagger=\int\dd^3p\,f_1(\vb{p})a^\dagger(\vb{p})
+\end{equation}
+where $f_1(\vb{p})\propto\exp[-(\vb{p}-\vb{p}_1)/4\sigma^2]$. We then have a wave packet described by
+\begin{equation}
+    a_1^{\dagger}\ket{0}=\int\dd^3p\,f_1(\vb{p})a^\dagger(\vb{p})\ket{0}
+\end{equation}
+
+Initially close to the origin, the wave-packet spreads and propagates as it evolves in time. At $t\to\pm\infty$ it is far from the origin. We can as well define a two-particle state $a^\dagger_1a^\dagger_2\ket{0}$, each centered about different momenta $\vb{p}_1$ and $\vb{p}_2$, and widely separated in the infinite past
+\begin{equation}
+\ket{i}=\lim_{t\to-\infty}a_1^\dagger(t)a_2^\dagger(t)\ket{0}
+\label{2initial_state}
+\end{equation}
+and in the infinite future
+\begin{equation}
+\ket{f}=\lim_{t\to\infty}a_{1^\prime}^\dagger(t)a_{2^\prime}^\dagger(t)\ket{0}
+\label{2final_state}
+\end{equation}
+where $\vb{p}_{1^\prime}\neq\vb{p}_{2^\prime}$. The scattering amplitude is
+\begin{equation}
+    \braket{f}{i}=\lim_{\substack{t\to-\infty\\t^{\prime}\to+\infty}}\bra{0}a_{1^\prime}(t^\prime)a_{2^\prime}(t^\prime)a_1^\dagger(t)a_2^\dagger(t)\ket{0}
+    \label{fi}
+\end{equation}
+This is all valid in the free-theory but, when interactions are included, $a(\vb{p})$ becomes a function of time, and so does $a_1^\dagger$. 
+%Properly normalizing the wave-packet functions $f_i(\vb{p})$ to unity guarantees $\braket{i}=1$ and $\braket{f}=1$.
+We show next that we can prepare initial and final states (\ref{2initial_state}) and (\ref{2final_state}) in interacting theories  as long as 
+\begin{equation}
+    \bra{0}\phi(x)\ket{0}=0
+    \label{condicao1}
+\end{equation}
+and
+\begin{equation}
+    \bra{p}\phi(x)\ket{0}=e^{-ipx}
+    \label{condicao2}
+\end{equation}
+We start from a unique vaccum state $\ket{0}$, for which $E=0$ and $\vb{p}=0$. We assume the first excited state is a particle with mass $m$, momentum $\vb{p}$ and energy $E=\sqrt{\vb{p}^2+m^2}$. The next excited state is state with two particles . We assume there are no bound states, so the energy of the two-particle states is $E>2m$. We write $\phi(x)$ using the spacetime evolution operator
+\begin{equation}
+    \phi(x)=e^{-iP^\mu x_\mu}\phi(0)e^{iP^\mu x_\mu}
+\end{equation}
+where $P^\mu=(H,\vb{P})$ is the 4-momentum operator. Since $P^\mu\ket{0}=0$, then
+\begin{equation}
+     \bra{0}\phi(x)\ket{0}=\bra{0}e^{-iP^\mu x_\mu}\phi(0)e^{iP^\mu x_\mu}\ket{0}=\bra{0}\phi(0)\ket{0}
+\end{equation}
+The normalization of states is Lorentz invariant, then $\bra{0}\phi(0)\ket{0}$ is a scalar. We want this to be zero because we want $a_1^\dagger$, which  depends on $\phi(x)$, to create  single-particle states, and not a linear combination involving $\ket{0}$. This justifies (\ref{condicao1}). Now, for condition (\ref{condicao2}), note that
+\begin{equation}
+    \bra{p}\phi(x)\ket{0}=\bra{p}e^{-iP^\mu x_\mu}\phi(0)e^{iP^\mu x_\mu}\ket{0}=e^{-ipx}\bra{p}\phi(0)\ket{0}
+\end{equation}
+Again, $\bra{p}\phi(x)\ket{0}$ should be a Lorentz invariant number. The Lorentz invariant functions of $p$ are in fact Lorentz invariant functions of $p^2$, which is just $-m^2$. So $\bra{p}\phi(0)\ket{0}$ is a function of $m^2$. We want it to be equal to one because this is what it is in the free theory, and it also guarantees that $a_1^\dagger(\pm\infty)$ creates normalized one particle-states. If $\bra{p}\phi(0)\ket{0}$ is equal to one, then (\ref{condicao2}) is justified. \\
+
+What if conditions (\ref{condicao1}) and (\ref{condicao2}) are not met?
+(\ref{condicao1}) can be restored by shifting the field: $\phi(x)\to\phi(x)-\bra{0}\phi(0)\ket{0}$ and (\ref{condicao2})  by rescaling it: $\phi(x)\to(\bra{p}\phi(0)\ket{0})^{-1}\phi(x)$. None of these change the physics and we can adjust some parameters to reproduce experiments. For instance, if we start with a Lagrangian
+\begin{equation}
+   \mathcal{L}= -\frac{1}{2}\partial^\mu\phi\partial_\mu\phi-\frac{1}{2}m^2\phi^2+\frac{1}{6}g\phi^3
+\end{equation}
+then, after rescaling and shifting we get
+\begin{equation}
+      \mathcal{L}= -\frac{1}{2}Z_\phi\partial^\mu\phi\partial_\mu\phi-\frac{1}{2}Z_mm^2\phi^2+\frac{1}{6}Z_gg\phi^3+Y\phi
+\end{equation}
+Constants $Z$ and $Y$ are unknowns and (\ref{condicao1}) and (\ref{condicao2}) give us two conditions. We fix $Z_m m^2$ by demanding it to correspond to the particle's observed mass squared (this information is given by the first excited state). $g$ is fixed by demanding it to match a particular scattering cross section, according to the experiments. We have four conditions for the four unknowns, so we can reproduce the phenomenology and satisfy conditions that allow us to use creation and annihilation operators in interacting theories in the same way we would in free theories.\\
+
+We now focus on calculating (\ref{fi}), for which we need formulas for $a_i^\dagger(-\infty)$ and $a_i(+\infty)$. By the fundamental theorem of calculus, note that
+\begin{equation}
+    \begin{aligned}
+        a^\dagger_1(+\infty)- a^\dagger_1(-\infty)&=\int_{-\infty}^{+\infty}\dd t\,\partial_0a^\dagger_1(t)\\
+        &=-i\int\dd^3p\,f_1(\vb{p})\int\dd^4x\,\partial_0(e^{ipx}\overleftrightarrow{\partial_0}\phi(x))\\
+        &=-i\int\dd^3p\,f_1(\vb{p})\int\dd^4x\,e^{ipx}(\partial_0^2+\overbrace{\omega^2}^{\vb{p}^2+m^2})\phi(x)\\
+        &=-i\int\dd^3p\,f_1(\vb{p})\int\dd^4x\,e^{ipx}(\partial_0^2-\overbrace{\overleftarrow{\grad}^2}^{\vb{p}^2}+m^2)\phi(x)\\
+        \overbrace{=}^{\text{integration by parts}}&-i\int\dd^3p\,f_1(\vb{p})\int\dd^4x\,e^{ipx}(\partial_0^2-\overrightarrow{\grad}^2+m^2)\phi(x)\\
+        &=-i\int\dd^3p\,f_1(\vb{p})\int\dd^4x\,e^{ipx}(-\partial^2+m^2)\phi(x)
+    \end{aligned}
+\end{equation}
+When we used integration by parts, we assumed the wave-packet $f_1(\vb{p})$ vanishes faster than the surface term grows, so we can discard it. The term in parentheses reminds us of the Klein-Gordon Equation, but it does not vanishes in an interacting theory. It actually equals the source which gives the theory interactions. So, we have arrived at
+\begin{equation}
+    a^\dagger_1(-\infty)=a^\dagger_1(+\infty)+i\int\dd^3p\,f_1(\vb{p})\int\dd^4x\,e^{ipx}(-\partial^2+m^2)\phi(x)
+    \label{a1dagger}
+\end{equation}
+From which is easy to see that
+\begin{equation}
+    a_1(+\infty)=a_1(-\infty)+i\int\dd^3p\,f_1(\vb{p})\int\dd^4x\,e^{-ipx}(-\partial^2+m^2)\phi(x)
+    \label{a1}
+\end{equation}
+The wave packets are no longer essential so we take the limit $\sigma\to0$ in the $f_i(\vb{p})$ functions, which gives $f_i(\vb{p})=\delta(\vb{p}-\vb{p}_i)$. Note that (\ref{fi}) is time ordered and we preserve this explicitly writing a time ordering symbol $\text{T}$
+\begin{equation}
+    \braket{f}{i}=\bra{0}\text{T}a_{1^\prime}(+\infty)a_{2^\prime}(+\infty)a_1^\dagger(-\infty)a_2^\dagger(-\infty)\ket{0}
+    \label{fi2}
+\end{equation} We then substitute (\ref{a1dagger}) and (\ref{a1}) into (\ref{fi2}). For the first pair of products we have
+\begin{equation}
+\begin{aligned}
+a_{1^\prime}(+\infty)a_{2^\prime}(+\infty)&=a_{1^\prime}(-\infty)a_{2^\prime}(-\infty)+a_{1^\prime}(-\infty)\,i\int\dd^4x_{2^\prime}\,e^{-ip_{2^\prime}x_{2^\prime}}(-\partial^2_{2^\prime}+m^2)\phi(x_{2^\prime})\\
+&+a_{2^\prime}(-\infty)\,i\int\dd^4x_{1^\prime}\,e^{-ip_{1^\prime}x_{1^\prime}}(-\partial^2_{1^\prime}+m^2)\phi(x_{1^\prime})\\
+&+i^2\int\dd^4x_{1^\prime}\dd^4x_{2^\prime}\,e^{-ip_{1^\prime}x_{1^\prime}}(-\partial^2_{1^\prime}+m^2)\phi(x_{1^\prime})\\
+&\qquad\qquad\qquad\qquad\qquad\qquad\times e^{-ip_{2^\prime}x_{2^\prime}}(-\partial^2_{2^\prime}+m^2)\phi(x_{2^\prime})
+\end{aligned}
+\label{product1}
+\end{equation}
+Similarly, for the second pair 
+\begin{equation}
+\begin{aligned}
+a^\dagger_{1}(-\infty)a^\dagger_{2}(-\infty)&=a^\dagger_{1}(+\infty)a^\dagger_{2}(+\infty)+a^\dagger_{1}(+\infty)\,i\int\dd^4x_{2}\,e^{ip_{2}x_{2}}(-\partial^2_{2}+m^2)\phi(x_{2})\\
+&+a^\dagger_{2}(+\infty)\,i\int\dd^4x_{1}\,e^{ip_{1}x_{1}}(-\partial^2_{1}+m^2)\phi(x_{1})\\
+&+i^2\int\dd^4x_{1}\dd^4x_{2}\,e^{ip_{1}x_{1}}(-\partial^2_{1}+m^2)\phi(x_{1})\\
+&\qquad\qquad\qquad\qquad\qquad\qquad\times e^{ip_{2}x_{2}}(-\partial^2_{2}+m^2)\phi(x_{2})
+\end{aligned}
+\label{product2}
+\end{equation}
+When multiplying (\ref{product1}) and (\ref{product2}), the time-ordering will move annihilation operators to the right, where they annihilate $\ket{0}$, and the creation operators to the left, where they annihilate $\bra{0}$. The result is
+\begin{equation}
+\begin{aligned}
+    \braket{f}{i}&=i^4\int\dd^4x_1\dd^4x_2\,e^{ip_1x_1}(-\partial_1^2+m^2)\,e^{ip_2x_2}(-\partial_2^2+m^2)\\
+    &\qquad\quad\times\dd^4x_{1^\prime}\dd^4x_{2^\prime}\,e^{-ip_{1^\prime}x_{1^\prime}}(-\partial_{1^\prime}^2+m^2)\,e^{-ip_{2^\prime}x_{2^\prime}}(-\partial_{2^\prime}^2+m^2)\\&\qquad\quad\times\bra{0}\text{T}\phi(x_1)\phi(x_2)\phi(x_{1^\prime})\phi(x_{2^\prime})\ket{0}
+    \label{2lsz}
+\end{aligned}
+\end{equation}
+\vspace{0.1cm}This is the \textit{Lehmann-Symanzik-Zimmermann (LSZ) reduction formula}. For a $m$-particle initial state and a $n$-particle final state, we can generalize (\ref{2lsz}) to
+\begin{equation}\begin{aligned}
+    \braket{f}{i}&=\int\prod_{j=1}^m \dd^4x_j\, i\,e^{ip_jx_j}(-\partial_j^2+m^2)\prod_{j^\prime=1}^n \dd^4x_{j^\prime}\,i\, e^{-ip_{j^\prime}x_{j^\prime}}(-\partial_{j^\prime}^2+m^2)\\
+    &\times\bra{0}\text{T}\phi(x_1)\dots\phi(x_m)\phi(x_{1^\prime})\dots\phi(x_{n^\prime})\ket{0}
+\end{aligned}
+\end{equation}
+\vspace{0.1cm}Using the LSZ formula, the amplitude can be calculated, given the \textit{correlation function}, or \textit{correlator}, $\bra{0}\text{T}\phi(x_1)\phi(x_2)\phi(x_{1^\prime})\phi(x_{2^\prime})\ket{0}$ . We will develop methods to calculate the correlation functions using Path Integrals in the following chapters.\\
+
+
+\section{Path Integrals}
+In this section we develop the formalism of path integrals in non-relativistic quantum mechanics. We gain insight by first calculating the path integral for the harmonic oscillator and then use the lessons learned to establish a direct analogy with the free field. Path Integrals will facilitate the computation of correlation functions, essential to the study of interacting theories.
+
+
+\subsection{Path integrals in Non-Relativistic Quantum Mechanics}
+We consider the Hamiltonian of a non-relativistic particle in one dimension, with usual position and momentum operators $P$ and $Q$ satisfying the commutation relation $ \comm{P}{Q}=i$
+\begin{equation}
+    H(P,Q)=\frac{1}{2m}P^2+V(Q)
+    \label{quantum_hamiltonian1d}
+\end{equation}
+We will then develop a different approach to quantum mechanics: the path integral formulation. Our starting point is the probability amplitude for the transition between position eigenstate $\ket{q^\prime}$, at time $t^\prime$, and $\ket{q^{\prime\prime}}$ at $t^{\prime\prime}$, due to Hamiltonian time-evolution. In the Schrödinger Picture, we are interested in the projection of the time-evolved ket $e^{-iH(t^{\prime\prime}-t^{\prime})}\ket{q^{\prime}}$ over $\ket{q^{\prime\prime}}$. So the amplitude reads $\bra{q^{\prime\prime}}e^{-iH(t^{\prime\prime}-t^{\prime})}\ket{q^{\prime}}$. On the other hand, since the eigenvalue equation $Q\ket{q}=q\ket{q}$ can be written as
+\begin{equation}
+    \underbrace{e^{iHt}Qe^{-iHt}}_{Q(t)}e^{iHt}\ket{q}=qe^{iHt}\ket{q}
+\end{equation}
+then we can identify  the eigenvalue equation in the Heisenberg picture as $Q(t)\ket{q,t}=q\ket{q,t}$. Which brings time dependence to the basis kets as $\ket{q,t}=e^{iHt}\ket{q}$. Thus the transition amplitude in the Heisenberg Picture is simply $\braket{q^{\prime\prime},t^{\prime\prime}}{q^{\prime},t^{\prime}}$.\\
+
+An important property of this amplitude is that it is always possible to insert a completeness relation in between
+\begin{equation}
+   \braket{q^{\prime\prime},t^{\prime\prime}}{q^{\prime},t^{\prime}}= \int\dd q\braket{q^{\prime\prime},t^{\prime\prime}}{q,t}\braket{q,t}{q^{\prime},t^{\prime}}
+\end{equation}
+at an intermediate time $t^\prime<t<t^{\prime\prime}$. To calculate $\braket{q^{\prime\prime},t^{\prime\prime}}{q^{\prime},t^{\prime}}$ we will use this feature. We slice the interval $t^{\prime\prime}-t^{\prime}$ in $N+1$ subintervals
+$\delta t=(t^{\prime\prime}-t^{\prime})/(N+1)$ and insert $N$
+ of these completeness relations
+ \begin{equation}
+     \braket{q^{\prime\prime},t^{\prime\prime}}{q^{\prime},t^{\prime}}=\int\prod_{j=1}^{N}\dd q_j\,\braket{q^{\prime\prime},t^{\prime\prime}}{q_N,t_N}\braket{q_N,t_N}{q_{N-1},t_{N-1}}\dots\braket{q_1,t_1}{q^\prime,t^\prime}
+     \label{tran_amp0}
+\end{equation}
+The slicing of the time interval means $t_j=t_{j-1}+\delta t$, with $t_0=t^\prime$ and $t_{N+1}=t^{\prime\prime}$. This way, the time evolution factors $e^{-iH(t_j-t_{j-1})}$ are all equal to $e^{-iH\delta t}$ and the transition amplitude (\ref{tran_amp0}) reads
+\begin{equation}
+    \braket{q^{\prime\prime},t^{\prime\prime}}{q^{\prime},t^{\prime}}=\int\prod_{j=1}^{N}\dd q_j\,\bra{q^{\prime\prime}}e^{-iH\delta t}\ket{q_N}\bra{q_N}e^{-iH\delta t}\ket{q_{N-1}}\dots\bra{q_1}e^{-iH\delta t}\ket{q^\prime}
+    \label{tran_amp1}
+\end{equation}
+We can evaluate the factors $e^{-iH\delta t}$ using the \textit{Campbell-Baker-Hausdorf} formula
+\begin{equation}
+    \exp(A+B)=\exp(A)\exp(B)\exp(-\frac{1}{2}\comm{A}{B}+\dots)
+\end{equation}
+For Hamiltonian (\ref{quantum_hamiltonian1d}) we have
+\begin{equation}
+    \exp(-iH\delta t)=\exp(\frac{-i\delta t}{2m}P^2)\exp(-i\delta t V(Q))\exp(\order{\delta t^2})
+\end{equation}
+We ignore the last exponential since we will soon take the limit $\delta t\to0$. An intermediate amplitude $\bra{q_{j+1}}e^{-iH\delta t}\ket{q_j}$ of (\ref{tran_amp1}) reads
+\begin{equation}
+    \bra{q_{j+1}}e^{-iH\delta t}\ket{q_j}=\bra{q_{j+1}}e^{-i\delta tP^2/2m}e^{-i\delta t\, V(Q)}\ket{q_j}=\bra{q_{j+1}}e^{-i\delta tP^2/2m}e^{-i\delta t V(q_j)}\ket{q_j}
+\end{equation}
+We insert a momentum completeness relation to eliminate the momentum operator in the exponential
+\begin{equation}
+\begin{aligned}
+   \bra{q_{j+1}}e^{-iH\delta t}\ket{q_j}&=\int\dd p_j\bra{q_{j+1}}e^{-i\delta tp_j^2/2m}\ket{p_j}\bra{p_j}e^{-i\delta t V(q_j)}\ket{q_j}\\
+   &=\int\dd p_j\,e^{-i\delta t p_j^2/2m}e^{-i\delta tV(q_j)}\braket{q_{j+1}}{p_{j}}\braket{p_j}{q_j}\\
+   &=\int\frac{\dd p_j}{2\pi}\,e^{-i\delta tp_j^2/2m}e^{-i\delta tV(q_j)}e^{ip_j(q_{j+1}-q_j)}\\
+   &=\int\frac{\dd p_j}{2\pi}\,e^{-i\delta tH(p_j,q_j)}e^{ip_j(q_{j+1}-q_j)}
+   \label{intermediate}
+\end{aligned}
+\end{equation}
+where in the next-to-last line we used $\braket{q}{p}=e^{ipq}/\sqrt{2\pi}$.
+The amplitude (\ref{tran_amp1}) then equals to
+\begin{equation}
+    \braket{q^{\prime\prime},t^{\prime\prime}}{q^{\prime},t^{\prime}}=\int\prod_{k=1}^{N}\dd q_k\prod_{j=0}^N\frac{\dd p_j}{2\pi}e^{-i\delta tH(p_j,q_j)}e^{ip_j(q_{j+1}- q_j)}
+    \label{tran_amp_products}
+\end{equation}
+with $q_0=q^\prime$ and $q_{N+1}=q^{\prime\prime}$. Next, we factor out $\delta t$
+\begin{equation}
+    \braket{q^{\prime\prime},t^{\prime\prime}}{q^{\prime},t^{\prime}}=\int\prod_{k=1}^{N}\dd q_k\prod_{j=0}^N\frac{\dd p_j}{2\pi}\exp{i\delta t\qty[\frac{p_j(q_{j+1}- q_j)}{\delta t}-H(p_j,q_j)]}
+    \label{tran_amp2}
+\end{equation}
+In the limit $\delta t\to0$ ($N\to\infty)$ the terms in the exponential approach the continuum: $p_j\to p(t)$, $(q_{j+1}-q_j)/\delta t\to\dot{q}(t)$ and $H(p_j,q_j)\to H(p(t),q(t))$. Due to the products, these terms inside the exponential are actually under a sum, which, in the limit $\delta t\to0$ turns into an integral. So, (\ref{tran_amp2}) goes to
+\begin{equation}
+    \braket{q^{\prime\prime},t^{\prime\prime}}{q^{\prime},t^{\prime}}=\int\mathcal{D}q\,\mathcal{D}p\, \exp[i\int_{t^\prime}^{t^{\prime\prime}}\dd t\,\qty(p(t)\dot{q}(t)-H(p(t),q(t)))]
+    \label{path_integral_hamilt}
+\end{equation}
+The calligraphic integration measures encapsulate the infinite products of $\dd q_k$'s and $\dd p_j/2\pi$'s.\\
+
+For Hamiltonians such as (\ref{quantum_hamiltonian1d}), with a simple quadratic term in momentum which is $Q$ independent, the next-to-last line of (\ref{intermediate}) can be integrated, since it is a simple gaussian integral. In this case, this line reads
+\begin{equation}
+    \begin{aligned}
+    \bra{q_{j+1}}e^{-iH\delta t}\ket{q_j}&=\int\frac{\dd p_j}{2\pi}\,e^{-i\delta t p_j^2/2m}e^{-i\delta tV(q_j)}e^{ip_j(q_{j+1}-q_j)}\\
+    &=e^{-i\delta tV(q_j)}\int\frac{\dd p_j}{2\pi}\,e^{-ap_j^2}e^{p_jb}
+    \end{aligned}
+\end{equation}
+where we defined $a=i\delta t/2m$ and $b=i(q_{j+1}-q_j)=i\dot{q}_j\delta t$.
+Using the familiar gaussian integral result
+\begin{equation}
+    \int_{-\infty}^{+\infty}\dd x\,e^{-ax^2+bx}=\sqrt{\frac{\pi}{a}}e^{\frac{b^2}{4a}}
+\end{equation}
+then
+\begin{equation}
+    \bra{q_{j+1}}e^{-iH\delta t}\ket{q_j}=e^{-i\delta tV(q_j)}\sqrt{\frac{m}{2\pi i \delta t}}\,e^{i\delta tm\dot{q}_j^2/2}
+\end{equation}
+Path integral (\ref{tran_amp_products}) is simplified to
+\begin{equation}
+\begin{aligned}
+\braket{q^{\prime\prime},t^{\prime\prime}}{q^{\prime},t^{\prime}}&=\int\prod_{k=1}^{N}\dd q_k\prod_{j=0}^N\sqrt{\frac{m}{2\pi i \delta t}}e^{-i\delta tV(q_j)}\,e^{i\delta tm\dot{q}_j^2/2}\\
+&=\int\prod_{k=1}^{N}\dd q_k\,\qty(\frac{m}{2\pi i \delta t})^{\frac{N+1}{2}}\exp[i\sum_{j=0}^N\delta t\qty(\frac{1}{2}m\dot{q}^2_j-V(q_j))]
+\end{aligned}
+\end{equation}
+and in the limit $\delta t\to 0$ ($N\to\infty$), we have
+\begin{equation}
+   \braket{q^{\prime\prime},t^{\prime\prime}}{q^{\prime},t^{\prime}}= \int\mathcal{D}q\, \exp[i\int_{t^\prime}^{t^{\prime\prime}}\dd t\,L(q(t),\dot{q}(t))]
+   \label{path_integral_lagrangian}
+\end{equation}
+where, in this case, the measure encapsulates the $\dd q_k$'s and the prefactors generated by the gaussians in momentum. This holds not only for $H$ as in (\ref{quantum_hamiltonian1d}) but as long as $H$ is purely quadratic in momentum and this quadratic term does not depend on $Q$, and $V$ is not dependent on $P$. Then the integrals over $p$ will be gaussians and generate constant prefactors that can be absorbed into $\mathcal{D}q$.\\
+
+Equations (\ref{path_integral_hamilt}) and (\ref{path_integral_lagrangian}) are striking results, for they connect the \textit{classical} action to a \textit{quantum} probability amplitude. The integrals are performed over the infinitely many paths connecting $q^{\prime}$ and $q^{\prime\prime}$ for (\ref{path_integral_lagrangian}) and over the infinitely many paths in phase space connecting $(q^\prime,p^\prime)$ and $(q^{\prime\prime},p^{\prime\prime})$, for (\ref{path_integral_hamilt}).
+\subsection{Correlations}
+When dealing with interactions a recurring expression will be the \textit{correlation function}, such as $\bra{q^{\prime\prime},t^{\prime\prime}}Q(t_1)\ket{q^\prime,t^\prime}$, with $t^\prime<t_1<t^{\prime\prime}$. The path integral proves to be a useful tool for computing these, since
+\begin{equation}
+    \bra{q^{\prime\prime},t^{\prime\prime}}Q(t_1)\ket{q^\prime,t^\prime}=\bra{q^{\prime\prime},t^{\prime\prime}}q(t_1)\ket{q^\prime,t^\prime}=\int\mathcal{D}q\,\mathcal{D}p\,q(t_1)\, e^{iS}
+\end{equation}
+where $S=\int_{t^\prime}^{t^{\prime\prime}}\dd t\, (p\dot{q}-H)$. For a correlation as $\bra{q^{\prime\prime},t^{\prime\prime}}Q(t_1)Q(t_2)\ket{q^\prime,t^\prime}$, with $t^{\prime}<t_2<t_1<t^{\prime\prime}$, the path integral gives
+\begin{equation}
+    \bra{q^{\prime\prime},t^{\prime\prime}}Q(t_1)Q(t_2)\ket{q^\prime,t^\prime}=\int\mathcal{D}q\,\mathcal{D}p\,q(t_1) q(t_2)\, e^{iS}
+    \label{2corellator_0}
+\end{equation}
+Notice that, in the right-hand side of (\ref{2corellator_0}), $q(t_1)$ and $q(t_2)$ are functions and their order is of no importance. On the other hand, it does matters on the left-hand side, where $t_2$ is assumed to precede $t_1$. When faced with path integrals involving products of $q(t_i)$ we adopt the convention to assume they have been generated by correlations containing products of \textit{time ordered} operators. This means their order  should be arranged so that operators at later times reads at the left of those acting at earlier times. That is
+\begin{equation}
+    \int\mathcal{D}q\,\mathcal{D}p\,q(t_1) q(t_2)\dots q(t_k)\, e^{iS}=\bra{q^{\prime\prime},t^{\prime\prime}}\text{T}Q(t_1)Q(t_2)\dots Q(t_k)\ket{q^\prime,t^\prime}
+    \label{pi-corellator}
+\end{equation}
+%$\text{T}$ indicates the time-ordered product of operators, which arranges the chain of operators so that they act at times respecting $t^\prime<t_k<\dots<t_2<t_1<t^{\prime\prime}$. The Right-hand side correlation function (\ref{pi-corellator}) is also referred to as a \textit{correlator}.\\
+
+To include interactions, we replace  the Hamiltonian by a Hamiltonian with forcing functions, such as
+\begin{equation}
+    H(p,q)\to H(p,q)-f(t)q(t)-h(t)p(t)
+\end{equation}
+The transition amplitude in this theory reads
+\begin{equation}
+     \braket{q^{\prime\prime},t^{\prime\prime}}{q^{\prime},t^{\prime}}_{f,h}=\int\mathcal{D}q\,\mathcal{D}p\,\exp[i\int_{t^\prime}^{t^{\prime\prime}}\dd t\, (p\dot{q}-H+fq+hp)]
+     \label{transition_w_interaction}
+\end{equation}
+Functional derivatives of (\ref{transition_w_interaction}) can be useful. Using the functional derivative property (\ref{ex2_func_der}), which says $\fdv*{f(t_1)}{f(t_2)}=\delta(t_1-t_2)$,  then
+\begin{equation}
+    \frac{1}{i}\fdv{f(t_1)}\braket{q^{\prime\prime},t^{\prime\prime}}{q^{\prime},t^{\prime}}_{f,h}=\int\mathcal{D}q\,\mathcal{D}p\,q(t_1)\,\exp[i\int_{t^\prime}^{t^{\prime\prime}}\dd t\, (p\dot{q}-H+fq+hp)]
+\end{equation}
+Similarly,
+\begin{equation}
+    \frac{1}{i}\fdv{h(t_1)}\braket{q^{\prime\prime},t^{\prime\prime}}{q^{\prime},t^{\prime}}_{f,h}=\int\mathcal{D}q\,\mathcal{D}p\,p(t_1)\,\exp[i\int_{t^\prime}^{t^{\prime\prime}}\dd t\, (p\dot{q}-H+fq+hp)]
+\end{equation}
+So the general correlation function can be written as
+\begin{equation}
+    \bra{q^{\prime\prime},t^{\prime\prime}}TQ(t_1)\dots P(t_n)\dots\ket{q^\prime,t^\prime}=\frac{1}{i}\fdv{f(t_1)}\dots\frac{1}{i}\fdv{h(t_n)}\dots\braket{q^{\prime\prime},t^{\prime\prime}}{q^\prime,t^\prime}_{f,h}\eval_{f=h=0}
+\end{equation}
+\subsection{Calculating $\braket{0}{0}$}
+We will be interested in finding the probability the system has to remain on the ground state, so  we must calculate $\braket{0}$.
+The ground state wave function for a particle is  $\psi_0(q)=\braket{q}{0}$. At the infinite past, the ground state ket reads
+\begin{equation}
+    \ket{0}=\lim_{t^\prime\to-\infty}\int\dd q^\prime\, \ket{q^\prime,t^\prime}\braket{q^\prime,t^\prime}{0}=\lim_{t^\prime\to-\infty}\int\dd q^\prime\,\psi_0(q^\prime)\ket{q^\prime,t^{\prime}}
+\end{equation}
+and at the infinite future
+\begin{equation}
+    \ket{0}=\lim_{t^{\prime\prime}\to\infty}\int\dd q^{\prime\prime}\, \ket{q^{\prime\prime},t^{\prime\prime}}\braket{q^{\prime\prime},t^{\prime\prime}}{0}=\lim_{t^{\prime\prime}\to\infty}\int\dd q^{\prime\prime}\,\psi_0(q^{\prime\prime}) \ket{q^{\prime\prime},t^{\prime\prime}}
+\end{equation}
+then, the transition amplitude from the ground state in the past to the ground state in the future, considering interactions, is
+\begin{equation}
+    \braket{0}_{f,h}=\lim_{\substack{t^{\prime}\to-\infty\\t^{\prime\prime}\to\infty}}\int \dd q^{\prime\prime}\dd q^\prime\,\psi_0^*(q^{\prime\prime})\braket{q^{\prime\prime},t^{\prime\prime}}{q^{\prime},t^\prime}_{f,h}\psi_0(q^\prime)
+    \label{ground_ground1}
+\end{equation}
+but evaluating this can be very difficult. There is a trick to simplify things, and there will be no need to evaluate (\ref{ground_ground1}). We expand $\ket{q^\prime,t^\prime}$ in terms of $\ket{n}$, the Hamiltonian eigenstates, i.e. $H\ket{n}=E_n\ket{n}$. We consider the ground state $E_0=0$ 
+ as the zero energy state. It is always possible to do so with a shift on $H$ by a constant. Expansion of $\ket{q^\prime,t^\prime}$ reads
+\begin{equation}
+    \ket{q^{\prime},t^{\prime}}=\sum_{n=0}^\infty\ket{n}\bra{n}\ket{q^{\prime},t^{\prime}}=\sum_{n=0}^\infty\psi_n^*(q^\prime)e^{iE_nt^\prime}\ket{n}
+    \label{expansion_eigenstates}
+\end{equation}
+Making the substitution $H\to(1-i\epsilon)H$, with $\epsilon\ll1$, then, at $t^\prime\to-\infty$, equation (\ref{expansion_eigenstates}) reduces to $\psi_0^*(q^\prime)\ket{0}$. Multiplying by an arbitrary, square-integrable function $\chi(q)$ and integrating, we find
+\begin{equation}
+   \ket{\chi} =\int\dd q^\prime \chi(q^\prime)\ket{q^\prime,t^\prime}=\int\dd q^\prime \chi(q^\prime)\psi_0^*(q^\prime)\ket{0}=\alpha\ket{0}
+\end{equation}
+ The conclusion is that any state $\ket{\chi}$, determined by arbitrary boundary conditions, gives (up to constant) a ground state as a initial state, as long as $\ket{\chi}$ is not orthogonal to $\ket{0}$. The same reasoning indicates that $\bra{q^{\prime\prime},t^{\prime\prime}}$ goes to $\psi_0(q^{\prime\prime})\bra{0}$ as $t\to\infty$. Any bra will be, up to a constant, a ground state bra $\bra{0}$. Therefore, any boundary conditions will give ground states as both initial and final states if we use $(1-i\epsilon)H$ as our Hamiltonian. There is no need to calculate (\ref{ground_ground1}) and we can use the general transition amplitude (\ref{transition_w_interaction}) for a theory with interactions, as long as we change the Hamiltonian:
+\begin{equation}
+    \braket{0}_{f,h}=\int\mathcal{D}p\,\mathcal{D}q\,\exp[i\int_{-\infty}^{+\infty}\dd t\, (p\dot{q}-(1-i\epsilon)H+fq+hp)]
+    \label{gound_ground_interactions2}
+\end{equation}
+Let's suppose our Hamiltonian can be broken into $H=H_0+H_1$. $H_0$ is supposedly solvable and $H_1$ is to be treated as a perturbation. We suppress $(1-i\epsilon)$ as a prefactor but we must keep in mind that it should be there multiplying $H$. Equation (\ref{gound_ground_interactions2}) reads
+\begin{equation}
+    \begin{aligned}
+           \braket{0}_{f,h}=&\int\mathcal{D}p\,\mathcal{D}q\,\exp[i\int_{-\infty}^{+\infty}\dd t\, (p\dot{q}-H_0(p,q)-H_1(p,q)+fq+hp)]\\
+           =&\exp[-i\int_{-\infty}^{\infty}\dd t\, H_1\qty(\frac{1}{i}\fdv{h(t)},\frac{1}{i}\fdv{f(t)})]\\&\times\int\mathcal{D}p\,\mathcal{D}q\,\exp[i\int_{-\infty}^{+\infty}\dd t\, (p\dot{q}-H_0(p,q)+fq+hp)]
+    \end{aligned}
+    \label{gound_ground_separable}
+\end{equation}
+The exponential factor with functional derivatives might seem confusing: we removed the exponential involving $H_1$ from inside the path integral, where it depended on $p$ and $q$. Outside the Path Integral, these variables are obtained from the functional derivatives, so that $H_1$ must be a function of those once it is outside. This prefactor will give us a perturbation series. \\
+
+A special case of (\ref{gound_ground_separable}) is that of a forcing function only on $q$, that is $h=0$. If $H$ is quadratic in $p$ and this quadratic term does not depend on $q$, and if $L=L_0+L_1$, with $L_1=-H_1$, then
+\begin{equation}
+    \braket{0}_{f}=\exp[i\int_{-\infty}^{\infty}\dd t\, L_1\qty(\frac{1}{i}\fdv{f(t)})]\int\mathcal{D}q\,\exp[i\int_{-\infty}^{+\infty}\dd t\, (L_0(q,\dot{q})+fq)]
+\end{equation}
+\subsection{Path Integral for the Harmonic Oscillator}
+We consider the Hamiltonian for a harmonic oscillator
+\begin{equation}
+    H(P,Q)=\frac{1}{2m}P^2+\frac{1}{2}m\omega^2Q^2
+    \label{hamiltonian_oscillator}
+\end{equation}
+We apply the theory we developed in last section considering a forcing function $f$. Our goal is to evaluate
+\begin{equation}
+   \braket{0}_f=\int\mathcal{D}p\,\mathcal{D}q\,\exp[i\int_{-\infty}^{+\infty}\dd t (p\dot{q}-(1-i\epsilon)H+fq)] 
+\end{equation}
+The substitution $H\to(1-i\epsilon)H$ is equivalent to substitutions $m^{-1}\to(1-i\epsilon)m^{-1}$ or, equivalently, $m\to(1+i\epsilon)m$ in the kinetic term and $m\omega^2\to(1-i\epsilon)m\omega^2$ in the elastic term of (\ref{hamiltonian_oscillator}).  Since (\ref{hamiltonian_oscillator}) is quadratic on momentum, and this quadratic term does not depend on $Q$, we can cast the path integral in terms of the Lagrangian. These substitutions we made for $m$  and $m\omega^2$ facilitate this task
+\begin{equation}
+   \braket{0}_f=\int\mathcal{D}q\,\exp[i\int_{-\infty}^{+\infty}\dd t\, \qty(\frac{1}{2}(1+i\epsilon)m\dot{q}^2-\frac{1}{2}(1-i\epsilon)m\omega^2q^2+fq)] 
+   \label{ground_ground_ho}
+\end{equation}
+For simplicity we set the mass to unit $m=1$, and proceed with Fourier transformed variables
+\begin{equation}
+    \begin{aligned}
+           \tilde{q}(E)&=\int_{-\infty}^{+\infty}\dd t\,e^{iEt}q(t)\\
+           \tilde{f}(E)&=\int_{-\infty}^{+\infty}\dd t\,e^{iEt}f(t)
+    \end{aligned}
+\end{equation}
+With inverse transforms given by
+\begin{equation}
+    \begin{aligned}
+           q(t)&=\int_{-\infty}^{+\infty}\frac{\dd E}{2\pi}e^{-iEt}\Tilde{q}(E)\\
+           f(t)&=\int_{-\infty}^{+\infty}\frac{\dd E}{2\pi}e^{-iEt}\Tilde{f}(E)
+    \end{aligned}
+\end{equation}
+This way, the Lagrangian and the forcing term inside the parentheses of (\ref{ground_ground_ho}) reads
+\begin{align}
+    (\dots)=&\frac{1}{2}\int_{-\infty}^{+\infty}\frac{\dd E}{2\pi}\frac{\dd E^{\prime}}{2\pi}e^{-i(E+E^{\prime})t}[(-(1+i\epsilon)EE^{\prime}-(1-i\epsilon)\omega^2)\tilde{q}(E)\tilde{q}(E^\prime)\nonumber\\
+    &\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad+\tilde{f}(E)\tilde{q}(E^\prime)+\tilde{f}(E^\prime)\tilde{q}(E)]
+\end{align}
+The time integral in (\ref{ground_ground_ho}) gives a $2\pi\delta(E+E^\prime)$ and the integral over $E^\prime$ simplifies the action to
+\begin{equation}
+    S=\frac{1}{2}\int_{-\infty}^{+\infty}\frac{\dd E}{2\pi}\qty[((1+i\epsilon)E^2-(1-i\epsilon)\omega^2)\tilde{q}(E)\tilde{q}(-E)+\tilde{f}(E)\tilde{q}(-E)+\tilde{f}(-E)\tilde{q}(E)]
+    \label{action_ho}
+\end{equation}
+The terms inside parentheses equals to $E^2-\omega^2+i(E^2+\omega^2)\epsilon$ or $E^2-\omega^2+i\epsilon$, absorbing the factors into $\epsilon$. To simplify (\ref{action_ho}) we define
+\begin{equation}
+    \tilde{x}(E)=\tilde{q}(E)+\frac{\tilde{f}(E)}{E^2-\omega^2+i\epsilon}
+    \label{translation}
+\end{equation}
+The action in terms of this new variable reads
+\begin{equation}
+    S=\frac{1}{2}\int_{-\infty}^{+\infty}\frac{\dd E}{2\pi}\qty[\tilde{x}(E)(E^2-\omega^2+i\epsilon)\tilde{x}(-E)-\frac{\tilde{f}(E)\tilde{f}(-E)}{E^2-\omega^2+i\epsilon}]
+\end{equation}
+Since (\ref{translation}) is just a translation, it does not change the individual $\dd q$'s so $\mathcal{D}q=\mathcal{D}x$. The transition amplitude (\ref{ground_ground_ho}) reads
+\begin{equation}
+\begin{aligned}
+    \braket{0}_f=&\exp[\frac{i}{2}\int_{-\infty}^{+\infty}\frac{\dd E}{2\pi}\frac{\tilde{f}(E)\tilde{f}(-E)}{-E^2+\omega^2-i\epsilon}]\\&\qquad\qquad\qquad\times\int\mathcal{D}x\,\exp[\frac{i}{2}\int_{-\infty}^{+\infty}\frac{\dd E}{2\pi}\tilde{x}(E)(E^2-\omega^2+i\epsilon)\tilde{x}(-E)]
+    \label{00_f_ho}
+\end{aligned}
+\end{equation}
+The path integral in the second line is simply $\braket{0}_f$ when $f=0$, since, in this case, the exponential prefactor equals to one. But, in the absence of forcing, the system evolves unperturbed and remains in the ground state. So $\braket{0}_f=1$ for $f=0$, and (\ref{00_f_ho}) simplifies to its exponential pre-factor
+\begin{equation}
+    \braket{0}_f=\exp[\frac{i}{2}\int_{-\infty}^{+\infty}\frac{\dd E}{2\pi}\frac{\tilde{f}(E)\tilde{f}(-E)}{-E^2+\omega^2-i\epsilon}]
+\end{equation}
+In the time domain, this reads
+\begin{equation}
+    \braket{0}_f=\exp[\frac{i}{2}\int_{-\infty}^{+\infty}\dd t\,\dd t^\prime\,f(t)G(t-t^\prime)f(t^\prime)]
+    \label{00_f_time_domain}
+\end{equation}
+where 
+\begin{equation}
+    G(t-t^\prime)=\int_{-\infty}^{+\infty}\frac{\dd E}{2\pi}\frac{-e^{-iE(t-t^\prime)}}{E^2-\omega^2+i\epsilon}
+    \label{greensho}
+\end{equation}
+In the limit $\epsilon\to0$, (\ref{greensho}) is the Green's Function for the harmonic oscillator, i.e.
+\begin{equation}
+    \qty(\pdv[2]{t}+\omega^2)G(t-t^\prime)=\delta(t-t^\prime)
+    \label{greens_identity1}
+\end{equation}
+This can be proved by substituting (\ref{greensho}) into (\ref{greens_identity1}) and taking $\epsilon\to0$, or by evaluating $G(t-t^\prime)$ explicitly from (\ref{greensho}) and then substituting it in (\ref{greens_identity1}). Let's do this calculation.\\
+
+To find $G(t-t^\prime)$, we integrate (\ref{greensho}) over complex-valued $E$ and use the Residue Theorem.
+\begin{figure}[hb]
+\centering
+   \def\svgwidth{\columnwidth}
+   \import{./}{drawing.pdf_tex}
+   \caption{Integration contours for equation (\ref{greensho}). Source: Author}
+   \label{contours}
+\end{figure}
+One way to factor the denominator of (\ref{greensho}) is as $(E-(\omega+i\epsilon))(E+(\omega+i\epsilon))$. This gives us $E^2-\omega^2-2i\epsilon\omega+\epsilon^2$, which is not exactly equal to the original denominator, but it does the job when $\epsilon\to0$, since the quadratic term on $\epsilon$ can be neglected and $-2\omega$ can be absorbed into $\epsilon$. This reveals the integrand of (\ref{greensho}) has simple poles on $E=\omega+i\epsilon$ and $E=-\omega-i\epsilon$.
+For $t-t^\prime>0$ we take the contour $\gamma_1$ indicated in figure (\ref{contours}). This breaks the integral into an integral over the real line and another integral enclosing the pole $E=\omega+i\epsilon$, in the clockwise direction. The latter vanishes for infinitesimally small radius $r$ of the contour over this pole. We get 
+\begin{equation}
+    \int_{-\infty}^{+\infty}\frac{\dd E}{2\pi}\frac{-e^{-iE(t-t^\prime)}}{E^2-\omega^2+i\epsilon}=-i\Res[\frac{-e^{-iE(t-t^\prime)}}{E^2-\omega^2+i\epsilon}]=-i\lim_{E\to(\omega+i\epsilon)}\frac{-e^{-iE(t-t^\prime)}}{E+(\omega+i\epsilon)}\overbrace{=}^{\epsilon\to0}\frac{ie^{-i\omega(t-t^\prime)}}{2\omega}
+\end{equation}
+The minus sing for the residue appears because the contour $\gamma_1$ is negatively oriented around the pole. For $t-t^\prime<0$, we choose the path $\gamma_2$, which surrounds the pole $E=-\omega-i\epsilon$ with a small circle in the counterclockwise direction. This guarantees the imaginary part vanishes when $r\to0$, leaving only the integral over the real line
+\begin{equation}
+    \int_{-\infty}^{+\infty}\frac{\dd E}{2\pi}\frac{-e^{-iE(t-t^\prime)}}{E^2-\omega^2+i\epsilon}=i\Res[\frac{-e^{-iE(t-t^\prime)}}{E^2-\omega^2+i\epsilon}]=i\lim_{E\to-(\omega+i\epsilon)}\frac{-e^{-iE(t-t^\prime)}}{E-(\omega+i\epsilon)}\overbrace{=}^{\epsilon\to0}\frac{ie^{i\omega(t-t^\prime)}}{2\omega}
+\end{equation}
+Combining these results, the Green's Function for the harmonic oscillator reads
+\begin{equation}
+    G(t-t^\prime)=\frac{i}{2\omega}e^{-i\omega \abs{t-t^\prime}}
+    \label{greensho2}
+\end{equation}
+
+Knowledge of $G(t-t^\prime)$ has immediate applications. Using (\ref{00_f_time_domain}), we can calculate the correlation
+\begin{equation}
+    \begin{aligned}
+           \bra{0}\text{T}Q(t_1) Q(t_2)\ket{0}&=\frac{1}{i}\fdv{f(t_1)}\frac{1}{i}\fdv{f(t_2)}\braket{0}_{f}\eval_{f=0}\\
+           &=\frac{1}{i}\fdv{f(t_1)}\frac{1}{i}\fdv{f(t_2)}\exp[\frac{i}{2}\int_{-\infty}^{+\infty}\dd t\,\dd t^\prime\,f(t)G(t-t^\prime)f(t^\prime)]\eval_{f=0}\\
+           &=\frac{1}{i}\fdv{f(t_1)}\qty{\qty[\int_{-\infty}^{+\infty}\dd t^\prime\,G(t_2-t^\prime)f(t^\prime)]\braket{0}_{f}}\eval_{f=0}\\
+           &=\Bigg{[}\frac{1}{i} G(t_2-t_1)\\&\quad+\int_{-\infty}^{+\infty}\dd t^\prime\,G(t_2-t^\prime)f(t^\prime) \int_{-\infty}^{+\infty}\dd t^\prime\,G(t_1-t^\prime)f(t^\prime)\Bigg{]}\braket{0}_{f}\eval_{f=0}\\
+           &=\frac{1}{i} G(t_2-t_1)
+    \end{aligned}
+    \label{2corellator}
+\end{equation}
+For the $n$-point correlation $\bra{0}\text{T}Q(t_1)\dots Q(t_n)\ket{0}$, if $n$ is odd then linear terms on $f$ give a null correlation. If $n$ is even, we arrange in pairs. For instance, for $n=4$
+\begin{align}
+    \bra{0}\text{T}Q(t_1) Q(t_2)Q(t_3)Q(t_4)\ket{0}=&\frac{1}{i^2}(G(t_1-t_2)G(t_3-t_4)+G(t_1-t_3)G(t_2-t_4)\nonumber\\&\qquad+G(t_1-t_4)G(t_2-t_3))
+\end{align} 
+In the general case
+\begin{equation}
+     \bra{0}\text{T}Q(t_1)\dots Q(t_{2n})\ket{0}=\frac{1}{i^n}\sum_{i\, \text{pairings}}G(t_{i_1}-t_{i_2})\dots G(t_{i_{2n-1}}-t_{i_{2n}})
+\end{equation}
+\subsection{Path Integral for the Free Scalar Field}
+The theory we built for the harmonic oscillator can be readily translated to the language of the free scalar field.
+We remind that the scalar field  is described by the Hamiltonian density
+\begin{equation}
+    \mathcal{H}_0=\frac{1}{2}\Pi^2+\frac{1}{2}(\grad\phi)^2+\frac{1}{2}m^2\phi^2
+\end{equation}
+For the analogy with the harmonic oscillator we need associate the classical position $q(t)$ with the classical field $\phi(t,\vb{x})$, the quantum position operator $Q(t)$ with the field operator $\phi(t,\vb{x})$ and the classical forcing function $f(t)$ with the classical source $J(t,\vb{x})$. To simplify matters, as we did previously, we use $(1-i\epsilon)\mathcal{H}_0$ as the hamiltonian. This is equivalent to the substitution $m^2\to(1-i\epsilon)m^2=m^2-i\epsilon$, absorbing $m^2$ into $\epsilon$. We will write solely $m^2$ but keep in mind that it should read $m^2-i\epsilon$ \\
+
+The path integral, or, in field theory, the \textit{functional integral} is 
+\begin{equation}
+    Z_0(J)=\braket{0}_J=\int\mathcal{D}\phi\,\exp[i\int\dd^4x\,(\mathcal{L}_0+J\phi)]
+\end{equation}
+Where the \textit{functional measure} is $\mathcal{D}\phi\propto\prod_{x}\dd\phi$ and the free-field lagrangian is
+\begin{equation}
+    \mathcal{L}_0=-\frac{1}{2}\partial^\mu\phi\partial_\mu\phi-\frac{1}{2}m^2\phi^2
+\end{equation}
+The ``path" in ``path integral" now refers to paths in the space of field configurations.
+We calculate $Z_0(J)$ by Fourier transforming the field and the source
+\begin{equation}
+    \tilde{\phi}(k)=\int\dd^4x\,e^{-ikx}\phi(x)
+\end{equation}
+\begin{equation}
+    \tilde{J}(k)=\int\dd^4x\,e^{-ikx}J(x)
+\end{equation}
+The inverse transforms reads
+\begin{equation}
+    \phi(x)=\int\frac{\dd^4k}{(2\pi)^4}e^{ikx}\tilde{\phi}(k)
+\end{equation}
+\begin{equation}
+    J(x)=\int\frac{\dd^4k}{(2\pi)^4}e^{ikx}\tilde{J}(k)
+\end{equation}
+So the action is
+\begin{equation}
+\begin{aligned}
+        S_0=\int\dd^4x\int\frac{\dd^4k}{(2\pi)^4}\frac{\dd^4k^\prime}{(2\pi)^4}\overbrace{ e^{i(k+k^\prime)x}}^{(2\pi)^4\delta(k+k^\prime)}\Big{[}\frac{1}{2}k^{\mu}k_\mu^\prime \tilde{\phi}(k)\tilde{\phi}(k^\prime)-\frac{1}{2}m^2\tilde{\phi}(k)\tilde{\phi}(k^\prime)\\
+        +\frac{1}{2}\tilde{J}(k)\tilde{\phi}(k^\prime)+\frac{1}{2}\tilde{J}(k^\prime)\tilde{\phi}(k)\Big{]}
+\end{aligned}
+\end{equation}
+The brace over the exponential indicates the integral over spacetime gives us that delta function. Integrating over $k^\prime$ 
+\begin{equation}
+    S_0=\frac{1}{2}\int\frac{\dd^4k}{(2\pi)^4}\qty[-\tilde{\phi}(k)(k^2+m^2)\tilde{\phi}(-k)+\tilde{J}(k)\tilde{\phi}(-k)+\tilde{J}(-k)\tilde{\phi}(k)]
+\end{equation}
+Where $k^2=\vb{k}^2-(k^0)^2$. The following translation simplifies our calculations,
+\begin{equation}
+    \tilde{\chi}(k)=\tilde{\phi}(k)-\frac{\tilde{J}(k)}{k^2+m^2}
+\end{equation}
+So the action reads
+\begin{equation}
+    S_0=\frac{1}{2}\int\frac{\dd^4k}{(2\pi)^4}\qty[-\tilde{\chi}(k)(k^2+m^2)\tilde{\chi}(-k)+\frac{\tilde{J}(k)\tilde{J}(-k)}{k^2+m^2}]
+\end{equation}
+As $\mathcal{D}\chi=\mathcal{D}\phi$, the functional integral is
+\begin{equation}
+\begin{aligned}
+    Z_0(J)=&\exp[\frac{i}{2}\int\frac{\dd^4k}{(2\pi)^4}\frac{\tilde{J}(k)\tilde{J}(-k)}{k^2+m^2-i\epsilon}]\\&\qquad\times\int\mathcal{D}\chi\exp[-\frac{i}{2}\int\frac{\dd^4k}{(2\pi)^4}\tilde{\chi}(k)(k^2+m^2)\chi(-k)]
+\end{aligned}
+\label{z_0j}
+\end{equation}
+Again, the path integral term is simply $Z_0(J=0)=\braket{0}_J\eval_{J=0}=1$ so (\ref{z_0j}) reduces to 
+\begin{equation}
+     Z_0(J)=\exp[\frac{i}{2}\int\frac{\dd^4k}{(2\pi)^4}\frac{\tilde{J}(k)\tilde{J}(-k)}{k^2+m^2-i\epsilon}]
+\end{equation}
+Or, in spacetime domain
+\begin{equation}
+    Z_0(J)=\exp[\frac{i}{2}\int\dd^4x\,\dd^4x^\prime J(x)\Delta(x-x^\prime)J(x^\prime)]
+\end{equation}
+Where $\Delta(x-x^\prime)$ is the \textit{Feynman Propagator}, defined by
+\begin{equation}
+    \Delta(x-x^\prime)=\int\frac{\dd^4k}{(2\pi)^4}\frac{e^{ik(x-x^\prime)}}{k^2+m^2-i\epsilon}
+    \label{feynman_propagator_spacetime}
+\end{equation}
+The Feynman propagator is the Green's function to the Klein-Gordon Equation, since, when $\epsilon\to0$
+\begin{equation}
+    (-\partial_\mu^2+m^2)\Delta(x-x^\prime)=\delta(x-x^\prime)
+    \label{greens_kg}
+\end{equation}
+With $\partial_\mu^2$ acting on the unprimed coordinates $x$. Equation (\ref{greens_kg}) can be verified by plugging in (\ref{feynman_propagator_spacetime}). We can also calculate $\Delta(x-x^\prime)$ explicitly from (\ref{feynman_propagator_spacetime}) and check it statisfies (\ref{greens_kg}). Using the residue theorem, we integrate over complex-valued $k^0=\omega$, similarly to what we have previously done for the harmonic oscillator Green's Function. In fact, the $k^0$ integral is identical to the ones that led us to (\ref{greensho2}). In terms of the space integrals, (\ref{feynman_propagator_spacetime}) when $\epsilon\to0$ reads
+\begin{equation}
+\begin{aligned}
+       \Delta(x-x^\prime)=&i\int\frac{\dd^3 k}{(2\pi)^3}\frac{1}{2\omega}e^{i\vb{k}(\vb{x}-\vb{x}^\prime)-i\omega\abs{t-t^\prime}}\\
+       =&i\theta(t-t^\prime)\int\tilde{\dd k}\,e^{ik(x-x^\prime)}+i\theta(t^\prime-t )\int\tilde{\dd k}e^{-ik(x-x^\prime)}
+\end{aligned}
+\end{equation}
+The $\theta$'s are Heaviside's Unit step functions and $\tilde{\dd k}=\dd^3k/((2\pi)^32\omega)$ is the Lorentz Invariant integration measure. The space integrals can be evaluated with the use of Bessel Functions. \\
+
+The correlation function for fields is analogous to that for the oscillator: we substitute $Q(t)$ for the field operator $\phi(x)$. Similarly to (\ref{2corellator}), we have
+\begin{equation}
+    \bra{0}\text{T}\phi(x_1)\dots\ket{0}=\frac{1}{i}\fdv{J(x_1)}\dots Z_0(J)\eval_{J=0}
+\end{equation}
+The 2-point correlation is
+\begin{equation}
+    \begin{aligned}
+    \bra{0}\text{T}\phi(x_1)\phi(x_2)\ket{0}&=\frac{1}{i}\fdv{J(x_1)}\frac{1}{i}\fdv{J(x_2)}Z_0(J)\eval_{J=0}\\
+    &=\frac{1}{i}\fdv{J(x_1)}\qty{\qty[\int\dd^4x^\prime\Delta(x_2-x^\prime)J(x^\prime)]Z_0(J)}\eval_{J=0}\\
+    &=\frac{1}{i}\Delta(x_2-x_1)
+\end{aligned}
+\end{equation}
+Again, for the $n$-point correlation, if $n$
+is odd, the correlation will vanish because of linear terms in $J$. If $n$ is even, we sum over pairings, such as 
+\begin{align}
+    \bra{0}\text{T}\phi(x_1)\phi(x_2)\phi(x_3)\phi(x_4)\ket{0}=&\frac{1}{i^2}[\Delta(x_1-x_2)\Delta(x_3-x_4)+\Delta(x_1-x_3)\Delta(x_2-x_4)\nonumber\\&\qquad+\Delta(x_1-x_4)\Delta(x_2-x_3)]
+\end{align}
+In the general case
+\begin{equation}
+    \bra{0}T\phi(x_1)\dots\phi(x_{2n})\ket{0}=\frac{1}{i^n}\sum_{i\,\text{pairings}}\Delta(x_{i_1}-x_{i_2})\dots\Delta(x_{i_{2n-1}}-x_{i_{2n}})
+\end{equation}
+This result is known as \textit{Wick's Theorem}.\\
+
+Activities concerning the first part of the project end here and can be summed up as activities motivating and preparing terrain for field theory, as  in chapters 1, 2 and 3; and the introduction to quantum fields and interactions, in the present chapter. Upcoming work  focuses on more details of interactions, then renormalization, and, lastly, in the quantization of fermionic and electromagnetic fields.

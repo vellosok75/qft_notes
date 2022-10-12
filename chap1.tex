@@ -1,0 +1,521 @@
+\chapter{A review of Classical and Quantum Mechanics}
+We review Lagrangian and Hamiltonian formalisms of classical mechanics and study longitudinal displacements of a linear chain of oscillators. This is pedagogical because the continuum limit of this simple model will be an archetype of field theory. We also review the postulates and the formalism of quantum mechanics and finish the chapter with the quantum treatment of the linear chain.
+
+\section{Classical Dynamics}
+
+We are interested in determining the time evolution of a particle subject to a conservative force. One possible approach to such a problem is to apply Newtonian Mechanics. We label the particle's configuration by the coordinate $q(t)$. The force acting on it is assumed to be derived from the potential $V(q)$. Newton's second law gives the equation of motion
+\begin{equation}
+    m\Ddot{q}=-\pdv{V}{q}
+\end{equation}
+which, when combined with initial conditions $q(0)$ and $\Dot{q}(0)$ uniquely determines $q(t)$ at any time.\\
+
+We could also employ the \textit{Lagrangian formalism}, which is deduced from a variational principle. For mechanical systems of this sort, we define the \textit{Lagrangian} or \textit{Lagrange Function} as the difference between kinetic energy and the potential
+\begin{equation}
+    L(q,\Dot{q},t)=T-V=\frac{1}{2}m\Dot{q}^2(t)-V(q)
+\end{equation}
+Next we define the \textit{action}
+\begin{equation}
+    S=\int_{t_0}^{t_1}L(q,\Dot{q})\,\dd t
+\end{equation}
+and state \textit{Hamilton's Principle}: 
+\begin{quote}
+    Amongst all the possible paths the particle could take from one point to another, the actual motion is such that action is stationary to first order variations
+\end{quote}
+That is, we must require $\delta S=0$. Calculating this variation, we arrive at the necessary condition for the action to be stationary: the \textit{Euler-Lagrange Equation}
+\begin{equation}
+    \pdv{L}{q}-\dv{t}\pdv{L}{\Dot{q}}=0
+    \label{euler_lagrange}
+\end{equation}
+It is a second order differential equation for the position and uniquely determines the motion once given initial or boundary conditions. Lagrangian mechanics usually shows superiority over the Newtonian approach due to the  simplicity it allows us to tackle some problems. 
+%Lagrangian Mechanics is simpler from the beginning, since we deal with scalar quantities (energies) instead of vectors (forces). Perhaps the most striking difference is the economy of variables: it accommodates generalized coordinates which immediately satisfy the constraints, avoiding redundancies that often appear when using the Newtonian prescription.
+It also provides a clear connection between symmetries of the physical laws and constants of motion, via Noether's Theorem.\\
+
+The Lagrangian is a function of position and velocity. It generates the dynamics by yielding the equation of motion (Euler-Lagrange Equation). We might be interested in obtaining a different representation for the generator of the dynamics; A different function, depending on different variables to describe the same dynamics the Lagrangian does. This is formally achieved if one performs a \textit{Legendre Transform}, a frequent procedure in Thermodynamics. We define the \textit{canonical momentum} \begin{equation}
+    p=\pdv{L}{\Dot{q}}
+    \label{canonical_p}
+\end{equation}
+For most applications of physical interest, we can solve  this equation for $\dot{q}$ in terms of the canonical momentum and thus write $\Dot{q}(p)$ and $L(q,\Dot{q}(p))$ \cite{lemos2018analytical}. The generator of dynamics is now the \textit{Hamiltonian}, or \textit{Hamilton Function}\textemdash the Legendre Transform of the Lagrangian, defined by
+\begin{equation}
+    H(q,p)=p\Dot{q}(p)-L(q,\dot{q}(p))
+    \label{hamiltonian_1}
+\end{equation}
+As long as $T$ is purely a quadratic function of velocity and $V$ is velocity independent, \textit{Euler's theorem for homogeneous functions} guarantees $p\dot{q}=\dot{q}\pdv*{L}{\dot{q}}=\dot{q}\pdv*{T}{\dot{q}}=2T$ so the Hamiltonian reads
+\begin{equation}
+    H(q,p)=T+V
+    \label{hamiltonian_2}
+\end{equation}
+
+Taking the differential of the Hamiltonian $H$ from equation (\ref{hamiltonian_1}) and considering the Euler-Lagrange equation (\ref{euler_lagrange})
+\begin{equation}
+    \dd H=-\dot{p}\dd q+\dot{q}\dd p
+\end{equation}
+Since $H=H(p,q)$, then we must also have
+\begin{equation}
+    \dd H = \pdv{H}{q}\dd q + \pdv{H}{p}\dd p
+\end{equation} 
+Comparison between these two gives \textit{Hamilton's canonical equations of motion}
+\begin{equation}
+    \begin{aligned}
+        -\dot{p}&=\pdv{H}{q}\\
+        \dot{q}&=\pdv{H}{p} 
+    \end{aligned}
+    \label{hamiltons_eq}
+\end{equation}
+which are the necessary conditions for the stationarity of the action, in the language of the Hamiltonian. They uniquely determine the motion and the state of the particle, given initial conditions $q(0)$ and $p(0)$.\\
+
+Lastly, we review the \textit{Poisson Bracket}. Consider  dynamical variables $A(q,p)$ and $B(q,p)$, the Poisson Bracket of $A$ and $B$ is defined to be
+\begin{equation}
+    \pb{A}{B}_\text{PB}=\pdv{A}{q}\pdv{B}{p}-\pdv{A}{p}\pdv{B}{q}
+\end{equation}
+For the canonical variables themselves
+\begin{equation}
+    \pb{q}{p}_{\text{PB}}=1
+    \label{canonical_poisson}
+\end{equation}
+The Poisson Bracket allow us to express the time dependence of dynamical variables. Since the time derivative of $A$ is
+\begin{equation}
+    \dv{A}{t}=\pdv{A}{t}+\pdv{A}{p}\dot{p}+\pdv{A}{q}\dot{q}
+\end{equation}
+then, by Hamilton's equations (\ref{hamiltons_eq}), we see that
+\begin{equation}
+    \begin{split}
+        \dv{A}{t}=&\,\pdv{A}{t}-\pdv{A}{p}\pdv{H}{q}+\pdv{A}{q}\pdv{H}{p}\\
+        \dv{A}{t}=\,&\pdv{A}{t} +\pb{A}{H}_\text{PB}
+    \end{split}
+    \label{eq_motion_dynamical_variable}
+\end{equation}
+In particular, if $A$ is not an explicit function of time, its time derivative is solely equal to its Poisson Brackets with the Hamiltonian, so if $\pb{A}{H}$ vanishes, then $A$ is a constant of motion. Next, we focus on a practical example to see this formalism in action.
+\subsection{Linear Chain of Classical Oscillators}
+Now we study longitudinal oscillations of a linear chain of $N$ particles of mass $m$ coupled by springs of relaxed length $a$, displaced from equilibrium by $q_n$.
+For such a system the Lagrangian is
+\begin{equation}
+   L=\sum_{n=1}^N\frac{m}{2}\dot{q}^2_n - \sum_{n=1}^N\frac{\kappa}{2}(q_{n+1}-q_n)^2
+\end{equation}
+The Euler-Lagrange equation (\ref{euler_lagrange}) gives us the equation o motion
+\begin{equation}
+    \ddot{q}_n=\frac{\kappa}{m}(q_{n+1}+q_{n-1}-2q_n)
+    \label{eom}
+\end{equation}
+Closely following \cite{greiner1996}, we Fourier transform the coordinates $q_n$ using the set of complete and orthonormal functions $u_n^k$
+\begin{equation}
+    q_n(t)=\sum_k a_k(t)u_n^k
+    \label{qt}
+\end{equation}
+A convenient choice of such functions is 
+\begin{equation}
+    u_n^k=\frac{1}{\sqrt{N}}{e}^{{i}kan}
+    \label{basis}
+\end{equation}
+We impose periodic boundary conditions, which gives the system the topology of a closed ring
+\begin{equation}
+    u_{N+n}^k=u_n^k\implies {e}^{{i}ka(N+n)}={e}^{{i}kan}\implies {e}^{{i}kaN}=1={e}^{2\pi {i}\ell}
+\end{equation}
+this way $k$ takes values $k=2\pi\ell/{Na}$, with $\ell$ bounded by $-{N}/{2}\leq \ell \leq {N}/{2}$, to ensure linear independence of the basis functions.
+We can check from (\ref{basis})  that the $u_n^k$ have the following orthogonality and closure relations 
+\begin{equation}
+    \sum_n u_n^{k^\prime *}u_n^k=\delta_{k k^\prime}
+    \label{orthogo}
+\end{equation}
+\begin{equation}
+    \sum_k u_{n^\prime}^{k *}u_n^k=\delta_{n n^\prime}
+    \label{closure}
+\end{equation}
+The equation of motion (\ref{eom}) reads
+\begin{equation}
+    \sum_k\ddot{a}_ku_n^k=\frac{\kappa}{m}\sum_ka_k(u_{n+1}^k+u_{n-1}^k-2u_n^k)
+    \label{eom_normal}
+\end{equation}
+Using that $u^k_{n\pm1}=e^{\pm ika}u_n^k$\textemdash evident from (\ref{basis})\textemdash and exploiting the orthogonality relation (\ref{orthogo}) as we multiply (\ref{eom_normal}) by $u_n^{k'*}$ and sum over $n$, (\ref{eom_normal}) simplifies to
+\begin{equation}
+    \ddot{a}_k(t)=\frac{\kappa}{m}a_k(t)({e}^{ika}+{e}^{-ika} -2)
+    \label{uncoupled}
+\end{equation}
+We recognize the term inside the parenthesis as $-2(1-\cos{ka})$ and define a dispersion relation
+\begin{equation}
+    \omega_k^2=\frac{2\kappa}{m}(1-\cos{ka})
+    \label{dispersion}
+\end{equation}
+Equation (\ref{uncoupled}) reads
+\begin{equation}
+    \ddot{a}_k(t)=-\omega_k^2a_k(t)
+    \label{uncoupled2}
+\end{equation}
+And states that $a_k(t)$ performs an \textit{uncoupled} simple harmonic motion with angular frequency $\omega_k$. These are called \textit{normal coordinates}. Equation (\ref{uncoupled2}) gives $a_k(t)$ its explicit time dependence
+\begin{equation}
+    a_k(t)=b_k{e}^{-{i}\omega_kt}+b_{-k}^*e^{{i}\omega_kt}
+    \label{normal_coo}
+\end{equation}
+The choice of constants was constrained to the following fact: $q_n(t)$ must be a real number and equation (\ref{basis}) shows that $u_{n}^{k*}=u_{n}^{-k}$. We then need $a_k^*(t)=a_{-k}(t)$, which is satisfied if we choose constants as in (\ref{normal_coo}). The displacements $q_n(t)$ are obtained plugging $a_k$ to (\ref{qt}), which gives the linear combination of normal coordinates
+\begin{equation}
+    q_n(t)=\frac{1}{\sqrt{N}}\sum_k\qty(b_k{e}^{-{i}(\omega_kt-kan)}+b_k^*{e}^{{i}(\omega_kt-kan)})
+    \label{qt_normal}
+\end{equation}
+
+As for the Hamiltonian formalism, we first compute the canonically conjugate momentum
+\begin{equation}
+    p_n=\pdv{L}{\dot{q}_n}=m\dot{q}_n
+\end{equation}
+Differentiating (\ref{qt_normal}) and multiplying by the mass, the momentum in terms of the normal coordinates reads
+\begin{equation}
+    p_n(t)=m\sum_k(-{i}\omega_k)\qty(b_ke^{-{i}\omega_kt}u_n^k-b_k^*e^{{i}\omega_kt}u_n^{k*})
+    \label{pt_normal}
+\end{equation}
+We omitted the explicit form of the basis functions for brevity. Next we construct the Hamiltonian according to (\ref{hamiltonian_2})
+\begin{equation}
+    H=\sum_{n=1}^N\frac{p_n^2}{2m}+\sum_{n=1}^N\frac{\kappa}{2}(q_{n+1}-q_{n})^2
+    \label{hamilt_linear_chain}
+\end{equation}
+We need to write the kinetic and potential parts of (\ref{hamilt_linear_chain}) using equations (\ref{qt_normal}) and (\ref{pt_normal}). For the kinetic energy we have
+\begin{multline}
+T=\frac{m}{2}\sum_n\sum_{k,k'}\Big{\{}(-i\omega_{k^\prime})(-i\omega_k)\Big{[}b_{k'}b_k e^{-i(\omega_{k'}+\omega_k)t}u_n^{k'}u_n^{k}-b_{k'}b^*_ke^{-i(\omega_{k'}-\omega_k)t}u_n^{k'}u_n^{k*} \\ -b_{k'}^{*}b_ke^{i(\omega_{k'}-\omega_k)t}u_n^{k'*}u_n^{k}+b_{k'}^{*}b_k^*e^{i(\omega_{k'}+\omega_k)t}u_n^{k'*}u_n^{k*}\Big{]}\Big{\}}
+\label{kinetic}
+\end{multline}
+The first product of basis functions equals to $u_n^{-k*}u_n^{k^\prime}$ and according to the orthogonality relation (\ref{orthogo}) gives $\delta_{k',-k}$, when summed over $n$. Similarly, the second and third products give $\delta_{k',k}$, and the last one equals to $u_n^{k'*}u_n^{-k}$, which reduces to $\delta_{k',-k}$ when summed over $n$. Noting from (\ref{dispersion}) that $\omega_k=\omega_{-k}$, equation (\ref{kinetic}) reads
+\begin{equation}
+    T=\frac{m}{2} \sum_{k}\left(-\omega_{k}^{2}\right)\left[b_{-k} b_{k} {e}^{-2 {i} \omega_{k} t}-b_{k} b_{k}^{*}-b_{k}^{*} b_{k}+b_{-k}^{*} b_{k}^{*} {e}^{+2 {i} \omega_{k} t}\right]
+\end{equation}
+Now, for the potential energy
+\begin{equation}
+V=\frac{\kappa}{2} \sum_{n}\left(q_{n+1}-q_{n}\right)^{2}
+\end{equation}
+Using (\ref{qt_normal})
+\begin{equation}\begin{aligned}
+V=\frac{\kappa}{2} \sum_{n} \sum_{k, k^{\prime}} &\left[b_{k^{\prime}} b_{k} {e}^{-{i}\left(\omega_{k^{\prime}}+\omega_{k}\right) t}\left({e}^{{i} k^{\prime} a}-1\right)\left({e}^{{i} k a}-1\right) u_{n}^{k^{\prime}} u_{n}^{k}\right.\\
+&+b_{k^{\prime}} b_{k}^{*} {e}^{-{i}\left(\omega_{k^{\prime}}-\omega_{k}\right) t}\left({e}^{{i} k^{\prime} a}-1\right)\left({e}^{-{i} k a}-1\right) u_{n}^{k^{\prime}} u_{n}^{k *} \\
+&+b_{k^{\prime}}^{*} b_{k} {e}^{+{i}\left(\omega_{k^{\prime}}-\omega_{k}\right) t}\left({e}^{-{i} k^{\prime} a}-1\right)\left({e}^{{i} k a}-1\right) u_{n}^{k^{\prime} *} u_{n}^{k} \\
+&\left.+b_{k^{\prime}}^{*} b_{k}^{*} {e}^{+{i}\left(\omega_{k^{\prime}}+\omega_{k}\right) t}\left({e}^{-{i} k^{\prime} a}-1\right)\left({e}^{-{i} k a}-1\right) u_{n}^{k^{\prime} *} u_{n}^{k *}\right]
+\end{aligned}\end{equation}
+Upon simplifications of the sums due to the orthogonality relations and since we know
+$\left(e^{-i k a}-1\right)\left(e^{+i k a}-1\right)=4 \sin ^{2} \frac{k a}{2}$, we find
+\begin{equation}
+V=\frac{m}{2} \sum_{k} 4 \frac{\kappa}{m} \sin ^{2} \frac{k a}{2}\left[b_{-k} b_{k} {e}^{-2 {i} \omega_{k} t}+b_{k} b_{k}^{*}+b_{k}^{*} b_{k}+b_{-k}^{*} b_{k}^{*} {e}^{+2 {i} \omega_{k} t}\right]
+\end{equation}
+The factor $4\frac{\kappa}{m} \sin ^{2} \frac{k a}{2}$ is just $\omega_k^2$, according to (\ref{dispersion}). The Hamiltonian we get then is
+\begin{equation}
+H=T+V=\sum_{k} m \omega_{k}^{2}\left(b_{k} b_{k}^{*}+b_{k}^{*} b_{k}\right)=\sum_{k} 2 m \omega_{k}^{2} b_{k}^{*} b_{k}
+\label{hamilt_bk}
+\end{equation}
+Next, we want to find $q_n(t)$ given the initial conditions $q_n(0)$ and $\dot{q}_n(0)$. This is the task of finding $b_{k}$ for these initial conditions. We substitute $t=0$ on (\ref{qt_normal}) and on its time derivative
+\begin{equation}
+\begin{aligned}
+q_{n}(0) &=\sum_{k}\left(b_{k} u_{n}^{k}+b_{k}^{*} u_{n}^{k *}\right) \\
+\dot{q}_{n}(0) &=\sum_{k}\left(-{i} \omega_{k}\right)\left(b_{k} u_{n}^{k}-b_{k}^{*} u_{n}^{k *}\right)
+\end{aligned}
+\end{equation}
+Using the orthogonality relation (\ref{orthogo}) we find $b_k$ projecting the initial conditions on the basis functions. For the positions we have
+\begin{equation}
+\begin{aligned}
+\sum_{n} u_{n}^{k *} q_{n}(0) &=\sum_{k^{\prime}}\left(b_{k^{\prime}} \sum_{n} u_{n}^{k *} u_{n}^{k^{\prime}}+b_{k^{\prime}}^{*} \sum_{n} u_{n}^{k *} u_{n}^{k^{\prime} *}\right) \\
+&=\sum_{k^{\prime}}\left(b_{k^{\prime}} \delta_{k^{\prime}, k}+b_{k^{\prime}}^{*} \delta_{k^{\prime},-k}\right) \\
+&=b_{k}+b_{-k}^{*}
+\end{aligned}
+\end{equation}
+and for the velocities 
+\begin{equation}
+\sum_{n} u_{n}^{k *} \dot{q}_{n}(0)=-{i} \omega_{k}\left(b_{k}-b_{-k}^{*}\right)
+\end{equation}
+We use these two to solve for $b_k$ 
+\begin{equation}
+b_{k}=\frac{1}{2} \sum_{n} u_{n}^{k *}\left(q_{n}(0)+\frac{{i}}{\omega_{k}} \dot{q}_{n}(0)\right)
+\label{coeff}
+\end{equation}
+So the solution at all times reads
+\begin{equation}
+\begin{aligned}
+q_{n}(t)=& \sum_{k}\left(b_{k} {e}^{-{i} \omega_{k} t} u_{n}^{k}+b_{k}^{*} {e}^{+{i} \omega_{k} t} u_{n}^{k *}\right) \\
+=& \sum_{k} \sum_{n^{\prime}} \frac{1}{2}\Big{[}q_{n^{\prime}}(0)\left({e}^{-{i} \omega_{k} t} u_{n}^{k} u_{n^{\prime}}^{k *}+{e}^{+{i} \omega_{k} t} u_{n}^{k *} u_{n^{\prime}}^{k}\right)
+&\left.+\frac{{i}}{\omega_{k}} \dot{q}_{n^{\prime}}(0)\left({e}^{-{i} \omega_{k} t} u_{n}^{k} u_{n^{\prime}}^{k *}-{e}^{+{i} \omega_{k} t} u_{n}^{k *} u_{n^{\prime}}^{k}\right)\right]
+\end{aligned}
+\label{qt_quasela}
+\end{equation}
+The first term inside the parenthesis equals twice the real part of the complex number
+\begin{equation}
+\sum_{k} {e}^{-{i} \omega_{k} t} u_{n}^{k} u_{n^{\prime}}^{k *}=\frac{1}{N} \sum_{k} {e}^{{i}\left(k a\left(n-n^{\prime}\right)-\omega_{k} t\right)}
+\end{equation}
+while the second term is $2i$ times the imaginary part of it. Using Euler's Formula, (\ref{qt_quasela}) equals 
+\begin{equation}\begin{aligned}
+q_{n}(t)=& \frac{1}{N} \sum_{k} \sum_{n^{\prime}}\left[q_{n^{\prime}}(0) \cos \left(k a\left(n-n^{\prime}\right)-\omega_{k} t\right)
+-\frac{1}{\omega_{k}} \dot{q}_{n^\prime}(0) \sin \left(k a\left(n-n^{\prime}\right.)-\omega_{k} t\right)\right]
+\end{aligned}\end{equation}\\
+
+Lastly, we calculate the Poisson Brackets of $b_k$.  We project (\ref{qt_normal}) and (\ref{pt_normal}) over the basis:
+\begin{equation}
+    \sum_n u_n^{k*}q(t)=b_ke^{-i\omega_kt}+b_{-k}^*e^{i\omega_kt}
+\end{equation}
+\begin{equation}
+    \sum_n u_n^{k*}p(t)=(-i\omega_km)\qty(b_ke^{-i\omega_kt}-b_{-k}^*e^{i\omega_kt})
+\end{equation}
+Then we isolate  $b_k$
+\begin{equation}
+b_{k}=\frac{1}{2} \sum_{n} u_{n}^{k *}e^{i\omega_k t}\left(q_{n}(t)+\frac{{i}}{\omega_{k}m} {p}_{n}(t)\right)
+\end{equation}
+so it is straightforward to calculate
+\begin{equation}
+\begin{aligned}
+        \pb{b_k}{b_{k\prime}^{*}}_{\text{PB}}=&\sum_n\left(\pdv{b_k}{q_n}\pdv{b_{k^\prime}^{*}}{p_n}-\pdv{b_k}{p_n}\pdv{b_{k^\prime}^{*}}{q_n}\right)\\
+        &=\frac{-{i}}{4m}{e}^{{i}(\omega_k-\omega_{k^\prime})t}\qty(\frac{1}{\omega_{k^\prime}}+\frac{1}{\omega_k})\sum_nu_n^{k *}u_n^{k^\prime}\\
+        &=\frac{-{i}}{2m\omega_k}\delta_{k,k^\prime}
+\end{aligned}
+\label{bkbkstar}
+\end{equation}
+And also
+\begin{equation}
+     \pb{b_k}{b_{k\prime}}_{\text{PB}}= \pb{b_k^*}{b_{k\prime}^{*}}_{\text{PB}}=0
+     \label{bkbkbkstarbkstar}
+\end{equation}
+These will be helpful in the quantization of this system. We review quantum principles next and discuss the quantum approach to the chain.
+\section{Quantum Dynamics}
+%To transition to Quantum Mechanics, we specify the system state by a vector $\psi$ in its state space and physical quantities such as position, momentum and the Hamiltonian, by \textit{Observables}, i.e., Hermitian Operators in state space. This space is a complete vector space endowed with a scalar product. The set of linear functionals from state space to scalar is itself a vector space, the \textit{dual space}. For a given linear functional $\phi$ the action
+%on a ket is wrriten $\phi(\ket{\psi}=\braket{\phi}{\psi}$, so we may represent a linear functional by the \textit{bra} $\bra{\phi}.$
+%For kets $\ket{\psi}$ and $\ket{\phi}$ we can assign a linear functional (bra) $\bra{\phi}$ in such a way that it acts as to take the ket $\ket{\psi}$ exactly to the value corresponding to the scalar product of $\ket{\psi}$ and $\ket{\phi}$, that is $\phi(\ket{\psi}=\braket{\phi}{\psi}$\\
+In the quantum realm, we specify the system's state by a unit vector $\psi$ in a complex vector field with dimensions ranging from two \textemdash as in the famous Stern-Gerlach experiment; up to infinity \textemdash as when one uses the position or momentum representations. We adopt the notation introduced by Dirac, in which a state vector is represented by a \textit{ket}, such as $\ket{\psi}$; and a dual vector is represented by a \textit{bra}, such as $\bra{\phi}$.
+Dual vectors are linear functionals living in \textit{dual space}. They act on kets giving a scalar.\\
+
+An important feature is that this \textit{state space} of state vectors\textemdash usually referred to as the \textit{Hilbert Space}\textemdash is endowed with a scalar product. This allows us to assign, for every ket $\ket{\psi}$, a functional $\bra{\phi}$ so that the action of $\bra{\phi}$ on $\ket{\psi}$, which reads $\braket{\phi}{\psi}$, equals to the scalar product $\langle\psi,\phi\rangle$ of state vectors. This way, given $\psi$ and $\phi$, their scalar product  reads $\braket{\phi}{\psi}$, in bra-ket notation, and checks the following properties
+\begin{equation}
+    \begin{split}
+        \braket{\phi}{\alpha\psi_1+\beta\psi_2}= &\alpha\braket{\phi}{\psi_1}+\beta\braket{\phi}{\psi_2}\\
+        \braket{\phi}{\psi}= &\braket{\psi}{\phi}^*\\
+        \braket{\phi}{\phi}= & 0 \iff \ket{\phi} = 0
+    \end{split}
+\end{equation}
+
+
+Kets represent physical states of the system and, according to Born's Rule, the square of the modulus of their scalar product $\abs{\braket{\phi}{\psi}}
+^2$ gives the probability that a system prepared in state $\ket{\psi}$ is found in state $\ket{\phi}$.\\
+
+We can go from a classical to a quantum theory via \textit{Canonical Quantization}. We start from a theory characterized by dynamical variables $A(p,q)$, $B(p,q)$, promote them and other variables, such as the Hamiltonian, position and momentum, to operators. We replace the Poisson Brackets of the dynamical variables by commutators following the prescription $i\hbar\pb{\cdot}{\cdot}\to\comm{\cdot}{\cdot}$. Where $\comm{A}{B}=AB-BA$. For instance, for position and momentum operators, equation (\ref{canonical_poisson}) indicates that the commutator for the quantum operators is
+\begin{equation}
+    \comm{\hat{q}}{\hat{p}}=i\hbar
+    \label{canonica_comm}
+\end{equation}
+In this picture, the equation of motion for an operator $\hat{O}$ is \textit{Heisenberg's Equation}, the quantum correspondent of (\ref{eq_motion_dynamical_variable})
+\begin{equation}
+    i\hbar\dv{\hat{O}}{t}=\comm{\hat{O}}{\hat{H}}
+    \label{heisenberg_eq}
+\end{equation}
+assuming no explicit time dependence. \\
+
+Physical observables are now considered operators in state space. An operator $\hat{O}$ acting on $\ket{\psi}$ gives another ket:$\ket*{\hat{O}\psi}=\hat{O}\ket{\psi}$. The bra associated with this ket is given by the action of the adjoint operator $\hat{O}^\dagger$ on the bra $\bra{\psi}$, i.e., $\bra*{\hat{O}\psi}=\bra{\psi}\hat{O}^\dagger$.\\
+
+The expected value of an observable $\hat{O}$, with respect to the state $\ket{\psi}$, is defined by $\ev*{\hat{O}}=\ev*{\hat{O}}{\psi}$, which we interpret as the average outcome of the operator acting on an ensemble of identical states $\ket{\psi}$. If we want the operator $\hat{O}$ to correspond to a physical observable, its expected value must be a real number. To ensure it is, we demand $\hat{O}$ to be a hermitian, or a self-adjoint operator, i.e. $\hat{O}=\hat{O}^\dagger$, since $\ev*{\hat{O}}{\psi}=\braket*{\psi}{\hat{O}\psi}$ needs to agree with  its  conjugate $\braket*{\hat{O}
+\psi}{\psi}=\ev*{\hat{O}^\dagger}{\psi}$. \\
+
+When measuring a physical quantity $O$, the possible results are the eigenvalues of the quantized operator $\hat{O}$ on state space. The probability of measuring a given eigenvalue $O_1$ is the modulus squared of the projection of the state immediately before the measurement, such as $\ket{\psi}$, on the corresponding eigenstate $\ket{O_1}$, associated with the eivenvalue $O_1$. That is, $P(O_1)=\abs{\bra{O_1}\ket{\psi}}^2$.\\
+
+Repeated measurements of an observable yield results that deviate from the expected value $O=\ev*{\hat{O}}$ with a variance
+\begin{equation}
+        (\Delta O)^2=\ev{(\hat{O}-O)^2}{\psi}
+\end{equation}
+Which vanishes if $\ket{\psi}$ happens to be an eigenstate of $\hat{O}$, i.e. $\hat{O}\ket{\psi}=O\ket{\psi}$.  If two operators $\hat{A}$ and $\hat{B}$ fail to commute, one can show that their uncertainties respect
+\begin{equation}
+    \Delta A\Delta B \geq \frac{1}{2}\abs{\ev{\comm*{\hat{A}}{\hat{B}}}{\psi}}
+\end{equation}
+So they cannot be simultaneously determined with absolute accuracy and are said to be incompatible. In particular, for position and momentum (\ref{canonica_comm}) gives
+\begin{equation}
+    \Delta q \Delta p \geq \frac{\hbar}{2}
+\end{equation}
+
+As for basis kets for state space, we can use the position operator eigenkets $\ket{q}$. They satisfy the eigenvalue equation
+\begin{equation}
+    \hat{q}\ket{q}=q\ket{q}
+\end{equation}
+are orthogonal
+\begin{equation}
+    \braket{q^\prime}{q}=\delta(q-q^\prime)
+\end{equation}
+and complete
+\begin{equation}
+    \int\dd q \dyad{q}={1}
+\end{equation}
+Another usual basis is the momentum representation. The basis kets ate $\ket{p}$, the eigenstates of the momentum operator $\hat{p}$ with $p$ as the associated eigenvalue. Orthogonality and closure relations reads
+\begin{equation}
+    \braket{p^\prime}{p}=\delta(p-p^\prime)
+\end{equation}
+\begin{equation}
+    \int\dd p \dyad{p}=1
+\end{equation}
+and momentum states in the position basis reads
+\begin{equation}
+    \braket{q}{p}=\frac{e^{{i}pq/\hbar}}{\sqrt{2\pi\hbar}}
+\end{equation}
+
+Canonical Quantization naturally leads us to \textit{Heisenberg's Picture} of quantum mechanics. Operators and basis kets evolve in time but the state kets themselves remain fixed. This contrasts with Schrödinger's Picture, in which operators and basis kets are fixed while  state kets evolve in time via the unitary operator $\hat{U}(t,t_0)$
+\begin{equation}
+    \ket{\psi(t)}=\hat{U}(t,t_0)\ket{\psi(t_0)}
+\end{equation}
+Both pictures should give the same predictions, namely, the expected value of observables. In the Schrödinger Picture
+\begin{equation}
+    \expval*{\hat{O}}=\bra{\psi(0)}\hat{U}^\dagger\hat{O}\hat{U}\ket{\psi(0)}
+\end{equation}
+while in Heisenberg's
+\begin{equation}
+    \expval*{\hat{O}}=\bra{\psi(0)}\hat{O}(t)\ket{\psi(0)}
+\end{equation}
+So we can see that
+\begin{equation}
+    \hat{O}(t)=\hat{U}^\dagger\hat{O}\hat{U}
+\end{equation}
+which is the formal solution to (\ref{heisenberg_eq}). For time independent Hamiltonians $U(t,t_0)=\exp(-iH(t-t_0)/\hbar)$.
+The eigenvalue equation $\hat{q}\ket{q}=q\ket{q}$ can be equally satisfied by
+\begin{equation}
+    (U^\dagger\hat{q}U)U^\dagger\ket{q}=qU^\dagger\ket{q}
+\end{equation}
+We recognize the parentheses as $\hat{q}(t)$. So, in the Heisenberg picture, the time dependent basis kets reads $\ket{q,t}=U^\dagger\ket{q}$ and the eigenvalue equation can be written as $\hat{q}(t)\ket{q,t}=q\ket{q,t}$\\
+%As one of its postulates, time dependence in Quantum Mechanics comes from the Schrödinger Equation. In this picture kets evolve in time via the time evolution operator, an unitary operator satisfying the Shcrodinger Equation.
+%\begin{equation}
+%    \ket{\psi(t)}=\hat{U}(t,t_0)\ket{\psi(0)}
+%\end{equation}
+%A completely equivalent manner to obtain dynamics is the Heisenberg Picture, in which kets are fixed, and time dependence comes from the operators, for, if $\hat{O}$ acts on the state above, the expected value is
+
+%The explicit form of $\hat{U}$ comes from requiring that it satisfies Schrodinger Equation. The time dependence can be obtained by means of evolving the operator via U or, equivalently, via its commutator with the Hamiltonian
+%\begin{equation}
+%    {i}\hbar\dv{\hat{O}}{t}=\comm{\hat{O}}{\hat{H}}
+%\end{equation}
+%This relation is simply the quantised version of (1.11), for an observable with no explicit time dependence. \\
+%The quantum dynamics is related to the classical one by the the following substitution: The Poisson Bracket of dynamical variables $A$ and $B$ is replaced by the \textit{commutator} of operators $\hat{A}$ and $\hat{B}$
+%\begin{equation}
+%    \pb{A}{B}_{\text{PB}}\rightarrow -\frac{i}{\hbar}\comm{\hat{A}}{\hat{B}}
+%    \label{quantize}
+%\end{equation}
+%Defined by $\comm*{\hat{A}}{\hat{B}}=\hat{A}\hat{B}-\hat{B}\hat{A}$. In particular, from equation,
+
+A model of great interest in physics is the Harmonic Oscillator, since, up to a sufficient accuracy, a general potential can be approximated by a parabolic one, for which the Hamiltonian reads
+\begin{equation}
+    \hat{H}=\frac{\hat{p}^2}{2m}+\frac{1}{2}m\omega^2\hat{q}^2
+    \label{harmonic_hamilt}
+\end{equation}
+We factorize the Hamiltonian introducing the operator 
+\begin{equation}
+    \hat{a}=\sqrt{\frac{m\omega}{2\hbar}}\qty(\hat{q}+\frac{i}{m\omega}\hat{p})
+\end{equation}
+and its hermitian conjugate
+\begin{equation}
+    \hat{a}^\dagger=\sqrt{\frac{m\omega}{2\hbar}}\qty(\hat{q}-\frac{i}{m\omega}\hat{p})
+\end{equation}
+We solve for $\hat{p}$ and $\hat{q}$ 
+\begin{equation}
+\begin{aligned}
+\hat{q} &=\sqrt{\frac{\hbar}{2 m \omega}}\left(\hat{a}+\hat{a}^{\dagger}\right) \\
+\hat{p} &=\frac{1}{{i}} \sqrt{\frac{\hbar m \omega}{2}}\left(\hat{a}-\hat{a}^{\dagger}\right)
+\end{aligned}
+\label{pq_in_a}
+\end{equation}
+Canonical commutation relation (\ref{canonica_comm}) shows $\hat{a}$ and $\hat{a}^\dagger$ satisfy
+\begin{equation}
+    \comm{\hat{a}}{\hat{a}^\dagger}=1
+    \label{commu_aadagger}
+\end{equation}
+We plug equations (\ref{pq_in_a}) in the Hamiltonian, which is simplified to
+\begin{equation}
+    \hat{H}=\hbar\omega\qty(\hat{a}^\dagger\hat{a}+\frac{1}{2})
+\end{equation}
+The $\hat{a}^\dagger\hat{a}$ is the number operator $\hat{n}$, which has eigenvalues $n$ associated with eigenstates $\ket{n}$. The Hamiltonian eigenstates are $\ket{n}$ too, for which $\hat{H}\ket{n}=E_n\ket{n}$ with $E_n=\hbar\omega(n+1/2)$. The lowest energy is that of the ground state $\ket{0}$, for which $E_0=\hbar\omega/2$. Commutation relation (\ref{commu_aadagger}) shows us that $\hat{a}^\dagger\ket{n}$ and $\hat{a}\ket{n}$ are also eigenstates, for
+\begin{equation}
+    \hat{H}\hat{a}^\dagger\ket{n}=(E_n+\hbar\omega)\hat{a}^\dagger\ket{n}
+\end{equation}
+\begin{equation}
+    \hat{H}\hat{a}\ket{n}=(E_n-\hbar\omega)\hat{a}\ket{n}
+\end{equation}
+which shows that $\hat{a}^\dagger$ acts on $\ket{n}$ promoting it to a state with higher $n$, proportional to $\ket{n+1}$ and $\hat{a}$  acts on $\ket{n}$ demoting it to a lower $n$. Indeed, it can be shown
+\begin{equation}
+\begin{aligned}
+    \hat{a}^\dagger\ket{n}&=\sqrt{n+1}\ket{n+1}\\
+    \hat{a}\ket{n}&=\sqrt{n}\ket{n-1}
+\end{aligned}
+\end{equation}
+Where it is clear that $\hat{a}\ket{0}=0$. The $n$-th state can be written in terms of the ground state as
+\begin{equation}
+    \ket{n}=\frac{1}{\sqrt{n!}}(\hat{a}^\dagger)^n\ket{0}
+\end{equation}
+Time dependence comes from Heisenberg's Equation (\ref{heisenberg_eq})
+\begin{equation}
+i \hbar \frac{\mathrm{d}}{\mathrm{d} t} \hat{a}(t)=[\hat{a}(t), \hat{H}]
+\end{equation}
+Using the commutation relation (\ref{commu_aadagger}), valid at equal times
+\begin{equation}
+{i} \hbar \frac{\mathrm{d}}{\mathrm{d} t} \hat{a}(t)=\hbar \omega \hat{a}(t)
+\end{equation}
+For which the solution is
+\begin{equation}
+\hat{a}(t)={e}^{-{i} \omega t} \hat{a}(0)
+\end{equation}
+Hermitian conjugation immediately gives
+\begin{equation}
+\hat{a}^{\dagger}(t)={e}^{+{i} \omega t} \hat{a}^{\dagger}(0)
+\end{equation}
+Which in turn give us time dependence of $\hat{q}$ and $\hat{p}$, via (\ref{pq_in_a}). Having reminded ourselves of the basics of quantum dynamics, we now apply it to a chain of coupled harmonic oscillators.
+\subsection{Linear Chain of Quantum Oscillators}
+We consider the same chain of oscillators we did previously. Each identical $n$-th oscillator is characterized by position and momentum operators $\hat{q}_n$ and $\hat{p}_n$ obeying the commutation relations.
+\begin{equation}
+    \comm{\hat{q}_{n}}{\hat{p}_{n^\prime}}={i}\hbar\delta_{nn^\prime}
+    \label{pq}
+\end{equation}
+\begin{equation}
+    \comm{\hat{q}_n}{\hat{q}_{n^\prime}}=\comm{\hat{p}_n}{\hat{p}_{n^\prime}}=0
+    \label{qqpp}
+\end{equation}
+The Hamiltonian operator is built as the correspondence of equation (\ref{hamilt_linear_chain})
+\begin{equation}
+    \hat{H}=\sum_{n=1}^N\frac{\hat{p}_n^2}{2m}+\sum_{n=1}^N\frac{\kappa}{2}(\hat{q}_{n+1}-\hat{q}_{n})^2
+    \label{hamilt_quantum_chain}
+\end{equation}
+In the classical treatment, we exploited expansion as  in eq. (\ref{qt_normal}). The quantum story is similar, but the normal coordinates are now operators themselves. 
+\begin{equation}
+    \hat{q}_n(t)=\sum_k\qty(\hat{b}_k(t)u_n^k+\hat{b}_k^\dagger(t)u_n^{k*})
+\end{equation}
+\begin{equation}
+    \hat{p}_n(t)=\sum_k(-{i}m\omega_k)\qty(\hat{b}_k(t) u_n^k-\hat{b}_k^\dagger(t) u_n^{k*})
+\end{equation}
+We use these to isolate $\hat{b}_k$
+\begin{equation}
+    \hat{b}_k(t)=\frac{1}{2}\sum_n u_n^{k*}\left(\hat{q}_n(t)+\frac{{i}}{\omega_km}\,\hat{p}_n(t)\right)
+    \label{bk_op}
+\end{equation}
+Time dependence is given by Heisenberg's Equation
+\begin{equation}
+    {i}\hbar\dv{\hat{b_k}}{t}=\comm*{\hat{b}_k}{\hat{H}}=\hbar\omega_k\hat{b}_k
+    \label{bk_heins_eq}
+\end{equation}
+The commutator in equation (\ref{bk_heins_eq}) is calculated using equations (\ref{bk_op}), (\ref{hamilt_quantum_chain}) and the commutation relations (\ref{pq}) and (\ref{qqpp}). A solution is
+\begin{equation}
+    \hat{b}_k(t)={e}^{{-i}\omega_k t}\hat{b}_k(0)
+\end{equation}
+The correspondence with the Poisson Brackets (\ref{bkbkstar}) and (\ref{bkbkbkstarbkstar}), established by canonical quantization, is
+\begin{equation}
+    \comm*{\hat{b}_k}{\hat{b}_{k^\prime}^\dagger}=\frac{\hbar}{2m\omega_k}\delta_{kk^\prime}
+\end{equation}
+\begin{equation}
+    \comm*{\hat{b}_k}{\hat{b}_{k^\prime}}=\comm*{\hat{b}_k^\dagger}{\hat{b}_{k^\prime}^\dagger}=0
+\end{equation}
+Which can be confirmed using (\ref{bk_op}) and the canonical commutation relations (\ref{pq}) and (\ref{qqpp}).
+We normalize $\hat{b}_{k}$ to make it dimensionless, introducting $\hat{c}_k$
+\begin{equation}
+    \hat{c}_k=\sqrt{\frac{2m\omega_k}{\hbar}}\hat{b}_k
+    \label{ck}
+\end{equation}
+The commutation relations now reads
+\begin{equation}
+    \comm*{\hat{c}_k}{\hat{c}_{k^\prime}^\dagger}=\delta_{kk^\prime}
+\end{equation}
+\begin{equation}
+    \comm*{\hat{c}_k}{\hat{c}_{k^\prime}}=\comm*{\hat{c}_k^\dagger}{\hat{c}_{k^\prime}^\dagger}=0
+\end{equation}
+For an expression of the Hamiltonian in terms of $\hat{c}_k$ and $\hat{c}^\dagger_k$, we consider the quantum analogue of (\ref{hamilt_bk})'s the second equality
+\begin{equation}
+    \hat{H}=\sum_{k} m \omega_{k}^{2}\left(\hat{b}_{k} \hat{b}_{k}^{\dagger}+\hat{b}_{k}^{\dagger} \hat{b}_{k}\right)
+\end{equation}
+Using the dimensionless operator
+\begin{equation}
+    \hat{H}=\sum_{k} \frac{1}{2}\hbar\omega_{k}\left(\hat{c}_{k} \hat{c}_{k}^{\dagger}+\hat{c}_{k}^{\dagger} \hat{c}_{k}\right)=\sum_{k} \hbar\omega_{k}\left(\hat{c}_{k}^{\dagger} \hat{c}_{k}+\frac{1}{2}\right)
+\end{equation}
+Which is a sum over independent modes of frequencies $\omega_k$\textemdash so-called \textit{phonons}. The $\hat{c}_{k}^{\dagger}$ and $\hat{c}_{k}$ are respectively creation and annihilation operators for the $k$-th phonon. The lowest energy state is the ground state $\ket{0}$ for which $\hat{c}_k\ket{0}=0$. A general state of the $k$-th mode is built from the ground state
+\begin{equation}
+    \ket{n_k}=\frac{1}{\sqrt{n_k!}}(\hat{c}_k^\dagger)^{n_k}\ket{0}
+\end{equation}
+And the state of the system is the tensor product of the individual modes states
+\begin{equation}
+    \ket{n}=\ket{n_1,n_2\dots}=\prod_{k}\ket{n_k}
+\end{equation}
+
+This review intended to remind us of some concepts that will be ubiquitous from now on: Lagrangians, Hamiltonians, Commutators, Canonical Quantization and ladder operators. We covered it all for particle theories. The following developments are nothing but generalizations for field theories. We will deal with the ``classical mechanics" of the fields, which is classical field theory (Chapter 3), and with the quantum mechanics of fields (Chapter 4), our central theme for this project. But first, we need to understand why do we need fields in the first place. This is the subject of the following chapter.

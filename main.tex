@@ -1,0 +1,80 @@
+\documentclass[a4paper,12pt]{report}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{physics}
+\usepackage[top=2cm,bottom=2cm, left=2.5cm,right=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{bbm}
+\usepackage{microtype}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\newcommand{\midarrow}{\tikz \draw[-triangle 90] (0,0) -- +(.1,0);}
+\newcommand{\midarrowleft}{\tikz \draw[-triangle 90] (0,0) -- (-.1,0);}
+\usepackage{slashed}
+\usepackage[compat=1.1.0]{tikz-feynman}
+\usepackage{todonotes}
+
+\newcommand{\ten}[3]{{#1}^{#2}_{\phantom{a}#3}}
+\newcommand{\tend}[3]{{#1}_{#2}^{\phantom{A}#3}}
+%%%%%%%%%%%%%%%%%capa%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{titlepage}
+    \begin{center}  
+    \vspace{8cm}
+    \large{Matheus Melo Santos Velloso}\\
+    \vfill
+    \Large{Notes on Quantum Field Theory}\\
+    \vfill
+    \large{São Carlos, August 2021} 
+    \end{center}
+\end{titlepage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%rosto%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagenumbering{gobble}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tableofcontents
+%\listoftodos
+\newpage
+\pagenumbering{arabic}
+
+\include{conventions}
+
+\part{Motivating Field Theory}
+\include{chap1}
+\include{chap2}
+\part{Free Scalar Fields}
+\include{chap3}
+\include{chap4}
+\part{Interacting Scalar Fields}
+\include{2chap1}
+\include{complex}
+\include{2chap2}
+\include{2chap3}
+\include{2chap4}
+\part{Spinor Fields: Quantization and Yukawa Theory}
+\include{2chap5}
+\include{2chap6}
+\include{2chap7}
+\include{2chap8}
+\include{2chap9}
+%\include{non_rel_yukawa}
+\part{Electromagnetic Field: Quantization and QED}
+\include{2chap10}
+\include{2chap11}
+\bibliographystyle{unsrt}
+\bibliography{ref}
+\nocite{*}
+
+\end{document}

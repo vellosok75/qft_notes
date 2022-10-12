@@ -1,0 +1,109 @@
+\chapter*{Previous Work}
+\addcontentsline{toc}{chapter}{Previous Work}
+Here we outline important results from the previous report. Our starting point is the real scalar field Lagrangian
+\begin{equation}
+    \mathcal{L}(\phi(x),\partial_\mu\phi(x))=-\frac{1}{2}\partial^\mu\phi\partial_\mu\phi-\frac{1}{2}m^2\phi^2.
+    \label{scalar_field_lagrangian}
+\end{equation}
+The variational principle leads to the field equation -- the Klein-Gordon equation $(-\partial^2+m^2)\phi=0$, which admits a plane-wave mode expansion as a solution
+\begin{equation}
+    \phi(x)=\int \widetilde{\dd k}\qty[a(\vb{p})e^{ipx}+a^\dagger(\vb{p})e^{-ipx}].
+    \label{mode_expansion}
+\end{equation}
+We can extract the coefficient
+\begin{equation}
+\begin{aligned}
+        a(\vb{p})=&\int\dd^3x\,e^{-ipx}\qty(i\partial_0\phi(x)+\omega\phi(x))=i\int\dd^3x\,e^{-ipx}\overleftrightarrow{\partial_0}\phi(x),
+\end{aligned}
+\end{equation}
+and $a^\dagger(\vb{p})$ follows from hermitian conjugation.\\
+
+The canonical momentum is $\pi(x)=\dot{\phi}(x)$ and the canonical commutation relations are
+\begin{equation}
+\begin{array}{l}
+{\left[\phi(t,\mathbf{x}), \phi\left(t,\mathbf{x}^{\prime}\right)\right]=0}, \\
+{\left[\pi(t,\mathbf{x}), \pi\left(t,\mathbf{x}^{\prime}\right)\right]=0}, \\
+{\left[\phi(t,\mathbf{x}), \pi\left(t,\mathbf{x}^{\prime}\right)\right]=i \delta^3(\mathbf{x}-\mathbf{x}^{\prime})}.
+\end{array}
+\label{comu_fields}
+\end{equation}
+And
+\begin{equation}
+\begin{aligned}
+\left[a(\mathbf{p}), a\left(\mathbf{p}^{\prime}\right)\right] &=0, \\
+\left[a^{\dagger}(\mathbf{p}), a^{\dagger}\left(\mathbf{p}^{\prime}\right)\right] &=0 ,\\
+\left[a(\mathbf{p}), a^{\dagger}\left(\mathbf{p}^{\prime}\right)\right] &=(2 \pi)^{3} 2 \omega \delta^3(\mathbf{p}-\mathbf{p}^{\prime}),
+\label{commu_creators}
+\end{aligned}
+\end{equation}
+for the coefficients. We interpret $a^\dagger(\vb{p})$ as a creation operator of a on-shell particle state with momentum $\vb{p}$. It acts on the vacuum state $\ket{0}$, assumed to be normalized $\braket{0}=1$, and to vanish upon the action of the annihilation operator: $a(\vb{p})\ket{0}=0$, for any $\vb{p}$. The one-particle momentum states resulting from the action of the creator operator $\ket{p}=a^\dagger(\vb{p})\ket{0}$ have invariant normalization $\braket{p}{p^\prime}=(2\pi)^32\omega\delta^3(\vb{p}-\vb{p}^\prime)$, where $\omega=\sqrt{\vb{p}^2+m^2}$.\\
+
+We also defined a wave-packet creation operator
+\begin{equation}
+    a_1^\dagger=\int\dd^3p\,f_1(\vb{p})a^\dagger(\vb{p}),
+\end{equation}
+where $f_1(\vb{p})\propto\exp[-(\vb{p}-\vb{p}_1)^2/4\sigma^2]$. And prepared initial and final two-particle states
+\begin{equation}
+\ket{i}=\lim_{t\to-\infty}a_1^\dagger(t)a_2^\dagger(t)\ket{0},
+\label{2initial_state}
+\end{equation}
+\begin{equation}
+\ket{f}=\lim_{t\to\infty}a_{1^\prime}^\dagger(t)a_{2^\prime}^\dagger(t)\ket{0}.
+\label{2final_state}
+\end{equation}
+Upon the addition of interactions, if the field obeys 
+\begin{equation}
+    \bra{0}\phi(x)\ket{0}=0,
+    \label{condicao1}
+\end{equation}
+\begin{equation}
+    \bra{p}\phi(x)\ket{0}=e^{-ipx},
+    \label{condicao2}
+\end{equation}
+then the previous considerations concerning creation operators and wave-packets are also valid in the interacting theory. Then we can calculate the probability amplitude for scattering by projecting the final state into the initial state, that is,  by calculating the transition amplitude $\braket{f}{i}$. It reads
+\begin{equation}
+    \braket{f}{i}=\bra{0}\text{T}a_{1^\prime}(+\infty)a_{2^\prime}(+\infty)a_1^\dagger(-\infty)a_2^\dagger(-\infty)\ket{0},
+    \label{fi2}
+\end{equation}
+where $\text{T}$ indicates the product is \textit{time-ordered}: operators should be placed from the latest to act, at the left, to the earliest to act, on the right. In the previous report, we worked out an expression for $a^\dagger_1(-\infty)$, $a^\dagger_2(-\infty)$, $a_{1^\prime}(+\infty)$ and $a_{2^\prime}(+\infty)$,  calculated the time-ordered product and took the limit $\sigma\to0$ in the wave-packet functions, which were required solely to cancel surface terms. We arrived then at the \textit{Lehmann-Symanzik-Zimmermann (LSZ) reduction formula}
+\begin{equation}
+    \begin{aligned}
+    \braket{f}{i}&=i^4\int\dd^4x_1\dd^4x_2\,\dd^4x_{1^\prime}\dd^4x_{2^\prime}\,e^{ip_1x_1}\,e^{ip_2x_2}e^{-ip_{1}^\prime x_{1^\prime}}e^{-ip_{2}^\prime x_{2^\prime}}\\&\qquad\quad\times(-\partial_1^2+m^2)(-\partial_2^2+m^2)
+    (-\partial_{1^\prime}^2+m^2)\,(-\partial_{2^\prime}^2+m^2)\\&\qquad\quad\times\bra{0}\text{T}\phi(x_1)\phi(x_2)\phi(x_{1^\prime})\phi(x_{2^\prime})\ket{0}
+    \label{2lsz}.
+\end{aligned}
+\end{equation}
+Which immediately poses the task of calculating $\bra{0}\text{T}\phi(x_1)\phi(x_2)\phi(x_{1^\prime})\phi(x_{2^\prime})\ket{0}$, the \textit{correlation function},  so we can plug it into (\ref{2lsz}) and find the amplitude $\braket{f}{i}$. To this end, we developed tools for calculating correlation functions given the knowledge of \textit{Functional Integrals}.\\
+
+We saw that if we take the free Hamiltonian density to be $(1i-\epsilon)\mathcal{H}_0$, or, equivalently, replace the mass squared as $m^2\to m^2-i\epsilon$, then, in the presence of a source of particles $J$, the vacuum persistence amplitude is given by the functional integral
+\begin{equation}
+    Z_0(J)=\braket{0}_J=\int\mathcal{D}\phi\,\exp[i\int\dd^4x\,(\mathcal{L}_0+J\phi)].
+\end{equation}
+We ``completed the square" and found this functional Gaussian integral to be
+\begin{equation}
+    Z_0(J)=\exp[\frac{i}{2}\int\dd^4x\,\dd^4x^\prime J(x)\Delta(x-x^\prime)J(x^\prime)],
+\end{equation}
+where $\Delta(x-x^\prime)$ is the \textit{Feynman Propagator}
+\begin{equation}
+    \Delta(x-x^\prime)=\int\frac{\dd^4k}{(2\pi)^4}\frac{e^{ik(x-x^\prime)}}{k^2+m^2-i\epsilon},
+    \label{feynman_propagator_spacetime}
+\end{equation}
+which is the Green's Function for the Klein-Gordon differential operator
+\begin{equation}
+    (-\partial^2+m^2)\Delta(x-x^\prime)=\delta^4(x-x^\prime).
+    \label{greens_kg}
+\end{equation}
+We also showed that correlation functions can be calculated from the functional integral
+\begin{equation}
+    \bra{0}\text{T}\phi(x_1)\dots\ket{0}=\frac{1}{i}\fdv{J(x_1)}\dots Z_0(J)\eval_{J=0}.
+    \label{corr_general}
+\end{equation}
+For instance, the 2-point correlation is
+\begin{equation}
+    \begin{aligned}
+    \bra{0}\text{T}\phi(x_1)\phi(x_2)\ket{0}&=\frac{1}{i}\fdv{J(x_1)}\frac{1}{i}\fdv{J(x_2)}Z_0(J)\eval_{J=0}\\
+    &=\frac{1}{i}\Delta(x_2-x_1).
+\end{aligned}
+\end{equation}
+
+In what follows we will include interactions, so that $Z(J)=\int\mathcal{D}\phi\exp[i\int\dd^4x\,(\mathcal{L}+J\phi)]$, where $\mathcal{L}$ contains not only the free lagrangian but also the interacting part. Correlation functions will be calculated in a similar manner in terms of the functional integral, but with $Z(J)$ in place of $Z_0(J)$. From the knowledge of correlations, we will then calculate $\braket{f}{i}$ using the LSZ formula.

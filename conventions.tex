@@ -1,0 +1,74 @@
+\chapter*{Notations and Conventions}
+\addcontentsline{toc}{chapter}{Notation and Conventions}
+We highlight some notation and conventions adopted throughout this text. The set of coordinates of Minkowski's spacetime is denoted by $x=(x^0,x^1,x^2,x^3)$, where $x^0=ct$ and our metric tensor has the signature of mostly positive terms
+\begin{equation*}
+    g_{\mu\nu}=g^{\mu\nu}=\text{diag}(-1,+1,+1,+1).
+\end{equation*}
+Repeated indices hide an implicit sum -- Einstein's summation convention. This means, for instance, that
+\begin{equation*}
+    p_ix^i\equiv\sum_i p_ix^i.
+\end{equation*}
+Latin indices run from 1 to 3 when denoting space coordinates; or from 1 to 2 when denoting Weyl spinor components; Greek indices run from 0 to 3 when denoting spacetime components;  or from 1 to 4 when denoting Dirac and Majorana bispinor components. With our choice of metric, lowering Lorentz indices of, say, $x^\mu=(x^0,\vb{x})$ flips the sign of the time coordinate, that is
+\begin{equation*}
+    x_\mu=g_{\mu\nu}x^\nu=(-x^0,\vb{x}),
+\end{equation*}
+so scalar products reads, for instance,
+\begin{equation*}
+    px\equiv g_{\mu\nu}p^\mu x^\nu =-p^0x^0+\vb{p}\vdot\vb{x},
+\end{equation*}
+and the four-momentum is normalized as $p^2=p_\mu p^\mu=-m^2$ in the system of units we adopt throughout the text: $c=\hbar=1$.
+The four-gradient reads $\partial_\mu=(\partial_t,\grad)$ and the D'Alambertian operator reads $\partial^2=\partial_\mu\partial^\mu=-\partial_t^2+\laplacian$.\\
+
+Our Fourier transforms will always carry the $2\pi$ factors in the momentum integral. Spacetime transforms and inverse transforms read
+\begin{equation*}
+    \widetilde f({k})=\int{\dd ^4x} {f}({x})e^{-i{k}{x}},
+\end{equation*}
+\begin{equation*}
+    f({x})=\int\frac{\dd ^4 k}{(2\pi)^4} \widetilde{f}({k})e^{i{k}{x}},
+\end{equation*}
+while space transforms and inverse transforms read
+\begin{equation*}
+    \widetilde f({\vb{k}})=\int{\dd ^3x} {f}(\vb{x})e^{-i{\vb{k}}\vdot\vb{x}},
+\end{equation*}
+\begin{equation*}
+    f(\vb{x})=\int\frac{\dd ^3 k}{(2\pi)^3} \widetilde{f}(\vb{k})e^{i\vb{k}\vdot\vb{x}}.
+\end{equation*}
+With such convention, the Dirac Delta distribution is represented in $d$ dimensions by
+\begin{equation*}
+    \delta^d(x)=\int\frac{\dd^dk}{(2\pi)^d}e^{ikx}.
+\end{equation*}
+
+When dealing with spinors, our Dirac $\gamma$ matrices satisfy
+\begin{equation*}
+    \pb{\gamma^\mu}{\gamma^\nu}=-2g^{\mu\nu},
+\end{equation*}
+and we use the chiral -- or Weyl -- representation
+\begin{equation*}
+\gamma^{0}=\left(\begin{array}{cc}
+0 & I \\
+I & 0
+\end{array}\right), \quad \gamma^{i}=\left(\begin{array}{cc}
+0 & \sigma^{i} \\
+-\sigma^{i} & 0
+\end{array}\right),
+\end{equation*}
+where $\sigma^i$ are the Pauli Matrices
+\begin{equation*}
+\sigma^{1}=\left(\begin{array}{ll}
+0 & 1 \\
+1 & 0
+\end{array}\right), \quad \sigma^{2}=\left(\begin{array}{cc}
+0 & -i \\
+i & 0
+\end{array}\right), \quad \sigma^{3}=\left(\begin{array}{cc}
+1 & 0 \\
+0 & -1
+\end{array}\right).
+\end{equation*}
+For electrodynamics, we adopt Heaviside-Lorentz units. The electron charge $e$ is negative and related to the fine structure constant by $\alpha=e^2/(4\pi)$, since we also take $c=\hbar=1$.\\
+
+Ubiquitously in the text, we use the invariant measure
+\begin{equation*}
+    \widetilde{\dd p}=\frac{\dd^3 p}{(2\pi)^32\omega}
+\end{equation*}
+for particles with $p^\mu=(\omega,\vb{p})$.

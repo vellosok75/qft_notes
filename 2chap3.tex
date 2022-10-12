@@ -1,0 +1,237 @@
+\chapter{Observables: Cross-sections and decay rates}
+From scattering amplitudes we will obtain the most common observables of interest in high-energies: the cross-section and the decay rate. The first will contain information about the probability of collisions and the second will contain information about the probability of transmutation of one type of particle to another one or to a set of different particles.
+\section{High-energy collisions in the Lab and CM frames}
+We examine collisions in two different frames of reference. The first we consider is that lying in the center of mass (CM) of a two-particle system. Suppose we have two particles heading toward one another along the $z$ axis. We label their masses $m_1$ and $m_2$, their 3-momenta $\vb{k}_1$ and $\vb{k}_2$, and 4-momenta $k_1$ and $k_2$, normalized as $k_i^2=-m^2_i$. In this setup, the total 3-momentum vanishes: $\vb{k}_1+\vb{k}_2=0$. We define the invariant $s=-(k_1+k_2)^2$, which in the CM frame reduces to $s=(E_1+E_2)^2$. Bearing in mind the mass-shell relations
+\begin{equation}
+    \begin{aligned}
+        E_1&=\sqrt{\vb{k}_1^2+m_1^2}\\
+        E_2&=\sqrt{\vb{k}_2^2+m_2^2}
+    \end{aligned}
+\end{equation}
+and that $\vb{k}_2=-\vb{k}_1$, then we can show that
+\begin{equation}
+    \abs{\vb{k}_1}=\frac{1}{2\sqrt{s}}\sqrt{s^2-2(m_1^2+m_2^2)s+(m_1^2-m_2^2)^2}.
+    \label{k1}
+\end{equation}
+After the collision, in the CM frame we again have $\vb{k}_1^\prime+\vb{k}_2^\prime=0$ and $(E_1^\prime+E_2^\prime)^2=s$, so that
+\begin{equation}
+    \abs{\vb{k}_1^\prime}=\frac{1}{2\sqrt{s}}\sqrt{s^2-2(m_{1^\prime}^2+m_{2^\prime}^2)s+(m_{1^\prime}^2-m_{2^\prime}^2)^2}.
+    \label{k1linha}
+\end{equation}
+To specify the angle $\theta$ between $\vb{k}_1$ and $\vb{k}_1^\prime$, we define another invariant $t=-(k_1-k_1^\prime)^2$
+\begin{equation}
+    t=m_1^2+m_{1^\prime}^2-2E_1E_{1^\prime}+2\abs{\vb{k}_1}\abs{\vb{k}_{1}^\prime}\cos\theta
+    \label{tzinho}
+\end{equation}
+valid in any frame. The scalars $s$ and $t$ are two of the \textit{Mandelstam Variables}, defined by
+\begin{equation}
+    \begin{aligned}
+        s=-(k_1+k_2)^2&=-(k_{1^\prime}+k_{2^\prime})^2\\
+        t=-(k_1-k_{1^\prime})^2&=-(k_2-k_{2^\prime})^2\\
+        u=-(k_1-k_{2^\prime})^2&=-(k_2-k_{1^\prime})^2
+    \end{aligned}
+    \label{mandelstam}
+\end{equation}
+and satisfying
+\begin{equation}
+    s+t+u=m_1^2+m_2^2+m_{1^\prime}^2+m_{2^\prime}^2.
+    \label{soma_mandelstam}
+\end{equation}
+In terms of Mandelstam variables, the scattering amplitude we found in last section reads
+\begin{equation}
+    i\mathcal{T}=ig^2\qty[\frac{1}{m^2-s}+\frac{1}{m^2-t}+\frac{1}{m^2-u}].
+\end{equation}
+
+Now we consider a fixed target frame (FT), ie. the lab frame. A particle lies at rest $\vb{k_2}=0$ while the other hits it with 3-momentum $\vb{k}_1$ along a $z$ axis. In this case we can check that
+\begin{equation}
+    \abs{\vb{k}_1}=\frac{1}{2m_2}\sqrt{s^2-2(m_1^2+m_2^2)s+(m_1^2-m_2^2)^2}.
+\end{equation}
+That is, $m_2\abs{\vb{k}_1}_{\text{FT}}=\sqrt{s}\abs{\vb{k}_1}_{\text{CM}}$.
+\section{The differential cross-section}
+To get information about the probability of a scattering event between two incoming particles resulting in $n^\prime$ outgoing particles, we look for the \textit{cross-section}: a parameter with dimensions of area specifying the probability of a scattering event given the knowledge of the number of incoming particles and their velocities. \\
+
+From the amplitude (\ref{scattering_amplitude}) we can construct first the \textit{differential cross-section}, which gives the total cross-section upon integration. To this end, we consider a system of particles enclosed in a large cubical box of sides $L$ and volume $V=L^3$, with the scattering event happening during an interval $T$ of time. Considering the amplitude (\ref{scattering_amplitude}), the probability of scattering is
+\begin{equation}
+    P=\frac{\abs{\braket{f}{i}}^2}{\braket{f}\braket{i}}.
+\end{equation}
+Now, since
+\begin{equation}
+    \abs{\braket{f}{i}}^2=(2\pi)^4\delta^4(k_{\text{in}}-k_{\text{out}})(2\pi)^4\delta^4(0)\abs{\mathcal{T}}^2
+\end{equation}
+and noting that
+\begin{equation}
+    (2\pi)^4\delta^4(0)=\int\dd^4x\, e^{i0x}=VT
+\end{equation}
+and that the initial and final states are normalized as $\braket{k}=(2\pi)^32k^0\delta^3(\vb{0})=2k^0V$, then we can see that for the incoming two-particle state we have
+\begin{equation}
+    \braket{i}=4E_1E_2V^2
+\end{equation}
+and for the $n^\prime$ outgoing ones 
+\begin{equation}
+    \braket{f}=\prod_{j=1}^{n^\prime}2k^{\prime0}_{j} V.
+\end{equation}
+Then, the scattering probability per unit time reads
+\begin{equation}
+    \dot{P}=\frac{(2\pi)^4\delta^4(k_{\text{in}}-k_{\text{out}})V\abs{\mathcal{T}}^2}{4E_1E_2V^2\prod_{j=1}^{n^\prime}2k_j^{\prime0}V}.
+\end{equation}
+We must sum over the momenta of outgoing particles $\vb{k}^\prime_j$. Imposing periodic boundary conditions to the box enclosing the system, momentum states will be discrete: $\vb{k}^\prime_j=\frac{2\pi}{L}\vb{n}_j^\prime$, with $\vb{n}_j^\prime$ being a vector with integer entries. In the limit $L\to\infty$, we replace the sum for an integral: $\sum_{\vb{n}_j^\prime}\to\frac{V}{(2\pi)^3}\int\dd^3k^\prime_j$. Therefore, the probability per unit time must be multiplied by the appropriate factor $\frac{V}{(2\pi)^3}\dd^3k^\prime_j$ for each outgoing particle so that it gives the correct answer upon integration (summation). That is
+\begin{equation}
+    \dot{P}=\frac{(2\pi)^4\delta^4(k_{\text{in}}-k_{\text{out}})\abs{\mathcal{T}}^2}{4E_1E_2V}\prod_{j=1}^{n^\prime}\widetilde{\dd k}^\prime_j
+\end{equation}
+where $\widetilde{\dd k}_j^\prime=\frac{\dd^3 k_{j}^\prime}{(2\pi)^32k^{\prime0}_j}$ is the Lorentz invariant measure. \\
+
+The cross-section $\sigma$  expresses the proportionality between the number of observed scattering events and the incident flux of particles $J$. The differential cross-section $\dd \sigma$ is then equal to $\dot{P}/J$. The flux $J$ is the number of incoming particles per volume times their speed. Considering a single incoming particle with $E_1=m_1\gamma$, $\vb{k}_1=m_1\gamma\vb{v}_1$, in the FT frame with the second particle at rest, the incident flux is $\frac{1}{V}v=\frac{\abs{\vb{k}_1}}{E_1V}$, since there is only one particle and $v=\frac{\abs{\vb{k}_1}}{E_1}$ is its velocity. The differential cross-section $\dd\sigma=\frac{\dot{P}}{\abs{\vb{k}_1}/E_1V}$ reads
+\begin{equation}
+    \dd \sigma=\frac{(2\pi)^4\delta^4(k_{\text{in}}-k_{\text{out}})\abs{\mathcal{T}}^2}{4\abs{\vb{k}_1}E_2}\prod_{j=1}^{n^\prime}\widetilde{\dd k}^\prime_j.
+\end{equation}
+Recalling that, in the FT frame $E_2=m_2$, and that $\abs{\vb{k}_1}=\abs{\vb{k}_1}_{\text{FT}}=\frac{\sqrt{s}}{m_2}\abs{\vb{k}_1}_{\text{CM}}$, defining a Lorentz invariant phase-space integration measure for $n^\prime$ outgoing particle scattering by
+\begin{equation}
+    \dd \text{LIPS}_{n^\prime}(k)=(2\pi)^4\delta^4\qty(k-\sum_{i=1}^{n^\prime}k_i^\prime)\prod_{j=1}^{n^\prime}\widetilde{\dd k}_j^\prime
+\end{equation}
+then the differential cross-section reads
+\begin{equation}
+    \dd \sigma=\frac{1}{4\abs{\vb{k}_1}_{\text{CM}}\sqrt{s}}\abs{\mathcal{T}}^2\dd \text{LIPS}_{n^\prime}(k_1+k_2).
+\end{equation}
+For the special case of two outgoing particles in the CM frame: $\dd \text{LIPS}_{2}(k_1+k_2)=(2\pi)^4\delta^4(k_1+k_2-k_1^\prime-k_2^\prime)\widetilde{\dd k}_1^\prime\widetilde{\dd k}_2^\prime$, $\vb{k}_1+\vb{k}_2=0$ and $k^0_1+k^0_2=E_1+E_2=\sqrt{s}$ so 
+\begin{equation}
+    \begin{aligned}
+        \dd \text{LIPS}_{2}(k_1+k_2)&=(2\pi)^4\delta(E_1^\prime+E_2^\prime-\sqrt{s})\delta^3(\vb{k}_1^\prime+\vb{k}_2^\prime)\frac{\dd^3k_1^\prime}{(2\pi)^32E_1^\prime}\frac{\dd^3k_2^\prime}{(2\pi)^32E_2^\prime}\\
+        &=\frac{1}{4(2\pi)^2E_1^\prime E_2^\prime}\delta(E_1^\prime+E_2^\prime-\sqrt{s})\delta^3(\vb{k}_1^\prime+\vb{k}_2^\prime)\dd^3k_1^\prime\dd^3k_2^\prime.
+    \end{aligned}
+\end{equation}
+Integration over $\dd^3 k_2^\prime$ sets $\vb{k}_2^\prime=-\vb{k}_1^\prime$ and $E_2^\prime=\sqrt{\vb{k}_1^{\prime2}+m_{2^\prime}^2}$. We change to spherical coordinates: $\dd^3k_1^\prime=\abs{\vb{k}_1^\prime}^2\dd \abs{\vb{k}_1^\prime}\dd \Omega_{\text{CM}}$, where $\dd\Omega_{\text{CM}}=\sin\theta\dd\theta\dd\phi$ is the solid angle element in the CM frame, $\theta$ being the angle between $\vb{k}_1$ (parallel to $z$) and $\vb{k}_1^\prime$. Next we integrate over $\dd \abs{\vb{k}_1^\prime}$ making use of the property
+\begin{equation}
+    \delta(f(x))=\sum_{\substack{x_i\\{f(x_i)=0}}}\frac{1}{\abs{f^\prime(x_i)}}\delta(x-x_i)
+\end{equation}
+being $x_i$ the zeroes of $f(x)$ and $f^\prime(x)$ its derivative. This means
+\begin{equation}
+    \begin{aligned}
+        \int\abs{\vb{k}_1^\prime}^2\dd\abs{\vb{k}_1^\prime}\delta\qty(E_1^\prime+E_2^\prime-\sqrt{s})&=\abs{\vb{k}_1^\prime}^2\abs{\pdv{\abs{\vb{k}_1^\prime}}(E_1^\prime+E_2^\prime-\sqrt{s})}^{-1}\\
+        &=\abs{\vb{k}_1^\prime}^2\abs{\frac{\abs{\vb{k}_1^\prime}}{E_1^\prime}+\frac{\abs{\vb{k}_1^\prime}}{E_2^\prime}}^{-1}\\
+        &=\abs{\vb{k}_1^\prime}^2\frac{1}{\abs{\vb{k}_1^\prime}}\frac{E_1^\prime E_2^\prime}{E_1^\prime+E_2^\prime}\\
+        &=\abs{\vb{k}_1^\prime}\frac{E_1^\prime E_2^\prime}{\sqrt{s}}
+    \end{aligned}
+\end{equation}
+where $\abs{\vb{k}_1^\prime}$ is the solution to $E_1^\prime+E_2^\prime=\sqrt{s}$, given by (\ref{k1linha}). The phase space measure reads 
+\begin{equation}
+\dd \text{LIPS}_{2}(k_1+k_2)=\frac{\abs{\vb{k}_1^\prime}}{16\pi^2\sqrt{s}}\dd\Omega_{\text{CM}}   
+\label{dlips2}
+\end{equation}
+and so the differential cross-section is
+\begin{equation}
+    \dv{\sigma}{\Omega_{\text{CM}}}=\frac{1}{64\pi^2s}\frac{\abs{\vb{k}_1^\prime}}{\abs{\vb{k}_1}}\abs{\mathcal{T}}^2
+\end{equation}
+with $\abs{\vb{k}_1}$ and $\abs{\vb{k}_1^\prime}$ evaluated at the CM frame, where they are given by (\ref{k1}) and (\ref{k1linha}). Also in CM frame, we note that (\ref{tzinho}) gives
+\begin{equation}
+    \dd t=2\abs{\vb{k}_1}\abs{\vb{k}_1^\prime}\dd \cos \theta=2\abs{\vb{k}_1}\abs{\vb{k}_1^\prime}\frac{\dd \Omega_{\text{CM}}}{2\pi}
+\end{equation}
+so we can write
+\begin{equation}
+    \dv{\sigma}{t}=\dv{\sigma}{\Omega_{\text{CM}}}\qty(\dv{t}{\Omega_{\text{CM}}})^{-1}=\frac{1}{64\pi s\abs{\vb{k}_1}^2}\abs{\mathcal{T}}^2
+    \label{dsigmadt}
+\end{equation}
+
+Now, for the total cross-section $\sigma$, we must integrate the differential cross-section, but there is a subtle detail. If the outgoing particles are identical we must divide by a symmetry factor $S$
+\begin{equation}
+    \sigma=\frac{1}{S}\int\dd\sigma
+\end{equation}
+where 
+\begin{equation}
+    S=\prod_i n_i^\prime!
+\end{equation}
+This is because if there are identical particles, integration over outgoing momenta will treat them as distinguishable, leading to an over-count. In the case of 2 outgoing particles $S=1$ if the particles are distinguishable and $S=2$ if they are identical. Therefore
+\begin{equation}
+    \sigma=\frac{1}{S}\int\dv{\sigma}{\Omega_{\text{CM}}}\dd \Omega_{\text{CM}}=\frac{2\pi}{S}\int_{-1}^1\dv{\sigma}{\Omega_{\text{CM}}}\,\dd \cos \theta.
+\end{equation}
+To evaluate this integral, we must express $t$ and $u$ in terms of $s$ and $\theta$, since the differential cross-section presents dependence on these variables. Alternatively, we can make use of
+\begin{equation}
+    \sigma=\frac{1}{S}\int_{t_{\text{min}}}^{t_{\text{max}}}\dv{\sigma}{t}\dd t
+    \label{total_cross_section}
+\end{equation}
+and express $u$ in terms of  $s$ and $t$ and integrate over $t$ at fixed $s$. The values of $t_{\text{min}}$ and $t_{\text{max}}$ are given by (\ref{tzinho}), when $\theta=\pi$ , for the minimum, and $\theta=0$, for the maximum.
+
+\section{Cross-sections in $\phi^3$ theory}
+We calculate, in $\phi^3$ theory, the cross-section for a scattering involving two incoming particles in the CM frame with equal masses $m$, yielding two outgoing particles. In this setup: $E_1=E_2=E=\sqrt{\vb{k}_1^2+m^2}$; $s=(E_1+E_2)^2=4E^2$; $\abs{\vb{k}_1}=\abs{\vb{k}_1^\prime}=\frac{1}{2}(s-4m^2)^{1/2}$, according to (\ref{k1}) and (\ref{k1linha}); $t=-\frac{1}{2}(s-4m^2)(1-\cos\theta)$, according to (\ref{tzinho}); and $s+t+u=4m^2$, according to (\ref{mandelstam}). So $u=-\frac{1}{2}(s-4m^2)(1+\cos\theta)$. Our task is to expand 
+\begin{equation}
+    \mathcal{T}=g^2\qty[\frac{1}{m^2-s}+\frac{1}{m^2-t}+\frac{1}{m^2-u}]+\order{g^4}.
+\end{equation}
+and integrate (\ref{total_cross_section}).\\
+
+First, in the non-relativistic limit, where $\abs{\vb{k}_1}\ll m$, or, equivalently $s-4m^2\ll m^2$, $s\ll m^2$, binomial expansion gives
+\begin{equation}
+    \frac{1}{m^2-s}\approx\frac{1}{m^2}\qty[1+\frac{s}{m^2}+\frac{s^2}{m^4}\dots]
+\end{equation}
+\begin{equation}
+    \frac{1}{m^2-t}\approx\frac{1}{m^2}\qty[1-\frac{1}{2m^2}(s-4m^2)(1-\cos\theta)+\frac{1}{4m^4}(s-4m^2)^2(1-\cos\theta)^2+\dots]
+\end{equation}
+\begin{equation}
+    \frac{1}{m^2-u}\approx\frac{1}{m^2}\qty[1-\frac{1}{2m^2}(s-4m^2)(1+\cos\theta)+\frac{1}{4m^4}(s-4m^2)^2(1+\cos\theta)^2+\dots]
+\end{equation}
+Adding the terms and rearranging in powers of $(s-4m^2)/m^2$:
+\begin{equation}
+    \mathcal{T}=\frac{5g^2}{3m^2}\qty[1-\frac{8}{15}\qty(\frac{s-4m^2}{m^2})+\frac{5}{18}\qty(1+\frac{27}{25}\cos^2\theta)\qty(\frac{s-4m^2}{m^2})^2+\dots]+\order{g^4}
+\end{equation}
+which gives a nearly isotropic differential cross-section. In the extreme relativistic limit, where $\abs{\vb{k}_1}\gg m$, or, equivalently $s\gg m^2$, expansion in powers of $m^2/s$ gives :
+\begin{equation}
+\mathcal{T}=\frac{g^{2}}{s \sin ^{2} \theta}\left[3+\cos ^{2} \theta-\left(\frac{\left(3+\cos ^{2} \theta\right)^{2}}{\sin ^{2} \theta}-16\right) \frac{m^{2}}{s}+\ldots\right]+\order{g^4}
+\end{equation}
+which is peaked in $\theta=0$ and $\theta=\pi$. These results tell us that, in the non-relativistic limit, scatterings are equally likely in any direction while, in the relativistic limit, particles are more likely to scatter along the direction of the incident particle.\\
+
+We can integrate (\ref{total_cross_section}) using (\ref{dsigmadt}). In this case $t_{\text{min}}=-(s-4m^2)$ and $t_{\text{max}}=0$. We are considering identical particles so $S=2$. The relation among Mandelstam variables gives $u=4m^2-s-t$. Integration over $t$ with fixed $s$ gives
+\begin{equation}
+\begin{aligned}
+\sigma=&\frac{g^{4}}{32 \pi s\left(s-4 m^{2}\right)}\left[\frac{2}{m^{2}}+\frac{s-4 m^{2}}{\left(s-m^{2}\right)^{2}}-\frac{2}{s-3 m^{2}}\right.
+\\
+&\left.\qquad\qquad\qquad\qquad+\frac{4 m^{2}}{\left(s-m^{2}\right)\left(s-2 m^{2}\right)} \ln \left(\frac{s-3 m^{2}}{m^{2}}\right)\right]  
+\end{aligned}{}
+\end{equation}
+\section{Decay rates}
+Even though the LSZ formula demands incoming and outgoing states to be single-particle states, we can use it to consider the situation in which we have an incoming single-particle state and multiple particle outgoing states. The modification will be only to the initial state normalization: $\braket{i}{i}=2E_1V$. Then, the differential decay rate $\dd \Gamma$ reads
+\begin{equation}
+    \dd \Gamma =\frac{\abs{\mathcal{T}}^2}{2E_1}\dd\text{LIPS}_{n^\prime}(k_1)
+\end{equation}
+where $s=-k_1^2=E_1^2=m_1^2$, in the CM frame, which, in this case, is the rest frame of the particle. The total decay rate 
+\begin{equation}
+    \Gamma = \frac{1}{S}\int\dd \Gamma
+\end{equation}
+\section{Scalar-scalar decay rate}
+As an example, we calculate the decay rate for scalar particles. We consider two scalar fields $A$ and $B$, with an interaction Lagrangian $\mathcal{L}_1=gAB^2$
+\begin{equation}
+    \mathcal{L}=-\frac{1}{2}\partial^\mu A\partial_\mu A - \frac{1}{2}m_A A^2-\frac{1}{2}\partial^\mu B\partial_\mu B - \frac{1}{2}m_B B^2+\mathcal{L}_1.
+\end{equation}
+where $m_A>m_B$. The functional integral reads
+\begin{equation}
+    Z(J_A,J_B)=\exp[ig\int\dd^4 x\qty(\frac{1}{i}\fdv{J_A(x)})\qty(\frac{1}{i}\fdv{J_B(x)})^2]Z_{0_A}Z_{0_B}
+\end{equation}
+where 
+\begin{equation}
+    Z_{0_I}(J_I)=\exp[-\frac{i}{2}\int\dd^4x\,\dd^4y\, J_I(x)\Delta_I(x-y)J_I(y)]
+\end{equation}
+and 
+\begin{equation}
+    \Delta_I(x-y)=\int\frac{\dd^4 k}{(2\pi)^4}\frac{e^{ik(x-y)}}{k^2+m^2_I-i\epsilon}
+\end{equation}
+for $I=A,B$. The functional integral is the exponential of the sum of connected diagrams with sources. For such diagrams, we distinguish the propagators by using solid and dashed lines. The vertex factor is $2ig\int\dd^4 x$  because the swap of $B$ propagators is the same as the swap of the $B$ functional integrals. We calculate the rate for particle $A$ to decay into two particles $B$. Into the LSZ, at tree level, we get the matrix element $i\mathcal{T}=2ig$, as diagram shows
+\begin{equation}
+\begin{aligned}
+i\mathcal{T}=
+\begin{gathered}
+    \begin{tikzpicture}
+    \draw (0,0) -- (1,0);
+    \draw[densely dashed] (1,0)--(1.5,0.5);
+    \draw[densely dashed] (1,0)--(1.5,-0.5);
+    \end{tikzpicture}
+\end{gathered}
+\end{aligned}
+\end{equation}
+Next, we calculate 
+\begin{equation}
+    \Gamma=\frac{1}{S}\int\frac{\abs{\mathcal{T}}^2}{2E_1}\dd\text{LIPS}_2(k_1)
+\end{equation}
+for two identical outgoing $B$ particles, so $S=2$. Using (\ref{dlips2}) and (\ref{k1linha}) with $s=m_A^2=E_1^2$, $m_1=m_A$, $m_{1^\prime}=m_{2^\prime}=m_B$, plus $\mathcal{T}=2g$, then
+\begin{equation}
+    \begin{aligned}
+    \Gamma&=\frac{1}{32\pi^2}\frac{g^2}{m_A}\sqrt{1-\frac{4m_B^2}{m_A^2}}\int\dd\Omega=\frac{1}{8\pi}\frac{g^2}{m_A}\sqrt{1-\frac{4m_B^2}{m_A^2}}
+    \end{aligned}
+\end{equation}
+where everything has been evaluated in the CM frame. This is a general result for scalar-to-scalar decays.

@@ -1,0 +1,304 @@
+\chapter{Canonical Quantization of the Dirac Field}
+\section{Conjugate momenta and canonical anti-comutation relations}
+Now we canonically quantize the Dirac Field. We calculate the conjugate momentum
+\begin{equation}
+    \Pi^\beta=\pdv{\mathcal{L}}{(\partial_0\Psi_\beta)}
+\end{equation}
+from the Dirac Field Lagrangian (\ref{dirac_lagrangian}) $$\mathcal{L}=i\Bar{\Psi}\gamma^\mu\partial_\mu\Psi-m\Bar{\Psi}\Psi$$
+and get
+\begin{equation}
+    \Pi^\beta=i\Bar{\Psi}_\delta(\gamma^0)^{\delta\beta}.
+    \label{can_mom_dirac}
+\end{equation}
+The canonical anti-commutation relations 
+\begin{equation*}
+    \begin{aligned}
+        \pb{\Psi_\alpha(t,\vb{x})}{\Psi_\beta(t,\vb{y})}&=0\\
+        \pb{\Psi_\alpha(t,\vb{x})}{\Pi^\beta(t,\vb{y})}&=i\delta_\alpha^\beta\delta^3(\vb{x}-\vb{y})
+    \end{aligned}
+\end{equation*}
+with canonical momentum (\ref{can_mom_dirac}) and bearing in mind that $(\gamma^0)^2=I$ read
+\begin{equation}
+    \begin{aligned}
+        \pb{\Psi_\alpha(t,\vb{x})}{\Psi_\beta(t,\vb{y})}&=0\\
+        \pb{\Psi_\alpha(t,\vb{x})}{\Bar{\Psi}_\beta(t,\vb{y})}&=(\gamma^0)_{\alpha\beta}\delta^3(\vb{x}-\vb{y})
+    \end{aligned}
+    \label{anticomm_dirac}
+\end{equation}
+\section{The Dirac field mode expansion}
+Now we focus on solving the equation of motion, the Dirac Equation:
+\begin{equation*}
+    (-i\slashed{\partial}+m)\Psi=0.
+\end{equation*}
+Where we are introducing the \textit{Feynman slash} notation to indicate scalar products between 4-vectors and gamma matrices, that is, $\slashed{\partial}=\gamma^\mu\partial_\mu$. To get insight about the solutions to the Dirac equation, note that acting with $(i\slashed{\partial}+m)$ on it gives
+\begin{equation}
+    \begin{aligned}
+        (\slashed{\partial}\slashed{\partial}+m^2)\Psi=0.
+    \end{aligned}
+    \label{dirac_reit}
+\end{equation}
+Now, since $\slashed{\partial}\slashed{\partial}=\gamma^\mu\gamma^\nu\partial_\mu\partial_\nu$ and $\partial_\mu$ and $\partial_\nu$ commute, we can replace $\gamma^\mu\gamma^\nu$ by its symmetric part $\frac{1}{2}\pb{\gamma^\mu}{\gamma^\nu}=-g^{\mu\nu}$. So $\slashed{\partial}\slashed{\partial}=- \partial^2$  and (\ref{dirac_reit}) is nothing but the Klein-Gordon equation. This tells us that $\Psi$ is also a solution to the Klein-Gordon equation, so it can be expanded in terms of plane-wave modes
+\begin{equation}
+    \Psi(x)=u(\vb{p})e^{ipx}+v(\vb{p})e^{-ipx}
+\end{equation}
+where $u(\vb{p})$ and $v(\vb{p})$ are four-component constant bispinors. Plugging this ansatz into the Dirac Equaton gives $(\slashed{p}+m)u(\vb{p})e^{ipx}+(-\slashed{p}+m)v(\vb{p})e^{-ipx}=0$ so we must simultaneously satisfy
+\begin{equation}
+\begin{aligned}
+     (\slashed{p}+m)u(\vb{p})&=0\\
+     (-\slashed{p}+m)v(\vb{p})&=0.
+\end{aligned}
+\label{uv}
+\end{equation}
+These two equations have two linearly independent solutions $u_{\pm}(\vb{p})$ and $v_{\pm}(\vb{p})$ so the mode expansion for the Dirac field must be
+\begin{equation}
+    \Psi(x)=\sum_{s=\pm}\int\widetilde{\dd p}\qty[b_s(\vb{p})u_s(\vb{p})e^{ipx}+d^\dagger_s(\vb{p})v_s(\vb{p})e^{-ipx}]
+    \label{dirac_mode_expansion}
+\end{equation}
+where, as usual, $\widetilde{\dd p}=\frac{\dd^3 p}{(2\pi)^3 2\omega}$ is the Lorentz Invariant integration measure, $\omega=\sqrt{\vb{p}^2+m^2}$, $b_s(\vb{p})$ and $d^\dagger_s(\vb{p})$ are coefficients to be interpreted as creation and annihilation operators upon quantization.\\
+
+As for the solutions to (\ref{uv}), we label them in the rest frame $\vb{p}=\vb{0}$ by $u_{\pm}(\vb{0})$ and $v_{\pm}(\vb{0})$, and we distinguish  them by their spin along the $z$-axis, indicated by their eigenvalues upon the action of $S_z$
+\begin{equation}
+S_{z}=\frac{i}{4}\left[\gamma^{1}, \gamma^{2}\right]=\frac{i}{2} \gamma^{1} \gamma^{2}=\left(\begin{array}{cc}
+\frac{1}{2} \sigma_{3} & 0 \\
+0 & \frac{1}{2} \sigma_{3}
+\end{array}\right).
+\end{equation}
+We require 
+\begin{equation}
+    \begin{aligned}
+         S_z u_{\pm}(\vb{0})&=\pm\frac{1}{2}u_{\pm}(\vb{0})\\
+         S_z v_{\pm}(\vb{0})&=\mp\frac{1}{2}v_{\pm}(\vb{0}).
+    \end{aligned}
+\end{equation}
+A choice that guarantees that both $b^\dagger_{+}$ and $d^\dagger_{+}$ create spin up particles along the $z$-axis \cite{srednicki2007quantum}. In the rest frame $\slashed{p}=p_\mu\gamma^\mu=p_0\gamma^0=-m\gamma^0$ so equations (\ref{uv}) reduce to
+\begin{equation}
+\begin{aligned}
+    m(-\gamma^0+I_4)u_s(\vb{0})&=m\left(\begin{array}{cc}
+I_2 & -I_2 \\
+-I_2 & I_2
+\end{array}\right)u_s(\vb{0})=0\\
+    m(\gamma^0+I_4)v_s(\vb{0})&=m\left(\begin{array}{cc}
+I_2 & I_2 \\
+I_2 & I_2
+\end{array}\right)u_s(\vb{0})=0
+\end{aligned}
+\end{equation}
+where $I_n$ is the $n\times n$ identity matrix. The solutions are
+\begin{equation}
+\begin{aligned}
+    u_{+}(\mathbf{0})=\sqrt{m}\left(\begin{array}{l}
+1 \\
+0 \\
+1 \\
+0
+\end{array}\right)\qquad & u_{-}(\mathbf{0})=\sqrt{m}\left(\begin{array}{c}
+0 \\
+1 \\
+0 \\
+1
+\end{array}\right) \\
+v_{+}(\mathbf{0})=\sqrt{m}\left(\begin{array}{c}
+0 \\
+1 \\
+0 \\
+-1
+\end{array}\right) \qquad & v_{-}(\mathbf{0})=\sqrt{m}\left(\begin{array}{c}
+-1 \\
+0 \\
+1 \\
+0
+\end{array}\right) .
+\end{aligned}
+\label{uv_columm}
+\end{equation}
+As for the Barred spinors
+\begin{equation}
+\begin{aligned}
+    \Bar{u}_s(\vb{p})=&u_s^\dagger(\vb{p})\beta\\
+    \Bar{v}_s(\vb{p})=&v_s^\dagger(\vb{p})\beta,
+\end{aligned}
+\end{equation}
+we have
+\begin{equation}
+    \begin{aligned}
+        \Bar{u}_{+}(\vb{0})&=\sqrt{m}(1,0,1,0)\\
+        \Bar{u}_{-}(\vb{0})&=\sqrt{m}(0,1,0,1)\\
+        \Bar{v}_{+}(\vb{0})&=\sqrt{m}(0, -1, 0,1)\\
+        \Bar{v}_{-}(\vb{0})&=\sqrt{m}(1 , 0 , -1 , 0).
+    \end{aligned}
+    \label{uv_row}
+\end{equation}
+Which are the solutions to the barred (\ref{uv}) equations
+\begin{equation}
+    \begin{aligned}
+        \Bar{u}_s(\vb{p})(\slashed{p}+m)&=0\\
+        \Bar{v}_s(\vb{p})(-\slashed{p}+m)&=0
+    \end{aligned}
+    \label{uv_bar}
+\end{equation}
+since $\overline{(\slashed{p}+m)u_s(\vb{p})}=[u_s^\dagger(\vb{p})(\slashed{p}+m)]\beta=u_s^\dagger(\vb{p})\beta\beta^{-1}(\slashed{p}+m)\beta=\bar{u}_s(\vb{p})\beta(\slashed{p}+m)\beta=\Bar{u}_s(\vb{p})(\slashed{p}+m)$ where we recall that $\beta^{\text{T}}=\beta^\dagger=\beta^{-1}=\beta$ and highlight that for a general combination of gamma matrices $A$, $\Bar{A}=\beta A^\dagger\beta$.
+\section{Important spinor relations}
+Knowing $u_s(\vb{0})$ and $v_s(\vb{0})$, we can obtain $u_s(\vb{p})$ and $v_s(\vb{p})$ using a boost in the direction $\vu{p}=\vb{p}/\abs{\vb{p}}$, with rapidity $\eta=\abs{\vb{p}}/m$. Given the boost generator $K^j=\frac{i}{2}\gamma^j\gamma^0$, we consider the transformation
+\begin{equation}
+    D(\Lambda)=\exp(i\eta\vu{p}\cdot\vb{K})
+\end{equation}
+to act on $u_s(\vb{0})$ and $v_s(\vb{0}):$
+\begin{equation}
+    \begin{aligned}
+        u_s(\vb{p})&=\exp(i\eta\vu{p}\cdot \vb{K})u_s(\vb{0})\\
+        v_s(\vb{p})&=\exp(i\eta\vu{p}\cdot \vb{K})v_s(\vb{0}).
+    \end{aligned}
+\end{equation}
+Barring these gives
+\begin{equation}
+    \begin{aligned}
+        \bar{u}_s(\vb{p})&=\bar{u}_s(0)\exp(-i\eta\vu{p}\cdot \vb{K})\\
+        \bar{v}_s(\vb{p})&=\bar{v}_s(0)\exp(-i\eta\vu{p}\cdot \vb{K}).
+    \end{aligned}
+\end{equation}
+So, from these results and from (\ref{uv_columm}) and (\ref{uv_row}), we can check that
+\begin{equation}
+\begin{array}{l}
+\bar{u}_{s^{\prime}}(\mathbf{p}) u_{s}(\mathbf{p})=+2 m \delta_{s^{\prime} s} \\
+\bar{v}_{s^{\prime}}(\mathbf{p}) v_{s}(\mathbf{p})=-2 m \delta_{s^{\prime} s} \\
+\bar{u}_{s^{\prime}}(\mathbf{p}) v_{s}(\mathbf{p})=0 \\
+\bar{v}_{s^{\prime}}(\mathbf{p}) u_{s}(\mathbf{p})=0.
+\end{array}
+\end{equation}
+
+Also, noting that
+\begin{equation}
+    \begin{aligned}
+        \gamma^\mu\slashed{p}&=\frac{1}{2}\pb{\gamma^\mu}{\slashed{p}}+\frac{1}{2}\comm{\gamma^\mu}{\slashed{p}}=-p^\mu-2iS^{\mu\nu}p_\nu\\
+        \slashed{p}^\prime\gamma^\mu&=\frac{1}{2}\pb{\gamma^\mu}{\slashed{p}^\prime}-\frac{1}{2}\comm{\gamma^\mu}{\slashed{p}^\prime}=-p^{\prime\mu}+2iS^{\mu\nu}p^\prime_\nu,
+    \end{aligned}
+\end{equation}
+adding the first to the second, sandwiching them between $\bar{u}_{s^\prime}(\vb{p}^\prime)$ and $u_s(\vb{p})$, noting from (\ref{uv}) that $\slashed{p}u_s(\vb{p})=-mu_s(\vb{p})$ and from (\ref{uv_bar}) that $\bar{u}_{s^\prime}(\vb{p}^\prime)\slashed{p}=-\bar{u}_{s^\prime}(\vb{p}^\prime)m$, we find
+\begin{equation}
+2 m \bar{u}_{s^{\prime}}\left(\mathbf{p}^{\prime}\right) \gamma^{\mu} u_{s}(\mathbf{p})=\bar{u}_{s^{\prime}}\left(\mathbf{p}^{\prime}\right)\left[\left(p^{\prime}+p\right)^{\mu}-2 i S^{\mu \nu}\left(p^{\prime}-p\right)_{\nu}\right] u_{s}(\mathbf{p}).
+\end{equation}
+Sandwiching instead between $\bar{v}_{s^\prime}(\vb{p}^\prime)$ and $v_s(\vb{p})$, referring again to (\ref{uv}) and (\ref{uv_bar}) gives
+\begin{equation}
+-2 m \bar{v}_{s^{\prime}}\left(\mathbf{p}^{\prime}\right) \gamma^{\mu} v_{s}(\mathbf{p})=\bar{v}_{s^{\prime}}\left(\mathbf{p}^{\prime}\right)\qty[\left(p^{\prime}+p\right)^{\mu}-2 i S^{\mu \nu}\left(p^{\prime}-p\right)_{\nu}] v_{s}(\mathbf{p}).
+\end{equation}
+These are known as \textit{Gordon Identities}. A special case is that of $p^\prime=p$:
+\begin{equation}
+\begin{aligned}
+\bar{u}_{s^{\prime}}(\mathbf{p}) \gamma^{\mu} u_{s}(\mathbf{p})&=2 p^{\mu} \delta_{s^{\prime} s} \\
+\bar{v}_{s^{\prime}}(\mathbf{p}) \gamma^{\mu} v_{s}(\mathbf{p})&=2 p^{\mu} \delta_{s^{\prime} s}
+\end{aligned}
+\label{special_gordon_id}
+\end{equation}
+And we can also show \cite{srednicki2007quantum} that
+\begin{equation}
+\begin{aligned}
+\bar{u}_{s^{\prime}}(\mathbf{p}) \gamma^{0} v_{s}(-\mathbf{p})&=0 \\
+\bar{v}_{s^{\prime}}(\mathbf{p}) \gamma^{0} u_{s}(-\mathbf{p})&=0.
+\end{aligned}
+\label{special_gordon_id_negative}
+\end{equation}
+
+As for spin sums, we have
+\begin{equation}
+\begin{aligned}
+\sum_{s=\pm} u_{s}(\mathbf{p}) \bar{u}_{s}(\mathbf{p})&=-\slashed{p}+m \\
+\sum_{s=\pm} v_{s}(\mathbf{p}) \bar{v}_{s}(\mathbf{p})&=-\slashed{p}-m
+\end{aligned}
+\label{spin_sum}
+\end{equation}
+extrapolated from the rest frame case, where these reduce to  $\sum_{s=\pm} u_{s}(\mathbf{0}) \bar{u}_{s}(\mathbf{0})=m \gamma^{0}+m$ and $\sum_{s=\pm} v_{s}(\mathbf{0}) \bar{v}_{s}(\mathbf{0})=m \gamma^{0}-m$, which we can verify from relations (\ref{uv_columm}) and (\ref{uv_row}).
+\section{Creation and annihilation operators}
+To express the creation/annihilation operators in terms of the Dirac field we note from (\ref{dirac_mode_expansion}) that   
+\begin{equation}
+\int \dd^{3} x\, e^{-i p x} \Psi(x)=\sum_{s^{\prime}=\pm}\left[\frac{1}{2 \omega} b_{s^{\prime}}(\mathbf{p}) u_{s^{\prime}}(\mathbf{p})+\frac{1}{2 \omega} e^{2 i \omega t} d_{s^{\prime}}^{\dagger}(-\mathbf{p}) v_{s^{\prime}}(-\mathbf{p})\right].
+\end{equation}
+We multiply on the left by $\bar{u}_s(\vb{p})\gamma^0$ and use the first relation from  (\ref{special_gordon_id}) and the first relation from (\ref{special_gordon_id_negative}), getting
+\begin{equation}
+b_{s}(\mathbf{p})=\int \dd^{3} x\, e^{-i p x} \bar{u}_{s}(\mathbf{p}) \gamma^{0} \Psi(x).
+\end{equation}
+Hermitian conjugation gives $b^\dagger_s(\vb{p})$. Noting that $[\bar{u}_s(\vb{p})\gamma^0\Psi(x)]^\dagger=\Psi^\dagger\gamma^0\bar{u}_s^\dagger(\vb{p})=\bar{\Psi}\beta\gamma^0\beta u_s(\vb{p})=\bar{\Psi}(x)\gamma^0u_s(\vb{p})$ we find
+\begin{equation}
+b_{s}^\dagger(\mathbf{p})=\int \dd^{3} x\, e^{i p x} \bar{\Psi}(x)\gamma^0u_s(\mathbf{p})
+\label{bdagger_psi}
+\end{equation}
+Similarly, calculating $\int \dd^{3} x\, e^{i p x} \Psi(x)$, multiplying in the left by $\bar{v}_s(\vb{p})\gamma^0$ using the second relation from (\ref{special_gordon_id}) and the second relation from (\ref{special_gordon_id_negative}) gives
+\begin{equation}
+d^\dagger_{s}(\mathbf{p})=\int \dd^{3} x\, e^{i p x} \bar{v}_{s}(\mathbf{p}) \gamma^{0} \Psi(x),
+\end{equation}
+and upon hermitian conjugation, we find
+\begin{equation}
+d_{s}(\mathbf{p})=\int \dd^{3} x\, e^{-i p x} \bar{\Psi}(x)\gamma^0v_s(\mathbf{p}).
+\end{equation}
+
+Now we turn to the anti-commutation relations the creation and annihilation operators must satisfy. It is clear from (\ref{anticomm_dirac}) that
+\begin{equation}
+\begin{array}{l}
+\left\{b_{s}(\mathbf{p}), b_{s^{\prime}}\left(\mathbf{p}^{\prime}\right)\right\}=0 \\
+\left\{d_{s}(\mathbf{p}), d_{s^{\prime}}\left(\mathbf{p}^{\prime}\right)\right\}=0 \\
+\{b_{s}(\mathbf{p}), d_{s^{\prime}}^{\dagger}\left(\mathbf{p}^{\prime}\right)\}=0.
+\end{array}
+\end{equation}
+Hermitian conjugation of these give
+\begin{equation}
+\begin{aligned}
+\{b_{s}^{\dagger}(\mathbf{p}), b_{s^{\prime}}^{\dagger}\left(\mathbf{p}^{\prime}\right)\}&=0 \\
+\{d_{s}^{\dagger}(\mathbf{p}), d_{s^{\prime}}^{\dagger}\left(\mathbf{p}^{\prime}\right)\}&=0 \\
+\{b_{s}^{\dagger}(\mathbf{p}), d_{s^{\prime}}\left(\mathbf{p}^{\prime}\right)\}&=0.
+\end{aligned}
+\end{equation}
+Now, making use of $(\gamma^0)^2=1$, relations (\ref{special_gordon_id}) and  (\ref{special_gordon_id_negative}) and the canonical anti-commutation relations (\ref{anticomm_dirac}), we find
+\begin{equation}
+    \begin{aligned}
+    \{b_{s}(\mathbf{p}), b^\dagger_{s^{\prime}}\left(\mathbf{p}^{\prime}\right)\}&=(2\pi)^3\delta^3(\vb{p}-\vb{p}^\prime)2\omega\delta_{ss^\prime} \\
+    \{d^\dagger_{s}(\mathbf{p}), d_{s^{\prime}}\left(\mathbf{p}^{\prime}\right)\}&=(2\pi)^3\delta^3(\vb{p}-\vb{p}^\prime)2\omega\delta_{ss^\prime}\\
+    \{b_{s}(\mathbf{p}), d_{s^{\prime}}\left(\mathbf{p}^{\prime}\right)\}&=0.
+    \end{aligned}
+    \label{coef_anticomm}
+\end{equation}
+These are the anti-commutation relations for fermion creation and annihilation operators. We have two types $b$-type fermions and $d$-type fermions and they will be distinguished by their charges and recognized as the electron and the positron, respectively, if $\Psi$ is used as the electron field.
+\section{The Dirac field Hamiltonian}
+Now we calculate the Hamiltonian density for the Dirac Field
+\begin{equation}
+    \mathcal{H}=\pdv{\mathcal{L}}{(\partial_0\Psi)}\partial_0\Psi+\pdv{\mathcal{L}}{(\partial_0\bar{\Psi})}\partial_0\bar{\Psi}-\mathcal{L}=-i\bar{\Psi}\gamma^j\partial_j\Psi+m\bar{\Psi}\Psi.
+\end{equation}
+The total Hamiltonian is
+\begin{equation}
+    H=\int\dd^3 x\, \Bar{\Psi}(-i\gamma^j\partial_j+m)\Psi
+\end{equation}
+Noting that
+\begin{equation}
+    (-i\gamma^j\partial_j+m)\Psi=\sum_{\pm}\int\widetilde{\dd p}\qty[b_s(\vb{p})(\gamma^jp_j+m)u_s(\vb{p})e^{ipx}+d^\dagger_{s}(\vb{p})(-\gamma^jp_j+m)v_s(\vb{p})e^{-ipx}],
+\end{equation}
+that $(\gamma^jp_j+m)=(\gamma^\mu p_\mu+m-\gamma^0p_0)$, and using (\ref{uv}) gives
+\begin{equation}
+    (-i\gamma^j\partial_j+m)\Psi=\sum_{\pm}\int\widetilde{\dd p}\qty[b_s(\vb{p})\gamma^0\omega u_s(\vb{p})e^{ipx}-d^\dagger_{s}(\vb{p})\gamma^0\omega v_s(\vb{p})e^{-ipx}].
+\end{equation}
+Therefore
+\begin{equation}
+\begin{aligned}
+     H&=\sum_{s,s^\prime=\pm}\int\widetilde{\dd p}\,\widetilde{\dd p}^\prime\dd^3 x \qty(b^\dagger_{s^\prime}(\vb{p}^\prime)\bar{u}_{s^\prime}(\vb{p}^\prime)e^{-ip^\prime x}+d_{s^\prime}(\vb{p}^\prime)\bar{v}_{s^\prime}(\vb{p}^\prime)e^{ip^\prime x})\\&\qquad\qquad\times\omega\qty(b_s(\vb{p})\gamma^0 u_s(\vb{p})e^{ipx}-d^\dagger_{s}(\vb{p})\gamma^0 v_s(\vb{p})e^{-ipx})
+\end{aligned}
+\end{equation}
+Working this out gives
+\begin{equation}
+    \begin{aligned}
+        H&=\frac{1}{2}\sum_{s,s^\prime=\pm}\int\widetilde{\dd p}\Big{[}b^\dagger_{s^\prime}(\vb{p})b_s(\vb{p})\overbrace{\bar{u}_{s^\prime}(\vb{p})\gamma^0 u_s(\vb{p})}^{2\omega}
+        -b^\dagger_{s^\prime}(-\vb{p})d^\dagger_s(\vb{p})\overbrace{\bar{u}_{s^\prime}(-\vb{p})\gamma^0 v_s(\vb{p})}^{0}e^{2i\omega t}\\
+        &\qquad+ d_{s^\prime}(-\vb{p})b_s(\vb{p})\underbrace{\bar{v}_{s^\prime}(-\vb{p})\gamma^0u_s(\vb{p})}_{0}e^{-2i\omega t} -d_{s^\prime}(\vb{p})d^\dagger_s(\vb{p})\underbrace{\bar{v}_{s^\prime}(\vb{p})\gamma^0v_s(\vb{p})}_{2\omega}\Big{]}\\
+        &=\sum_s\int\widetilde{\dd p}\,\omega\Big{[}b_s^\dagger(\vb{p})b_s(\vb{p})-d_s(\vb{p})d_s^\dagger(\vb{p})\Big{]}   
+    \end{aligned}
+\end{equation}
+where the over- and under-braces come from (\ref{special_gordon_id}) and (\ref{special_gordon_id_negative}). Using the second anti-commutation relation of (\ref{coef_anticomm}), we find
+\begin{equation}
+    H=\sum_{s=\pm}\int\widetilde{\dd p}\,\omega\qty[b_s^\dagger(\vb{p})b_s(\vb{p})+d_s^\dagger(\vb{p})d_s(\vb{p})]-4\mathcal{E}_0V
+\end{equation}
+where $\mathcal{E}_0=\frac{1}{2}\frac{1}{(2\pi)^3}\int\dd^3 k\, \omega$ is the zero point energy and $V=(2\pi)^3\delta^3(\vb{0})$ is the volume of space. To make the ground state energy equal to zero we add $\Omega_0=-4\mathcal{E}_0$ to the Lagrangian $\mathcal{L}$ so that the Hamiltonian is simply\begin{equation}
+    H=\sum_{s=\pm}\int\widetilde{\dd p}\,\omega\qty[b_s^\dagger(\vb{p})b_s(\vb{p})+d_s^\dagger(\vb{p})d_s(\vb{p})].
+\end{equation}
+The Hamiltonian ground state vanishes upon the action of $b$- and $d$-type annihilation operators: $b_s(\vb{p})\ket{0}=d_s(\vb{p})\ket{0}=0$. While  $b^\dagger_s(\vb{p})$ creates an electron with $S_z$ eigenvalue $\frac{1}{2}s$ and $d^\dagger_s(\vb{p})$ creates a positron with $S_z$ eigenvalue $\frac{1}{2}s$. Similarly to the Hamiltonian, we can express the Noether charge in terms of the $b$ and $d$ operators, up to a constant term:
+\begin{equation}
+    Q=\int\dd^3 x\, \bar{\Psi}\gamma^0\Psi=\sum_{s=\pm}\int\widetilde{\dd p}\qty[b_s^\dagger(\vb{p})b_s(\vb{p})-d_s^\dagger(\vb{p})d_s(\vb{p})]
+\end{equation}
+
+
+

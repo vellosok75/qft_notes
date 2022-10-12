@@ -1,0 +1,407 @@
+\chapter{Relativistic Quantum Mechanics and the need for Quantum Fields}
+
+Quantum theory was one of the major paradigm shifts in the history of Physics. And although quantum mechanics radically departures from classical intuition, it may borrow classical concepts properly upgraded to suit quantum formalism. For instance, the quantization of the classical non-relativistic energy-momentum dispersion relation leads to Schrödinger's equation, which determines the evolution of the wave function for spinless non-relativistic particles. By the same token, it might seem a simple matter of quantizing the relativistic dispersion relation to obtain an equation for relativistic wave functions. In this chapter, we show how this idea leads to negative probability densities and negative-energy. We also demonstrate how a fruitful path to a fully relativistic quantum theory is revealed with the concept of a \textit{quantum field}.\\
+\section{Attempts at Relativistic Wave Functions}
+Non-relativistic quantum mechanics (NRQM) is based on the assumption that the wave function $\psi(t,\vb{x})$ contains all the information about a particle. The time evolution of such wave function for a free, spinless particle is determined by Schrödinger's Equation
+\begin{equation}
+    -\frac{1}{2m}\laplacian{\psi}=i\pdv{\psi}{t}(x,t)
+\end{equation}
+which can be thought as the quantum correspondent of the energy-momentum dispersion relation for a free particle, i.e., a \textit{quantized} version of 
+\begin{equation}
+    \frac{1}{2m}\vb{p}^2=E
+\end{equation}
+Following Born's Rule, we interpret $\psi^*\psi=\rho$ as a probability density of finding the particle within an infinitesimal volume. In NRQM, thus, by associating a wave function we are describing a \textit{single-particle} state, for which we can calculate the probability of finding it on a volume as small as desired, as long as we are willing to sacrifice our knowledge about momentum.\\
+
+What if we tried to quantize the relativistic energy-momentum dispersion relation $E^2=\vb{p}^2+m^2$ in a similar fashion? The energy  and momentum operators reads $E=i\pdv{t}$ and  $\vb{p}=-i\grad$, respectively. Thus, the quantized relativistic dispersion relation, also known as \textit{mass-shell} relation, is the \textit{Klein-Gordon Equation}:
+\begin{equation}
+    \pdv[2]{\phi}{t}-\laplacian{\phi}+m^2\phi=0
+\end{equation}
+where $\phi(\vb{x},t)$ is the supposedly relativistic wave function.  Using the 4-dimensional Laplacian, or D'alambertian, $\partial^2=\partial_\mu\partial^\mu$, Klein-Gordon equation reads
+\begin{equation}
+    (-\partial^2+m^2)\phi(x)=0
+    \label{klein-gordon}
+\end{equation}
+  This is a Lorentz covariant equation of motion for a Lorentz sacalar $\phi(x)$. Our wave function thus respects relativity. But if one is strict about what one thinks quantum mechanics is, then the Klein-Gordon field does not obeys quantum mechanics. Being second order in time\footnote{Trying to make it first order in time with the use of $E=\sqrt{\vb{p}^2+m^2}$ leads to a non-local equation} means it violates the abstract form of Schrödinger's Equation $\hat{H}\ket{\phi}=i\partial_t\ket{\phi}$. The norm $\braket{\phi}{\phi}$ is not in general time independent and probability conservation is not guaranteed.  If one is less strict about the postulates of quantum mechanics and is willing to find a time independent normalization of states to restore probability conservation, one can start by imposing a probability current density similar to that of NRQM
+\begin{equation}
+    \vb{j=}-i[\phi^*(x)\grad\phi(x)-\phi(x)\grad\phi^*(x)]
+    \label{probability_current}
+\end{equation}
+and check that, according to the Klein-Gordon Equation, the probability density should be
+\begin{equation}
+    \rho(x)=i[\phi^*(x)\partial_t\phi(x)-\phi(x)\partial_t\phi^*(x)]
+    \label{probability_density}
+\end{equation}
+so the 4-current $j_\mu=i[\phi^*(x)\partial_\mu\phi(x)-\phi(x)\partial_\mu\phi^*(x)]$ obeys the continuity equation. From (\ref{probability_density}) we define an inner product consistent with that probability density
+\begin{equation}
+    \braket{\phi_1}{\phi_2}=i\int\dd^3x\,[\phi_1^*(x)\partial_t\phi_2(x)-\phi_2(x)\partial_t\phi_1^*(x)]
+    \label{scalar_product}
+\end{equation}
+
+The Klein-Gordon Equation admits plane waves solutions. A complete and normalized set of solutions, in the sense of  (\ref{scalar_product}), is
+\begin{equation}
+    \begin{aligned}
+    \phi_{p}(x)&=\frac{1}{(2\pi)^{3/2}\sqrt{2E_{\vb{p}}}}e^{+ip_\mu x^\mu}=\frac{1}{(2\pi)^{3/2}\sqrt{2E_{\vb{p}}}}\exp(-iE_{\vb{p}}t+i\vb{p}\vdot\vb{x})\\
+    \phi_{-p}(x)&=\frac{1}{(2\pi)^{3/2}\sqrt{2E_{\vb{p}}}}e^{-ip_\mu x^\mu}=\frac{1}{(2\pi)^{3/2}\sqrt{2E_{\vb{p}}}}\exp(+iE_{\vb{p}}t-i\vb{p}\vdot\vb{x})
+    \end{aligned}
+\end{equation}
+Where $E_{\vb{p}}=\sqrt{\vb{p}^2+m^2}$. The orthogonality relations reads
+\begin{equation}
+    \begin{aligned}
+    \braket{\phi_p}{\phi_{p^\prime}}&=\delta(\vb{p}-\vb{p}^\prime)\\\braket{\phi_{-p}}{\phi_{-p^\prime}}&=-\delta(\vb{p}-\vb{p}^\prime)\\
+    \braket{\phi_{p}}{\phi_{-p^\prime}}&=0
+    \end{aligned}
+\end{equation}
+which is worrisome: if $\braket{\phi_{-p}}{\phi_{-p^\prime}}$ can be negative, how can we interpret it as a probability? Not only that, the action of the energy operator tell us that $i\partial_t\phi_{- p}(x)=-E_{\vb{p}}\phi_{- p}(x)$ so $\phi_{-p}(x)$ is a negative energy state. Summing up, (\ref{klein-gordon}) accommodates solutions with unbounded energy spectrum, since $E>\abs{m}$, and a non-positive probability density and normalization.\\
+
+Richard Feynman put forward the idea that negative energy states can be interpreted as particles moving back in time\cite{lancaster2014quantum}. We name those ``antiparticles". As the phase of negative-energy solution is $E_{\vb{p}}t-\vb{p}\vdot\vb{x}$, a time reversal turns a non-physical negative energy state into a positive one, while also changing the direction of momentum. A general solution for the Klein-Gordon Equation can be interpreted as 
+\begin{equation}
+\phi(x)=\left[\begin{array}{c}
+\text { Incoming positive } \\
+\text { energy particle } \\
+\propto \mathrm{e}^{-i(E t-\vb{p} \vdot \vb{x})}
+\end{array}\right]+\left[\begin{array}{c}
+\text { Outgoing positive } \\
+\text { energy antiparticle } \\
+\propto \mathrm{e}^{+i(E t-\vb{p} \vdot \vb{x})}
+\end{array}\right]
+\end{equation}
+but accepting it means we have to abandon the single-particle description. We started with a single-particle approach, in which solutions represented states, just as in NRQM, and now, with such interpretation, we are forced to introduce multi-particles so the theory is minimally consistent. \\
+
+The Klein-Gordon equation was an attempt to describe a relativistic spinless particle. Paul Dirac tackled the problem of finding a relativistic wave function for the electron, a spin $1/2$ particle. In doing so, he came up with what we now call Dirac Equation
+\begin{equation}
+    \qty(-i\beta\pdv{t}+\alpha\vdot\grad - m)\psi(t,\vb{x})=0
+\end{equation}
+where
+\begin{equation}
+    \alpha^i=\mqty(0 & -i\sigma_i\\ -i\sigma_i &  0)\qquad,\qquad\beta=\mqty(0 & \mathbbm{1}_2\\\mathbbm{1}_2 & 0)
+\end{equation}
+the $\sigma^i$ with $i=1,2,3$ are the Pauli sigma matrices and $\mathbbm{1}_2$ is the two-by-two identity. The wave function is now a 4-dimensional object: a Dirac spinor. Analysis along the lines we did for the Klein-Gordon equation leads, again, to an unbounded spectrum\footnote{We shall analyze this in more detail when dealing with spinor fields}. This is problematic. For instance, once coupled with electromagnetic effects, the theory would posses no ground state and nothing would prevent the decay into lower and lower energies. Solutions to both the Klein-Gordon and the Dirac equations share this problem. For electrons, Dirac  brilliantly solved this problem with his ``Dirac Sea": stability is restored once you take into account that electrons are fermions and  thus obey Pauli's Exclusion Principle. What prevents the electron from decaying into the infinitely lower energy states is the fact that all of those states are already occupied. This, in turn, also leads to the prediction that a sufficiently energetic photon could promote one of these electrons bound to the ``sea" to higher energy states, leaving behind a ``hole". This hole would behave as a positively charged particle with the same mass as the electron. This was one of the first predictions of the positron. \\
+
+So, as it happens to the Klein-Gordon equation, the ``Dirac sea" restores stability at the cost of introducing multi-particle interpretations. Apparently we cannot anymore interpret solutions to both the Klein-Gordon or Dirac equations as single-particle states.\\
+\section{Klein's Paradox}
+As a final remark about the inconsistencies faced when interpreting the solutions to the Klein-Gordon or Dirac equation as single-particle states, we examine an example of \textit{Klein's Paradox}. Oscar Klein studied the scattering of a relativistic particle by a step potential using Dirac's wave function and found a non-vanishing transmission probability in a scenario in which transmission should not occur. Also, the particle across the barrier could be found with a negative energy. We examine the scattering for a spinless particle using the Klein-Gordon wave function, the physics is the same.\\
+
+We consider a step potential of height $V_0$. The solutions to the Klein-Gordon Equation in regions I, where $V=0$, and II, where $V=V_0$, are respectively 
+\begin{equation}
+\begin{aligned}
+    \phi_{1}(t,x)&=\exp(-iEt+ip_1x)+R\exp(-iEt-ip_1x)\\
+    \phi_{2}(t,x)&=T\exp(-iEt+ip_2x)
+\end{aligned}
+\end{equation}
+With $p_1=\sqrt{E^2-m^2}$ being the momentum in region I and $p_2=\sqrt{(E-V_0)^2-m^2}$ the momentum in region II. For now, we ignored negative energy solutions. 
+If $E-m>V_0$ both $p_1$ and $p_2$ are real and we can expect a non-vanishing probability for both transmission and reflection. If $V_0-2m<E-m<V_0$ then $p_2$ is imaginary and we can expect an evanescent wave across the barrier, exponentially attenuating the transmission so we basically have only reflection. Now consider $V_0>2m$ and an energy range $0<E-m<V_0-2m$. In this case, again we have both $p_1$ and $p_2$ real. Even though there is no energy to cross the barrier, there is a non-decaying transmission probability. Besides that, particles across the barrier have negative kinetic energy $E-m-V_0<0$. \\
+
+Klein's paradox, just as the others inconsistencies, stems from the insistence in a single-particle interpretation for wave functions. A Multi-particle analysis using quantum field theory shows that sudden localization of the wave packet at the barrier discontinuity leads to a pair-production\cite{alvarez2011invitation}. This is because absolutely localized single-particle states in a relativistic theory are impossible. For, if a particle is localized in a region smaller than its Compton wavelength, then we have an uncertainty of its position of the order of $\Delta x\sim1/m$, which in turn gives $\Delta p\sim m$ and $\Delta E\sim m$.  With relativity into account, this is sufficient for pair creation. Absolute localization is accompanied by pair creation, so we cannot hope to find wave functions for single-particle states in relativistic theory.
+\section{Quantum Mechanics of a Relativistic Particle}
+Since we cannot use wave functions to describe single-particle states, what should we do? In this section we build the quantum mechanics of a relativistic particle from scratch.
+For a particle with momentum $\vb{p}$ we associate a ket $\ket{\vb{p}}$. The kets $\{ \ket{\vb{p}}\}$ are a basis for this particle's Hilbert Space $\mathcal{H}$ and have the following closure and orthogonality relations
+\begin{equation}
+    \int\dd ^3p\dyad{\vb{p}}=1
+    \label{closure1}
+\end{equation}
+\begin{equation}
+    \braket{\vb{p}}{\vb{p}^\prime}=\delta(\vb{p}-\vb{p}^\prime)
+    \label{orthogonality_p}
+\end{equation}
+
+We are going to introduce a new representation for particle states: the occupation number representation. To grasp the idea, we start by thinking of non-relativistic particles in a box of length $\ell$. The energy and momentum states are quantized: the allowed momentum states are $p_m=2\pi m/\ell$, because we require the wave function to vanish at the borders. The eigenstates of the Hamiltonian are
+\begin{equation}
+    \hat{H}\ket{\vb{p}_m}=E_{\vb{p}_m}\ket{\vb{p}_m}
+\end{equation}
+with $E_{\vb{p}_m}=p_m^2/2m$. 
+A state with several particles at momentum states $\vb{p}_1$, $\vb{p}_2$ up to $\vb{p}_n$ is $\ket{\vb{p}_1,\vb{p}_2,\dots, \vb{p}_n}$. The action of the hamiltonian reads
+\begin{equation}
+    \hat{H}\ket{\vb{p}_1,\vb{p}_2,\dots, \vb{p}_n}=\sum_m^n E_{\vb{p}_m}\ket{\vb{p}_1,\vb{p}_2,\dots, \vb{p}_n}
+\end{equation}
+
+Instead of listing momentum states as $\ket{\vb{p}_1,\vb{p}_2,\dots, \vb{p}_n}$, now we list them by the \textit{occupation numbers}: The ket $\ket{n_{\vb{p}_1},n_{\vb{p}_2},\dots}$, or simply $\ket{n_1,n_2,\dots}$, represents a state with $n_1$ particles in momentum state $\ket{\vb{p}_1}$, $n_2$ in state $\ket{\vb{p}_2}$ and so forth. For instance, the three particle state $\ket{\vb{p}_1,\vb{p}_1,\vb{p}_2}$ is represented by $\ket{210}$. With this new convention, energy eigenvalues reads
+\begin{equation}
+    \hat{H}\ket{n_1,n_2\dots}=\sum_mn_{m}E_{\vb{p}_m}\ket{n_1,n_2,\dots}
+\end{equation}
+resembling   the harmonic osccillator's spectrum. For the oscillator, the energy above the ground state reads $E=\sum_k^Nn_k\omega_k$. Thus, the number of particles in a momentum mode is analogous to the number of quanta in an oscillator.
+This motivates us to introduce annihilation and creation operators $\hat{a}_{\vb{p}_m}$ and $\hat{a}^\dagger_{\vb{p}_m}$, or simply $\hat{a}_{m}$ and $\hat{a}^\dagger_{m}$. The creation operator creates a particle with momentum $\vb{p}_m$ out of the vacuum $\ket{0}$, a state we assume to be normalized and destroyed by the action of the annihilation operator for all $m$ 
+\begin{equation}
+    \hat{a}_{m}\ket{0}=0
+\end{equation}
+We shall assume the commutation relations
+\begin{equation}
+    \begin{aligned}
+    \comm*{\hat{a}_k}{\hat{a}_{k^\prime}^\dagger}&=\delta_{kk^\prime} \\
+    \comm*{\hat{a}_k}{\hat{a}_{k^\prime}}&=\comm*{\hat{a}_{k}^\dagger}{\hat{a}^\dagger_{k^\prime}}=0
+    \end{aligned}
+\end{equation}
+which gives us a theory of Bosons, since the order of the creation opperators does not matter, i.e.  states $\ket{\vb{p}_1\vb{p}_2}$ and $\ket{\vb{p}_2\vb{p}_1}$ are indistinguishable.
+ We also define, as we do for the oscillator, the number operator $\hat{N}=\sum_m\hat{n}_{\vb{p}_m}=\sum_m\hat{a}^\dagger_{\vb{p}_m}\hat{a}_{\vb{p}_m}$, whose eigenvalue associated with the eigenvector $\ket{n_{\vb{p}_1}, n_{\vb{p}_2},\dots}$ is $\sum_mn_{\vb{p}_m}$. Thus the Hamiltonian reads
+\begin{equation}
+    \hat{H}=\sum_mE_{\vb{p}_m}\hat{a}^\dagger_{\vb{p}_m}\hat{a}_{\vb{p}_m}
+    \label{2nd_hamiltonian_discrete}
+\end{equation}
+and the total momentum operator 
+\begin{equation}
+    \hat{\vb{p}}=\sum_m \vb{p_m}\hat{a}^\dagger_{\vb{p}_m}\hat{a}_{\vb{p}_m}
+    \label{2nd_momentum_discrete}
+\end{equation}
+
+Momentum modes in a box are discrete and labeled by the integer $m$. If we make the box infinitely large, meaning $\ell\to\infty$, then the momentum modes become infinitesimally separated, which gives a continuum. Our formalism upgrades to creation and annihilation operators with
+``continuum indices" $\vb{p}$. A momentum state is simply $\ket{\vb{p}}=\hat{\alpha}^\dagger(\vb{p})\ket{0}$, and the commutation relation suits the continuum with the replacement of the Kronecker Delta by a Dirac Delta
+\begin{equation}
+\begin{aligned}
+    \comm{\hat{\alpha}(\vb{p})}{\hat{\alpha}^\dagger(\vb{p}^\prime)} &=\delta(\vb{p}-\vb{p}^\prime)\\
+    \comm{\hat{\alpha}(\vb{p})}{\hat{\alpha}(\vb{p}^\prime)} &=\comm{\hat{\alpha}^\dagger(\vb{p})}{\hat{\alpha}^\dagger(\vb{p}^\prime)}=0
+    \label{commu_alpha}
+\end{aligned}
+\end{equation}
+The Hamiltonian  and momentum operators upgrades to the continuum versions of (\ref{2nd_hamiltonian_discrete}) and (\ref{2nd_momentum_discrete})
+\begin{equation}
+    \hat{H}=\int\dd^3p\, E_{\vb{p}}\,\hat{\alpha}^\dagger(\vb{p})\hat{\alpha}(\vb{p})
+    \label{2nd_hamiltonian_continuum}
+\end{equation}
+\begin{equation}
+    \hat{\vb{p}}=\int\dd^3p\, \vb{p}\,\hat{\alpha}^\dagger(\vb{p})\hat{\alpha}(\vb{p})
+    \label{2nd_momentum_continuum}
+\end{equation}
+
+For a relativistic theory, we take $E_{\vb{p}}=\sqrt{\vb{p}^2+m^2}$.  Also,
+%A $\text{SO}(3)$ rotation $R$ is represented in Hilbert Space by an unitary operator $U(R)$: $U(R)\ket{\vb{p}}=\ket{R\vb{p}}$.
+%The spectral decomposition of the momentum operator is
+%\begin{equation}
+%    \hat{p}^i=\int\dd^3p\ket{\vb{p}}p^i\bra{\vb{p}}
+%\end{equation}
+%So the momentum operator is $\text{SO}(3)$ covariant as long as the integration measure is invariant, since
+%\begin{equation}
+%   U^{-1}(R)\hat{p}^iU(R)=\int\dd^3p\ket{R^{-1}\vb{p}}p^i\bra{R^{-1}\vb{p}}=R^i_j\hat{p}^j
+%\end{equation}
+%Using the normalization
+%\begin{equation}
+%    \braket{\vb{p}}{\vb{q}}=\delta(\vb{p}-\vb{q})
+%\end{equation}
+ we need a Lorentz invariant integration measure, a Lorentz covariant momentum operator and Lorentz invariant  normalization of momentum states. An invariant integration measure consistent with the mass-shell condition $E_{\vb{p}}=\sqrt{\vb{p}^2+m^2}$ is
+\begin{equation}
+    \int\frac{\dd^4p}{(2\pi)^4}(2\pi)\delta(p^2-m^2)\theta(p^0)f(p)
+\end{equation}
+where $p$ is the four momentum $p^\mu=(E_{\vb{p}},\vb{p})$, $\theta$ is Heaviside's step function, defined by
+\begin{equation}
+    \theta(x)=
+\begin{cases}
+    0,&\quad\text{if}\quad x<0\\
+    1,  &\quad\text{if}\quad x\geq0
+\end{cases}
+\end{equation}
+which ensures we integrate only over positive energy $p^0$ states.
+We use the following identity of the Delta ``function"
+\begin{equation}
+    \delta(g(x))=\sum_{\substack{x_i\\{g(x_i)=0}}}\frac{1}{\abs{g^\prime(x_i)}}\delta(x-x_i)
+\end{equation}
+so that
+\begin{equation}
+    \delta(p^2-m^2)=\frac{1}{2p^0}\delta\qty(p^0-\sqrt{\vb{p}^2+m^2})+\frac{1}{2p^0}\delta\qty(p^0+\sqrt{\vb{p}^2+m^2})
+\end{equation}
+The step function eliminates the second term and,  noting that $p^0=E_{\vb{p}}$, we are left with
+\begin{equation}
+         \int\frac{\dd^4p}{(2\pi)^4}(2\pi)\delta(p^2-m^2)\theta(p^0)f(p)=\int\frac{\dd^3p}{(2\pi)^3}\frac{1}{2E_{\vb{p}}}f(E_{\vb{p}},\vb{p})
+\end{equation}
+An invariant measure, therefore, is
+\begin{equation}
+    \int\frac{\dd^3p}{(2\pi)^3}\frac{1}{2E_{\vb{p}}}
+\end{equation}
+
+Now, for the normalization of states, we introduce the 4-momentum basis kets $\{\ket{p}\}$, which are the eigenvectors of the 4-momentum operator $\hat{p}^\mu$. This operator has $\hat{p}^0=\hat{H}$ as time component and $\hat{\vb{p}}$ for space components. Its eigenvalue equation reads
+\begin{equation}
+    \begin{aligned}
+    \hat{p}^0\ket{p}&=E_{\vb{p}}\ket{p}\\
+    \hat{{p}}^i\ket{p}&={\vb{p}}^i\ket{p}
+    \end{aligned}
+\end{equation}
+so we can see that the kets $\{\ket{p}\}$ are eigenstates of the 3-momentum, and we can thus write $\ket{p}=N(\vb{p})\ket{\vb{p}}$. We find the normalization $N(\vb{p})$ demanding a closure relation 
+\begin{equation}
+    \int\frac{\dd^3p}{(2\pi)^4}(2\pi)\delta(p^2-m^2)\theta(p^0)\dyad{p}=\int\frac{\dd^3p}{(2\pi)^3}\frac{1}{2E_{\vb{p}}}\abs{N(\vb{p})}^2\dyad{\vb{p}}=1
+\end{equation}
+According to (\ref{closure1}), we need then $N(\vb{p})=(2\pi)^{3/2}\sqrt{2E_{\vb{p}}}$. The normalized states are
+\begin{equation}
+    \ket{p}=(2\pi)^{3/2}\sqrt{2E_{\vb{p}}}\ket{\vb{p}}
+\end{equation}
+so that
+\begin{equation}
+    \braket{p}{p^\prime}=(2\pi)^32E_{\vb{p}}\delta(\vb{p}-\vb{p}^\prime)
+    \label{orthogonality_pmu}
+\end{equation}
+This is a Lorentz invariant normalization, while a solely ``delta" normalization such as (\ref{orthogonality_p}) is not. To see this, consider a boost in the 3-direction: $p^\prime_3=\gamma(p_3+vE)$ and $E^\prime=\gamma(E+vp_3)$. Under such transformation, property $\delta(f(x)-f(x_0))=\abs{f^\prime(x_0)}^{-1}\delta(x-x_0)$ shows that
+\begin{equation}
+\begin{aligned}
+    \delta(\vb{p}-\vb{q})&=\dv{p^\prime_3}{p_3}\delta(\vb{p}^\prime-\vb{q}^\prime)\\
+    &=\gamma\qty(1+v\dv{E}{p_3})\delta(\vb{p}^\prime-\vb{q}^\prime)\\
+    &=\frac{\gamma}{E}(E+vp_3)\delta(\vb{p}^\prime-\vb{q}^\prime)\\
+    &=\frac{E^\prime}{E}\delta(\vb{p}^\prime-\vb{q}^\prime)
+\end{aligned}
+\end{equation}
+Which clarifies why (\ref{orthogonality_pmu}) is Lorentz Invariant. We can pass this normalization to the creation/annihilation operators, redefining
+\begin{equation}
+   \hat{a}(\vb{p})\equiv(2\pi)^{3/2}\sqrt{2E_{\vb{p}}}\,\hat{\alpha}(\vb{p})\,,\quad\hat{a}^\dagger(\vb{p})\equiv(2\pi)^{3/2}\sqrt{2E_{\vb{p}}}\,\hat{\alpha}^\dagger(\vb{p})
+   \label{covariant_creators}
+\end{equation}
+The first commutation relation from (\ref{commu_alpha}) changes to
+\begin{equation}
+    \comm{\hat{a}(\vb{p})}{\hat{a}^\dagger(\vb{p}^\prime)}=(2\pi)^32E_{\vb{p}}\,\delta(\vb{p}-\vb{p}^\prime)
+    \label{commu_a}
+\end{equation}
+this way, a covariant momentum state reads
+\begin{equation}
+    \ket{p}=\ket{\vb{p}}=\hat{a}^\dagger(\vb{p})\ket{0}
+\end{equation}
+and the closure relation is
+\begin{equation}
+    \int\frac{\dd^3p}{(2\pi)^3}\frac{1}{2E_{\vb{p}}}\dyad{p}=\int\frac{\dd^3p}{(2\pi)^3}\frac{1}{2E_{\vb{p}}}\dyad{\vb{p}}=1
+\end{equation}
+Keep in mind this is valid only if we pass the normalization constants to the creation/annihilation operators.\\
+
+A Lorentz transformation $\Lambda\in\text{SO}(1,3)$  is represented in Hilbert space by an unitary transformation $U(\Lambda)$ such that $U(\Lambda)\ket{p}=\ket{\Lambda p}$. Since the spectral decomposition of the 4-momentum operator is
+\begin{equation}
+    \hat{p}^\mu=\int\frac{\dd^3p}{(2\pi)^3}\frac{1}{2E_{\vb{p}}}\ket{p}p^\mu\bra{p}
+\end{equation}
+then the action of Lorentz transformation operator shows the Lorentz covariance of the 4-momentum
+\begin{equation}
+    U^{-1}(\Lambda)\hat{p}^\mu U(\Lambda)=\int\frac{\dd^3p}{(2\pi)^3}\frac{1}{2E_{\vb{p}}}\ket{\Lambda^{-1}p}p^\mu\bra{\Lambda^{-1}p}=\Lambda^\mu_\nu\hat{p}^\nu
+\end{equation}
+
+So far everything seems fine. We have a Lorentz invariant integration measure, Lorentz covariant momentum operator and momentum states with Lorentz invariant normalization. It all works using momentum basis kets.
+%Using the normalized 4-momentum as in eq (36), we see that the Hamiltonian, the time-like component of the momentum operator, is indeed as in eq (25).
+We could try to introduce position eigenstates $\ket{\vb{x}}$ and demand, as in NRQM, $\braket{\vb{p}}{\vb{x}}=C_{\vb{p}}\exp(-i\vb{p}\vdot\vb{x})$. We could then compute the amplitude $ \bra{\vb{x}_2}e^{-i\hat{H}t}\ket{\vb{x}_1}$ associated with the time evolution from $\ket{\vb{x}_1}$ to $\ket{\vb{x}_2}$ in the elapsed time $t$. Let's see where this leads us. We insert the momentum closure relation in the amplitude
+\begin{equation}
+\begin{aligned}
+    \bra{\vb{x}_2}e^{-i\hat{H}t}\ket{\vb{x}_1}&=\int\frac{\dd^3p}{(2\pi)^3}\frac{1}{2E_{\vb{p}}}e^{-iE_{\vb{p}}t}\braket{\vb{x}_2}{\vb{p}}\braket{\vb{p}}{\vb{x}_1}\\
+    &=\int\frac{\dd^3p}{(2\pi)^3}\frac{1}{2E_{\vb{p}}}e^{-iE_{\vb{p}}t}\abs{C_{\vb{p}}}^2 e^{i\vb{p}\vdot(\vb{x}_2-\vb{x}_1)}\\
+    &=\int\frac{\dd^3p}{(2\pi)^3}\frac{1}{2E_{\vb{p}}}\abs{C_{\vb{p}}}^2
+    e^{i{p}\cdot(x_2-x_1)}
+\end{aligned}
+\end{equation}
+We want this amplitude to be Lorentz invariant. Since the integration measure and the exponential are invariant, $\abs{C_{\vb{p}}}^2$ must be a scalar and we can choose it to be the unity. This, in turn, reveals that our attempt at defining localized states fails, since, multiplying the closure relation from the left with $\bra{\vb{x}}$ and from the right with $\ket{\vb{y}}$ gives
+\begin{equation}
+    \braket{\vb{x}}{\vb{y}}=\int\frac{\dd^3p}{(2\pi)^3}\frac{1}{2E_{\vb{p}}}\braket{\vb{x}}{\vb{p}}\braket{\vb{p}}{\vb{y}}=\int\frac{\dd^3p}{(2\pi)^3}\frac{1}{2E_{\vb{p}}}e^{i\vb{p}\vdot(\vb{x}-\vb{y})}\neq\delta(\vb{x}-\vb{y})
+\end{equation}
+which is not always zero for $\vb{x}\neq\vb{y}$. It decays exponentially with a scale $m^{-1}$, indicating the impossibility of localization in regions smaller than the Compton wavelength of a particle. Relativity does not accommodates absolute localization, as we discussed earlier. We can work with momentum states because we have a physically meaningful Lorentz invariant integration measure for them, but for space we have no such thing. This is because, for a given momentum $\vb{p}$, we  associate $E_{\vb{p}}$. But for a given $\vb{x}$, we have no associated $t$. We continue to work solely with momentum states then. \\
+
+A general one-particle state is
+\begin{equation}
+    \ket{f}=\int\frac{\dd^3p}{(2\pi)^3}\frac{1}{2E_{\vb{p}}}f({\vb{p}})\ket{{p}}=\int\frac{\dd^3p}{(2\pi)^3}\frac{1}{2E_{\vb{p}}}f(\vb{p})\hat{a}^\dagger(\vb{p})\ket{0}
+\end{equation}
+Where $f(\vb{p})$ gives us the wave packet indicating the spreading in momentum. Also, by the Uncertainty Principle, $f(\vb{p})$ dictates how our wave-packet spreads in space as well. If we set $f(\vb{p})=1$ we can identify the operator 
+\begin{equation}
+    \hat{\phi}=\int\frac{\dd^3p}{(2\pi)^3}\frac{1}{2E_{\vb{p}}}\hat{a}^\dagger(\vb{p})
+\end{equation}as the operator whose action on the vacuum creates a wave packet in momentum space composed of the linear combination of all the momentum states. The state created is completely delocalized in momentum, meaning it should be somehow localized in space. We already know, though, that we should not expect absolute localization.\\
+
+We want this operator to be hermitian for reasons that will soon become clear. We need another term to give us $\hat{\phi}=\hat{\phi}^\dagger$. We can check that the following operator still corresponds to a particle state when it acts on the vacuum and is hermitian
+\begin{equation}
+    \hat{\phi}=\int\frac{\dd^3p}{(2\pi)^3}\frac{1}{2E_{\vb{p}}}(\hat{a}^\dagger(\vb{p})+\hat{a}(\vb{p}))
+    \label{creation_localized}
+\end{equation}
+
+The key point, now, is that we need to give this operator not only time dependence, as it is already customary in the Heisenberg Picture, but also space dependence. We do this to put space and time on the same footing. Non-relativistic quantum mechanics treats time and space asymmetrically: space is an observable, represented by an operator, while time is a parameter on which operators can depend on. The fundamental difference is that operators are local in time but global in space, something relativity abhors. We need turn operators local in space and time, this is why we introduce space dependence as well.\\
+
+Besides locality, we should also impose  causality. The action of operators, which correspond to measurements, should have no influence over causally disconnected regions of spacetime. 
+%If we accept this idea, then given two observables, $\hat{O}_{\text{R}_1}$ and $\hat{O}_{\text{R}_2}$, associated with measurements on causally disconnected regions $\text{R}_1$ and $\text{R}_2$, then
+%\begin{equation}
+%    \comm{\hat{O}_{\text{R}_1}}{\hat{O}_{\text{R}_2}}=0
+% \end{equation}
+% This means we need to bring space dependence into operators as well. We assume opertors have explicit spacetime dependence and, 
+For spacelike separated $x$ and $y$, we require then
+ \begin{equation}
+    \comm{\hat{O}(x)}{\hat{O}(y)}=0
+    \label{causality}
+ \end{equation}
+ %Which is equivalent to (), since we can define the operator over a region using
+ %\begin{equation}
+ %    \hat{O}_{\text{R}}=\int\dd^4x\,\hat{O}(x)f_R(x)
+ %\end{equation}
+ %The function $f_R(x)$ being equal to 1 for $x\in \text{R}$ and 0 otherwise. This recovers our first statement.
+Demanding locality and causality, thus, compel us to give operators spacetime dependence. Time dependence can be attained as in the Heisenberg Picture by 
+\begin{equation}
+      \hat{\phi}(t)=e^{i\hat{H}t}      \hat{\phi}\,e^{-i\hat{H}t}
+      \label{time_dependence}
+\end{equation}
+and space dependence can be attained using the space translation operator, as long as we identify the state $\hat{\phi}\ket{0}$ as a particle ``localized" initially at the origin. Space evolution reads
+\begin{equation}
+      \hat{\phi}(\vb{x})=e^{-i\hat{\vb{p}}\vdot\vb{x}}      \hat{\phi}\,e^{i\hat{\vb{p}}\vdot\vb{x}}
+      \label{space_translation}
+\end{equation}
+To evaluate (\ref{time_dependence}), we highlight that
+\begin{equation}
+    \hat{H}\hat{a}(\vb{p})=\hat{a}(\vb{p})(\hat{H}-E_{\vb{p}})\quad,\quad \hat{H}^n\hat{a}(\vb{p})=\hat{a}(\vb{p})(\hat{H}-E_{\vb{p}})^n
+\end{equation}
+Which can be verified using the Hamiltonian (\ref{2nd_hamiltonian_continuum}) and the commutation relations (\ref{commu_alpha}). The interpretation is simple: if we first annihilate a state and then measure the energy of the system, the result should be the same if you first measure the energy, subtract the energy of the particle to be removed, and then remove it. Similarly, for the creation operator
+\begin{equation}
+    \hat{H}\hat{a}^\dagger(\vb{p})=\hat{a}^\dagger(\vb{p})(\hat{H}+E_{\vb{p}})\quad,\quad \hat{H}^n\hat{a}^\dagger(\vb{p})=\hat{a}^\dagger(\vb{p})(\hat{H}+E_{\vb{p}})^n
+\end{equation}
+Thus, time-evolution of the creation and annihilation operators reads
+\begin{equation}
+    e^{i\hat{H}t}\hat{a}(\vb{p})  e^{-i\hat{H}t}=\hat{a}(\vb{p})  e^{-iE_{\vb{p}t}}\quad, \quad e^{i\hat{H}t}\hat{a}^\dagger(\vb{p})  e^{-i\hat{H}t}=\hat{a}^\dagger(\vb{p})  e^{iE_{\vb{p}t}}
+\end{equation}
+For the momentum operator we can check similar results\cite{peskin1995introduction}
+\begin{equation}
+    \hat{\vb{p}}\hat{a}(\vb{p})=\hat{a}(\vb{p})(\hat{\vb{p}}-\vb{p})\quad,\quad \hat{\vb{p}}^n\hat{a}(\vb{p})=\hat{a}(\vb{p})(\hat{\vb{p}}-\vb{p})^n
+\end{equation}
+\begin{equation}
+    \hat{\vb{p}}\hat{a}^\dagger(\vb{p})=\hat{a}^\dagger(\vb{p})(\hat{\vb{p}}-\vb{p})\quad,\quad \hat{\vb{p}}^n\hat{a}^\dagger(\vb{p})=\hat{a}^\dagger(\vb{p})(\hat{\vb{p}}-\vb{p})^n
+\end{equation}
+Space-evolution (\ref{space_translation}) reads
+\begin{equation}
+    e^{-i\hat{\vb{p}}\vdot\vb{x}}\hat{a}(\vb{p})  e^{i\hat{\vb{p}}\vdot\vb{x}}=\hat{a}(\vb{p})  e^{i{\vb{p}\vdot\vb{x}}}\quad,\quad e^{-i\hat{\vb{p}}\vdot\vb{x}}\hat{a}^\dagger(\vb{p})  e^{i\hat{\vb{p}}\vdot\vb{x}}=\hat{a}^\dagger(\vb{p})  e^{i{\vb{p}\vdot\vb{x}}}
+\end{equation}
+This way, the spacetime local operator $\hat{\phi}(x)=\hat{\phi}(t,\vb{x})=e^{i(\hat{H}t-\vb{p}\vdot\vb{x})}\hat{\phi}e^{-i(\hat{H}t-\vb{p}\vdot\vb{x})}=e^{-i\hat{p}\cdot x}\hat{\phi}e^{i\hat{p}\cdot x}$ is
+\begin{equation}
+    \hat{\phi}(x)=\int\frac{\dd^3p}{(2\pi)^3}\frac{1}{2E_{\vb{p}}}\qty[\hat{a}^\dagger(\vb{p})e^{iE_{\vb{p}}t-i\vb{p}\vdot\vb{x}}+\hat{a}(\vb{p})e^{-iE_{\vb{p}}t+i\vb{p}\vdot\vb{x}}]
+    \label{general_mode_expansion}
+\end{equation}
+This is a \textit{quantum field}, or \textit{field operator} which is exactly a general solution of the Klein-Gordon equation turned into an operator. This means the equation of motion for the field operator $\hat{\phi}(x)$ is the Klein-Gordon equation, this is easy to check by calculating Heisenberg's Equation of motion for $\hat{\phi}(x)$.\\
+
+At last, we check if $\hat{\phi}(x)$ is causal by calculating
+\begin{equation}
+\left[\hat{\phi}(x), \hat{\phi}\left(x^{\prime}\right)\right]=i \Delta\left(x-x^{\prime}\right)
+\end{equation}
+Which equals 
+\begin{equation}
+\begin{aligned}
+i \Delta(x-y) &=-\operatorname{Im} \int \frac{d^{3} p}{(2 \pi)^{3}} \frac{1}{2 E_{\mathbf{p}}} e^{-i E_{\mathbf{p}}\left(t-t^{\prime}\right)+i \mathbf{p} \cdot\left(\mathbf{x}-\mathbf{x}^{\prime}\right)} \\
+&=\int \frac{d^{4} p}{(2 \pi)^{4}}(2 \pi) \delta\left(p^{2}-m^{2}\right) \operatorname{sign}\left(p^{0}\right) e^{i p\cdot\left(x-x^{\prime}\right)}
+\end{aligned}
+\label{deltao}
+\end{equation}
+The sign function is defined by
+\begin{equation}
+\operatorname{sign}(x) \equiv \theta(x)-\theta(-x)=\left\{\begin{array}{rl}
+1 & x>0 \\
+-1 & x<0
+\end{array}\right.
+\end{equation}
+The second line of (\ref{deltao}) allow us to easily calculate $\Delta(x-y)$ for spacelike separations. Since the integral is Lorentz invariant, we can perform a boost and evaluate it in a frame in which $t=t^\prime$, because it is always possible to define a surface of simultaneity for spacelike separations. The integral over $p^0$ gives us
+\begin{equation}
+\begin{aligned}
+\int_{-\infty}^{\infty} \dd p^{0} \text{sign}\left(p^{0}\right) \delta\left(p^{2}-m^{2}\right)
+=&\int_{-\infty}^{\infty} \dd p^{0}\Big{[}\frac{1}{2 E_{\mathbf{p}}} \text{sign}\left(p^{0}\right) \delta\left(p^{0}-E_{\mathbf{p}}\right)+\\ &\qquad\qquad\qquad\qquad\frac{1}{2 E_{\mathbf{p}}} \text{sign}\left(p^{0}\right) \delta\left(p^{0}+E_{\mathbf{p}}\right)\Big{]} \\
+&=\frac{1}{2 E_{\mathbf{p}}}-\frac{1}{2 E_{\mathbf{p}}}=0
+\end{aligned}
+\end{equation}
+So, indeed, the theory is causal.\\
+
+We have built the quantum mechanical description of a free relativistic bosonic particle from scratch. We found that position eigenstates and therefore wave functions do not work well in a relativistic theory. This justifies our failure in the search for relativistic single-particle state wave functions. Working with momentum states we arrived at our best shot, when it comes to ``localized" states: $\hat{\phi}(x)\ket{0}$.  The projection of a state $\ket{\psi}$ over $\hat{\phi}(x)\ket{0}$ would be the closest we could get to a ``wave function" in a fully relativistic theory. Indeed, it can be shown that, in the non-relativistic limit, $\bra{0}\hat{\phi}(x)\ket{\psi}$ behaves as a wave function and satisfies Schrödinger's Equation. \cite{padmanabhan2016quantum}\\
+
+We can sum up our findings by stating that special relativity demands the concept of a quantum field: a spacetime dependent operator. The quantum field puts space and time on the same footing and guarantees locality and causality. This is the road Quantum Field Theory takes to fully describe the quantum mechanics of a relativistic particle.
+%Our attempts at relativistic quantum mechanics failed because we focused on concepts ill defined when combined with relativity. Wave functions imply absolute localization of single-particle states, and we have seen how this does not work. 
+
+
+\section{Motivating Canonical Quantization}
+
+What our theory seems to suggest is that we should not try to define wave functions. Instead, we should describe particle in terms of creation/annihilation momentum operators and the field $\hat{\phi}(x)$, creation operator of ``localized" particles. This field is a ``turned-operator" solution to the Klein-Gordon Equation. The situation is somehow reminiscent of how we had dynamical variables in classical mechanics, satisfying their own equations of motion, that would turn to operators upon canonical quantization. If we try to generalize, then, the Klein-Gordon equation can be seen as the equation of motion for a classical field, which is then turned operator and imposed to satisfy certain commutation relations.\\
+
+ If we define the field operator $\hat{\pi}(x)=\partial_0\hat{\phi}(x)$, then, using commutation relations (\ref{commu_a}), one can check that
+\begin{equation}
+\begin{aligned}
+\comm{\hat{\phi}(t,\mathbf{x})}{ \hat{\phi}\left( t,\mathbf{x}^{\prime}\right)}=&0 \\
+\comm\Big{\hat{\pi}(t,\mathbf{x})}{ \hat{\pi}\left( t,\mathbf{x}^{\prime}\right)}=&0\\
+\left[\hat{\phi}(t,\mathbf{x}), \hat{\pi}\left( t,\mathbf{x}^{\prime}\right)\right]=&i\, \delta(\mathbf{x}-\mathbf{x}^{\prime})
+\end{aligned}
+\label{commu_fields1}
+\end{equation}
+Notice $\hat{\phi}(x)$ and $\hat{\pi}(x)$ have commutation relations similar to that of $q$ and $p$. We call $\hat{\pi}(x)$ the \textit{canonical momentum density} conjugate to the field $\hat{\phi}(x)$.\\
+
+
+The theory we developed in this chapter was ``bottom-up": we started from creation operators of momentum states and arrived at $\hat{\phi}(x)$. If we start from an appropriate classical field, calculate the conjugate momentum $\hat{\pi}(x)$, turn $\hat{\phi}(x)$ and $\hat{\pi}(x)$  operators and impose commutation relations (\ref{commu_fields1}), then we  get at the same theory, but now in a``top-down" approach: from $\hat{\phi}(x)$ and $\hat{\pi}(x)$ we can obtain the $\hat{a}^\dagger(\vb{p})$, $\hat{a}(\vb{p})$ and their commutation relations. This is exactly the program of canonical quantization for field theories. In the following chapter, we study the classical theory of fields: we will learn to obtain the field's equation of motion from its Lagrangian, how to calculate its conjugate momentum and its Hamiltonian. Then, in Chapter 4, we focus on the Klein-Gordon field. We quantize it and study interactions.

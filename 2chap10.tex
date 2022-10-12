@@ -1,0 +1,257 @@
+\chapter{Covariant Electrodynamics in the Coulomb Gauge}
+\section{Electromagnetic potentials}
+A point charge $q$ moving with velocity $\vb{v}$ responds to electric and magnetic fields $\vb{E}$ and $\vb{B}$ according to the Lorentz formula
+\begin{equation}
+    \vb{F}=q(\vb{E}+\vb{v}\cross\vb{B}).
+\end{equation}
+The behavior of $\vb{E}$ and $\vb{B}$ themselves is dictated by Maxwell's equations. In Heaviside-Lorentz units with $c=1$, they read
+\begin{equation}
+    \div{\vb{E}}=\rho,
+    \label{gauss}
+\end{equation}
+\begin{equation}
+    \curl\vb{B}-\pdv{\vb{E}}{t}=\vb{J},
+    \label{amperemaxwell}
+\end{equation}
+\begin{equation}
+    \curl\vb{E}+\pdv{\vb{B}}{t}=0,
+    \label{faraday}
+\end{equation}
+\begin{equation}
+    \div\vb{B}=0.
+    \label{nomono}
+\end{equation}
+The fact that $\vb{B}$ is a divergence-free field, according to (\ref{nomono}), motivates the introduction of a vector potential $\vb{A}$ such that
+\begin{equation}
+    \vb{B}=\curl\vb{A}.
+\end{equation}
+Faraday's law, (\ref{faraday}), then tell us that, by consistence, $\vb{E}+\pdv{\vb{A}}{t}$ must be  curl-free, motivating the introduction of a scalar potential $\Phi$ such that
+\begin{equation}
+    \vb{E}=-\grad\Phi-\pdv{\vb{A}}{t}.
+    \label{E_phi_A}
+\end{equation}
+
+A choice of potentials $\Phi$ and $\vb{A}$ uniquely define the fields but the fields do not uniquely define the potentials, since \textit{gauge transformations} to the potentials
+\begin{equation}
+\begin{aligned}
+    \Phi\to&\Phi+\pdv{\Gamma}{t}\\
+    \vb{A}\to&\vb{A}-\grad\Gamma
+    \label{gauge}
+\end{aligned}
+\end{equation}
+leave the fields invariant.
+\section{Manifestly covariant notation}
+Next we introduce a notation in which electrodynamics is manifestly Lorentz covariant. We introduce the \textit{four-potential}
+\begin{equation}
+    A^\mu=(\Phi,\vb{A}),
+\end{equation}
+and the 2nd rank antisymmetric \textit{Faraday tensor}, or \textit{electromagnetic strength tensor}
+\begin{equation}
+  F^{\mu\nu}=\partial^\mu A^\nu-\partial^\nu A^\mu.
+\end{equation}
+Equation (\ref{E_phi_A}) in component form reads
+\begin{equation}
+\begin{aligned}
+    E_i=E^i&=-\partial_i\Phi-\partial_0A_i\\
+    &=-\partial_iA^0-\partial_0 A^i\\
+    &=\partial^0A^i-\partial^i A^0\\
+    &=F^{0i}=-F^{i0}.
+\end{aligned}
+\end{equation}
+The defining condition of the vector potential, $\vb{B}=\curl\vb{A}$, in component form tells us that
+\begin{equation}
+\begin{aligned}
+    B_l&=\boldsymbol{\epsilon}_l^{\phantom{i}mn}\partial_mA_n\\
+    \boldsymbol{\epsilon}^{ijl}B_l&=\boldsymbol{\epsilon}^{ijl}\boldsymbol{\epsilon}_l^{\phantom{i}mn}\partial_mA_n\\
+    \boldsymbol{\epsilon}^{ijl}B_l&=(\delta^{im}\delta^{jn}-\delta^{in}\delta^{jm})\partial_mA_n\\
+    \boldsymbol{\epsilon}^{ijl}B_l&=\partial_i A_j-\partial_j A_i\\
+    \boldsymbol{\epsilon}^{ijl}B_l&=\partial^i A^j-\partial^j A^i\\
+    \boldsymbol{\epsilon}^{ijl}B_l&=F^{ij}=-F^{ji}.
+\end{aligned}
+\end{equation}
+These two observations allow us to write the components of the field tensor 
+\begin{equation}
+\left(F^{\mu\nu}\right)=\left(\begin{array}{cccc}
+0 & E_{x} & E_{y} & E_{z} \\
+-E_{x} & 0 & B_{z} & -B_{y} \\
+-E_{y} & -B_{z} & 0 & B_{x} \\
+-E_{z} & B_{y} & -B_{x} & 0
+\end{array}\right).
+\end{equation}
+
+
+To see how can we write Maxwell's equations in terms of the field tensor we examine the component form of equations (\ref{gauss}) - (\ref{nomono}). Starting with the \textit{source equations}, Gauss's Law (\ref{gauss}) reads
+\begin{equation}
+    \partial_iE^i=\rho,
+\end{equation}
+or, introducing the four-current $J^\mu=(\rho,\vb{J})$,
+\begin{equation}
+    \partial_iF^{0i}=J^0.
+    \label{gauss_covariant}
+\end{equation}
+Ampère-Maxwell's Law (\ref{amperemaxwell}) reads
+\begin{equation}
+    \begin{aligned}
+        \boldsymbol{\epsilon}^{ijk}\partial_jB_k-\partial_0E^i=&J^i\\
+        \partial_jF^{ij}+\partial_0 F^{i0}=&J^i.
+        \label{amperemaxwellcovariant}
+    \end{aligned}
+\end{equation}
+(\ref{gauss_covariant}) and (\ref{amperemaxwellcovariant}) can be jointly condensed by
+\begin{equation}
+    \partial_\nu F^{\mu\nu}=J^\mu,
+    \label{sources}
+\end{equation}
+which also encodes the continuity equation for charges, since $\partial_\mu\partial_\nu F^{\mu\nu}=\partial_\mu J^\mu$, partial derivatives commute and $F^{\mu\nu}$ is anti-symmetric, yielding $\partial_\mu J^\mu=0$.\\
+
+As for the other two equations, the \textit{homogeneous equations}, (\ref{nomono}) reads, 
+\begin{equation}
+    \div \vb{B}=\partial^iB_i=\partial^1B_1+\partial^2B_2+\partial^3B_3=\partial^1F^{23}+\partial^2F^{31}+\partial^3F^{12}=0.
+\end{equation}
+and (\ref{faraday}), for the $x$-component, for instance, reads
+\begin{equation}
+\begin{aligned}
+    \qty(\curl{\vb{E}}+\pdv{\vb{B}}{t})_1&=\partial_2E_3-\partial_3E_2+\partial_0B_1=\partial^2F^{03}-\partial_3F^{02}+\partial_0F^{23}\\
+    &=\partial^2F^{03}+\partial^3F^{20}+\partial^0F^{32}=0.
+\end{aligned}
+\end{equation}
+Both equations can be expressed by 
+\begin{equation}
+    \partial^\rho F^{\nu\sigma}+\partial^\nu F^{\sigma\rho}+\partial^\sigma F^{\rho\nu}=0,
+\end{equation}
+or
+\begin{equation}
+    \boldsymbol{\epsilon}_{\mu\nu\rho\sigma}\partial^{\rho}F^{\mu\nu}=0.
+    \label{homogeneous}
+\end{equation}
+\section{Lagrangian for the electromagnetic field}
+Maxwell's equations with sources can be deduced from the Lagrangian density
+\begin{equation}
+    \mathcal{L}=-\frac{1}{4}F^{\mu\nu}F_{\mu\nu}+A_\mu J^\mu .
+    \label{lagrangian_F}
+\end{equation}
+With an action $S[A]=\int\dd^4x\,\mathcal{L}$, the source equations (\ref{sources}) follow from the variational principle $\delta S=0$ 
+\begin{equation}
+    \fdv{S}{A_\mu}=\pdv{\mathcal{L}}{A_\mu}-\partial_\nu\pdv{\mathcal{L}}{(\partial_\nu A_\mu)}=J^\mu-\partial_\nu F^{\mu\nu}=0.
+\end{equation}
+The homogeneous equations (\ref{homogeneous}) follow directly from the construction of $F^{\mu\nu}$ in terms of the four-potential, and are automatically satisfied independently from dynamics. 
+\section{The Coulomb gauge}
+Gauge invariance allows us to choose a function $\Gamma(x)$ in (\ref{gauge}) so that the scalar and vector potentials satisfy relations that simplify calculations or formulas in a given context. This is called gauge fixing. In our treatment, we adopt the so-called \textit{Coulomb Gauge}, or \textit{Radiation Gauge}.\\
+
+Explicitly working out the Lagrangian (\ref{lagrangian_F}),
+\begin{equation}
+    \mathcal{L}=\frac{1}{2}\dot{A}_i\dot{A}_i-\frac{1}{2}\partial_jA_i\partial_jA_i+J_iA_i+\frac{1}{2}\partial_iA_j\partial_jA_i+\dot{A}_i\partial_i\Phi+\frac{1}{2}\partial_i\Phi\partial_i\Phi-\rho\Phi,
+    \label{explicit_lagrangian}
+\end{equation}
+we note that it can be simplified by fixing a gauge in which the vector potential satisfies
+\begin{equation}
+    \div\vb{A}=0.
+    \label{coulomb_gauge}
+\end{equation}
+ Because, if this is the case, then $\partial_iA_j\partial_jA_i=\partial_i(A_j\partial_j A_i)-A_j\partial_i\partial_jA_i=\partial_i(A_j\partial_j A_i)-A_j\partial_j\partial_iA_i$, the first term being a surface term that can be made to vanish at infinity and the second term vanishing by virtue of the gauge condition $\partial_iA_i=0$; then we can neglect the $\partial_iA_j\partial_jA_i$ term in the Lagrangian. By the same token, $\dot{A}_i\partial_i\Phi=\partial_i(\dot{A}_i\Phi)-(\partial_i\dot{A}_i)\Phi=\partial_i(\dot{A}_i\Phi)-(\partial_0\partial_i{A}_i)\Phi$. Again a surface term and a vanishing term due the gauge condition and we can neglect the $\dot{A}_i\partial_i\Phi$ term as well.
+
+To impose gauge condition (\ref{coulomb_gauge}) to the vector potential, we define a projection operator with the following effect over its components
+\begin{equation}
+    A_i(x)\to\qty(\delta_{ij}-\frac{\partial_i\partial_j}{\laplacian})A_j.
+    \label{projection_op}
+\end{equation}
+If dealing with arbitrary coordinate systems, $\partial_i$ should be replaced by the corresponding component of the gradient operator $\grad_i$. We will work in cartesians so we stick to $\partial_i$. The implementation of the projection operator is understood to happen in momentum space, i.e. we transform the Fourier components of potential as
+\begin{equation}
+    \widetilde{A}_i(k)\to\qty(\delta_{ij}-\frac{k_ik_j}{\vb{k}^2})\widetilde{A}_j(k)
+\end{equation}
+then we apply the inverse transform to recover $A_i(x)$. It is then clear that $\partial_iA_i=0$, which reads $k_i\widetilde{A}_i=k_i(\delta_{ij}-k_ik_j/\vb{k}^2)\widetilde{A}_j=(k_j-\vb{k}^2k_j/\vb{k}^2)\widetilde{A}_j=0$ in momentum space. From now on, it is understood that $A_i(x)$ refers to the projected potential $(\delta_{ij}-\partial_i\partial_j/\laplacian)A_j(x)$. So, in every equation where the former appears, read the latter.
+\section{Potentials in the Coulomb gauge}
+Now we focus on solving the equation of motion for the electromagnetic field in the Coulomb Gauge. Varying $\Phi$ while $\delta S=0$ leads to
+\begin{equation}
+    \fdv{S}{\Phi}=-\laplacian\Phi-\rho=0\to \laplacian\Phi=-\rho
+\end{equation}
+which is Poisson's equation. The solution for boundary conditions in which $\Phi$ and $\rho$ both vanish at infinity is
+\begin{equation}
+    \Phi(t,\vb{x})=\int\dd^3 y\frac{\rho(t,\vb{y})}{4\pi\abs{\vb{x-y}}}.
+    \label{scalar_potential}
+\end{equation}
+Integration by parts reveals that the $\partial_i\Phi\partial_i\Phi$ term in Lagrangian (\ref{explicit_lagrangian}) equals to $-\Phi\laplacian\Phi=\rho\Phi$ plus a surface term. We introduce
+\begin{equation}
+    \mathcal{L}_{\text{Coul}}=-\frac{1}{2}\rho\Phi=-\frac{1}{2}\int\dd^3 y \frac{\rho(t,\vb{x})\rho(t,\vb{y})}{4\pi\abs{\vb{x}-\vb{y}}}
+\end{equation}
+and replace $\partial_i\Phi\partial_i\Phi$ by $\mathcal{L}_{\text{Coul}}$ in (\ref{explicit_lagrangian}). The Lagrangian in the Coulomb Gauge thus reads
+\begin{equation}
+    \mathcal{L}=\frac{1}{2}\dot{A}_i\dot{A}_i-\frac{1}{2}\partial_jA_i\partial_jA_i+J_iA_i+\mathcal{L}_{\text{Coul}}.
+\end{equation}
+Now, varying $A_i$ while $\delta S=0$ gives
+\begin{equation}
+    \begin{aligned}
+        \fdv{S}{A_i}=\pdv{\mathcal{L}}{A_i}-\partial_0\pdv{\mathcal{L}}{(\partial_0A_i)}-\partial_j\pdv{\mathcal{L}}{(\partial_jA_i)}=        \qty(\delta_{ij}-\frac{\partial_i\partial_j}{\laplacian})J_i-\partial_0^2A_i+\laplacian A_i=0
+\end{aligned}
+\end{equation}
+revealing the massless Klein-Gordon equation, with the projected current as a source\footnote{Recall that the projection operator is there because $A_i$ actually corresponds to the projected potential, according to (\ref{projection_op})}
+\begin{equation}
+        -\partial^2A_i=\qty(\delta_{ij}-\frac{\partial_i\partial_j}{\laplacian})J_i
+\end{equation}
+For $J_i=0$, the solution is
+\begin{equation}
+    \vb{A}(x)=\sum_{\lambda=\pm}\int\widetilde{\dd k}\qty[\boldsymbol{\epsilon}^*_\lambda(\vb{k})a_\lambda(\vb{k})e^{ikx}+\boldsymbol{\epsilon}_\lambda(\vb{k})a_\lambda^\dagger(\vb{k})e^{-ikx}],
+    \label{vector_mode_expansion}
+\end{equation}
+where $\widetilde{\dd k}=\frac{\dd ^3 k}{(2\pi)^32\omega}$ is the Lorentz invariant measure, $\omega=k^0=\abs{\vb{k}}$,  $\boldsymbol{\epsilon}_\pm$ and $\boldsymbol{\epsilon}^*_\pm$ are polarization vectors. The gauge condition $\div\vb{A}=0$ requires $\vb{k}\vdot\vb{A}=0$ and thus $\vb{k}\vdot \boldsymbol{\epsilon}_\lambda(\vb{k})=0$. With $\vb{k}=(0,0,k)$, we choose right-handed $\boldsymbol{\epsilon}_+(\vb{k})=\frac{1}{\sqrt{2}}(1,-i,0)$ and left-handed $\boldsymbol{\epsilon}_-(\vb{k})=\frac{1}{\sqrt{2}}(1,i,0)$ circular polarization vectors. Thus indeed we check
+\begin{equation}
+    \vb{k}\vdot\boldsymbol{\epsilon}_\lambda(\vb{k})=0.
+\end{equation}
+Also, the polarization vectors are orthonormal 
+\begin{equation}
+    \boldsymbol{\epsilon}_{\lambda^\prime}(\vb{k})\vdot\boldsymbol{\epsilon}^*_{\lambda}(\vb{k})=\delta_{\lambda^\prime\lambda},
+\end{equation}
+and complete:
+\begin{equation}
+    \sum_{\lambda=\pm}{\epsilon}^*_{i\,\lambda}(\vb{k}){\epsilon}_{j\,\lambda}(\vb{k})=\delta_{ij}-\frac{k_ik_j}{\vb{k}^2}.
+\end{equation}
+As we did for scalars and fermions, we can extract the coefficients 
+\begin{equation}
+    a_\lambda(\vb{k})=+i\boldsymbol{\epsilon}_\lambda(\vb{k})\vdot\int\dd^3 x\, e^{-ikx}\overleftrightarrow{\partial}_0\vb{A}(x),
+    \label{a_photon}
+\end{equation}
+\begin{equation}
+    a^\dagger_\lambda(\vb{k})=-i\boldsymbol{\epsilon}^*_\lambda(\vb{k})\vdot\int\dd^3 x\, e^{ikx}\overleftrightarrow{\partial}_0\vb{A}(x).
+    \label{adagger_photon}
+\end{equation}
+
+\section{Conjugate momenta, commutation relations and Hamiltonian}
+The time component of the four-potential has no dynamics, thus the canonical momentum has only space components
+\begin{equation}
+    \Pi_i=\pdv{\mathcal{L}}{\dot{A}_i}=\dot{A}_i.
+\end{equation}
+The gauge condition $\partial_iA_i=0$ leads to $\partial_i\Pi_i=0$, since the derivatives commute. The hamiltonian density $\mathcal{H}=\Pi_i\dot{A}_i-\mathcal{L}$ reads
+\begin{equation}
+   \mathcal{H}= \frac{1}{2}\Pi_i\Pi_i+\frac{1}{2}\partial_j A_i\partial_j A_i-J_iA_i+\mathcal{H}_{\text{Coul}}
+\end{equation}
+where $\mathcal{H}_{\text{Coul}}=-\mathcal{L}_{\text{Coul}}$.\\
+
+The canonical commutation relations are
+\begin{equation}
+    \comm{A_i(t,\vb{x})}{\Pi_j(t,\vb{y})}=i\qty(\delta_{ij}-\frac{\partial_i\partial_j}{\laplacian})\delta^3(\vb{x}-\vb{y})=i\int\frac{\dd^3 k}{(2\pi)^3}e^{i\vb{k}\vdot(\vb{x}-\vb{y})}\qty(\delta_{ij}-\frac{k_ik_j}{\vb{k}^2}),
+\end{equation}
+\begin{equation}
+    \comm{A_i(t,\vb{x})}{A_j(t,\vb{y})}=0,
+\end{equation}
+\begin{equation}
+    \comm{\Pi_i(t,\vb{x})}{\Pi_j(t,\vb{y})}=0.
+\end{equation}
+And, for the coefficients,
+\begin{equation}
+    \comm{a_\lambda(\vb{k})}{a_{\lambda^\prime}(\vb{k}^\prime)}=0,
+    \label{comm_photon1}
+\end{equation}
+\begin{equation}
+    \comm{a^\dagger_\lambda(\vb{k})}{a^\dagger_{\lambda^\prime}(\vb{k}^\prime)}=0,
+\end{equation}
+\begin{equation}
+    \comm*{a_\lambda(\vb{k})}{a^\dagger_{\lambda^\prime}(\vb{k}^\prime)}=(2\pi)^32\omega\delta^3(\vb{k}-\vb{k}^\prime)\delta_{\lambda\lambda^\prime}.
+    \label{comm_photon2}
+\end{equation}
+$a^\dagger_\lambda(\vb{k})$ and $a_\lambda(\vb{k})$ are creation and annihilaton operators for photons with definite helicity. Helicity, simply put, is $+1$ for right-circular polarization and positive $\vb{k}$, and $-1$ for left-circular polarization and positive $\vb{k}$.\\
+
+Considering the mode expansion (\ref{vector_mode_expansion}) and the commutation relations (\ref{comm_photon1})-(\ref{comm_photon2}), the total Hamiltonian reads
+\begin{equation}
+    H=\sum_{\lambda=\pm}\int\widetilde{\dd k}\, \omega\, a^\dagger_{\lambda}(\vb{k})a_\lambda(\vb{k})+2\mathcal{E}_0V-\int\dd^3x\, \vb{J}\vdot\vb{A}+H_{\text{Coul}}
+\end{equation}
+where $\mathcal{E}_0=\frac{1}{2(2\pi)^3}\int\dd^3 k\,\omega$ is the zero point energy (which can be cancelled by introducing $\Omega_0=2\mathcal{E}_0$) to the Lagrangian density and $H_{\text{Coul}}$ is the space integral of $\mathcal{H}_{\text{Coul}}$.
